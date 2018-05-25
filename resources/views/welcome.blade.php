@@ -2,6 +2,6 @@
 
 @section('content')
 <div class='content'>
-        <h1>{{$currentTime}}</h1>
+        <h1>Welcome (Landing)</h1>
 </div>
 @endsection

@@ -13,6 +13,8 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@welcome')->name('welcome');
+Route::get('/', 'PagesController@home');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'PagesController@home');
+
+Route::get('/dashboard', 'PagesController@dashboard');
