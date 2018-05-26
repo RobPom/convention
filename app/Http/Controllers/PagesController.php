@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use DB;
 
 
 class PagesController extends Controller
@@ -50,8 +51,11 @@ class PagesController extends Controller
     public function dashboard()
     {
         $user = Auth::user();
+        $users = DB::table('users')->where('id', '!=', Auth::id())->get();
 
-        return view('dashboard')->with('user', $user);
-
+        $role = $user->roles()->first()->name;
+        return view('dashboard')
+            ->with('user', $user)
+            ->with('users', $users);
     }
 }
