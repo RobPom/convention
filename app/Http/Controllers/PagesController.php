@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use DB;
+
 
 
 class PagesController extends Controller
@@ -51,11 +53,18 @@ class PagesController extends Controller
     public function dashboard()
     {
         $user = Auth::user();
-        $users = DB::table('users')->where('id', '!=', Auth::id())->get();
 
-        $role = $user->roles()->first()->name;
+        $members = User::whereHas('roles', function($query)
+                        { $query->where('name', 'like', 'member'); }
+                    ) ->get();
+
+        $organizers = User::whereHas('roles', function($query)
+            { $query->where('name', 'like', 'organizer'); }
+        ) ->get();
+
         return view('dashboard')
             ->with('user', $user)
-            ->with('users', $users);
+            ->with('members', $members)
+            ->with('organizers', $organizers);
     }
 }

@@ -18,3 +18,7 @@ Route::get('/', 'PagesController@home');
 Route::get('/home', 'PagesController@home');
 
 Route::get('/dashboard', 'PagesController@dashboard');
+
+Route::get('/users/add', 'ContactController@add');
+Route::post('/users/add', 'ContactController@store');
+
