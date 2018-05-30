@@ -3,7 +3,10 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4>{{$user->username}}<br>
+            
+        <h4>
+            <small><i class="far  fa-user"></i></small>
+            {{$user->username}}<br>
             <small>{{$user->roles->first()->name}}</small>
         </h4>
     </div>

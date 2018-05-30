@@ -68,6 +68,10 @@ class User extends Authenticatable
     return null !== $this->roles()->where('name', $role)->first();
     }
 
+
+//----------------------------------------------------------------------
+
+
     /**
     * generate a random password for a new user account created by 
     * an organizer
@@ -94,4 +98,16 @@ class User extends Authenticatable
         $m->to($user->email, $user->name)->subject('Welcome to IntrigueCon');
       });
     }
+
+//----------------------------------------------------------------------
+
+    /**
+    * One to one relationship with VerifyUser
+    */
+    public function verifyUser()
+    {
+        return $this->hasOne('App\VerifyUser');
+    }
+
+
 }

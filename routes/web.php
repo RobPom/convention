@@ -12,6 +12,7 @@
 */
 
 Auth::routes();
+Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 Route::get('/', 'PagesController@home');
 
