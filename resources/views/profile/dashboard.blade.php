@@ -39,7 +39,7 @@
             <h5>Members</h5><br>
             
             @foreach($members as $member)
-                @include('member.HorizontalCard')<br>
+                @include('member.horizontalCard')<br>
             @endforeach
             
             <a href='/users/add' class="btn btn-small btn-primary col-md-4 offset-md-4"> Add a Member </a>
