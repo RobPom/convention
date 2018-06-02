@@ -12,8 +12,7 @@
     </div>
     <div class="card-body">
         <p>This is where common tools to all registered users will go </p>
-
-        
+  
     </div>
 </div>
 
@@ -24,8 +23,7 @@
         <h5>Profile</h5>
     </div>
     <div class="card-body">
-            @include('layouts.profileHorizontalCard')
-        
+            @include('member.horizontalCard', ['member' => $user ])   
     </div>
 </div>
 
@@ -38,13 +36,13 @@
         </div>
         <div class="card-body">
 
-            <h5>Members</h5>
+            <h5>Members</h5><br>
             
-            @foreach($members as $user)
-                @include('layouts.profileSmallHorizontalCard')<br>
+            @foreach($members as $member)
+                @include('member.HorizontalCard')<br>
             @endforeach
             
-            <a href='/users/add' class="btn btn-small btn-primary"> Add a Member </a>
+            <a href='/users/add' class="btn btn-small btn-primary col-md-4 offset-md-4"> Add a Member </a>
 
         </div>
     </div>
@@ -57,12 +55,10 @@
             <h5>Admin Tools</h5>
         </div>
         <div class="card-body">
-                <h5>Organizers</h5>
-            
-                @foreach($organizers as $organizer)
-                    {{$organizer->username}} <br>
-                @endforeach
-
+            <h5>Organizers</h5>         
+            @foreach($organizers as $member)
+                @include('member.HorizontalCard')<br>
+            @endforeach
         </div>
     </div>
 @endif

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Profile;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -56,9 +57,19 @@ class ProfileController extends Controller
      * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function show($id)
+    {   
+        $member = User::find($id);
+        $user = Auth::user();
+        return view('profile.show')
+            ->with('user', $user)
+            ->with('member', $member);
+    }
+
+    public function user(Profile $profile)
     {
-        //
+        $user = Auth::user();
+        return view('profile.user')->with('user', $user);
     }
 
     /**

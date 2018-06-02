@@ -19,7 +19,8 @@ Route::get('/home', 'PagesController@home');
 Route::get('/welcome', 'PagesController@welcome');
 
 Route::get('/profile/dashboard', 'ProfileController@dashboard');
-Route::get('/profile', 'ProfileController@dashboard');
+Route::get('/profile/show/{id}', 'ProfileController@show');
+Route::get('/profile/user/', 'ProfileController@user');
 
 Route::get('/users/add', 'ContactController@add');
 Route::post('/users/add', 'ContactController@store');

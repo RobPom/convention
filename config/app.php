@@ -210,6 +210,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'auth.password.tokens' => Illuminate\Auth\Passwords\TokenRepositoryInterface::class,
+        'Carbon' => 'Carbon\Carbon',
 
     ],
 
