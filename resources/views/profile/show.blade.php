@@ -13,7 +13,7 @@
         <h5>Info Visible to Community Members</h5>
         
         <p><strong>email: </strong>{{$member->email}}<br>
-            member since {{ (new Carbon($member->created_at))->toFormattedDateString() }}</p>
+            member since {{ (new \Carbon\Carbon($member->created_at))->toFormattedDateString() }}</p>
             <strong>about: </strong>{{$member->profile->description}} 
    
 
