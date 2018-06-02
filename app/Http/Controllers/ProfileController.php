@@ -66,7 +66,7 @@ class ProfileController extends Controller
             ->with('member', $member);
     }
 
-    public function user(Profile $profile)
+    public function user()
     {
         $user = Auth::user();
         return view('profile.user')->with('user', $user);
