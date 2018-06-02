@@ -65,6 +65,6 @@ class ContactController extends Controller
         $user->save();
         $user->roles()->attach(Role::where('name', 'member')->first());
         User::sendWelcomeEmail($user);
-        return redirect('/dashboard');
+        return redirect('profile/dashboard');
     }
 }

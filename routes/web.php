@@ -14,11 +14,12 @@
 Auth::routes();
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
-Route::get('/', 'PagesController@home');
-
+Route::get('/', 'PagesController@checkCookie');
 Route::get('/home', 'PagesController@home');
+Route::get('/welcome', 'PagesController@welcome');
 
-Route::get('/dashboard', 'PagesController@dashboard');
+Route::get('/profile/dashboard', 'ProfileController@dashboard');
+Route::get('/profile', 'ProfileController@dashboard');
 
 Route::get('/users/add', 'ContactController@add');
 Route::post('/users/add', 'ContactController@store');

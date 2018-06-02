@@ -57,7 +57,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <a class="dropdown-item" href="/dashboard">
+                                    <a class="dropdown-item" href="profile/dashboard">
                                        Dashboard
                                     </a>
 

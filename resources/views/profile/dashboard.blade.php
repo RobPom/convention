@@ -12,9 +12,25 @@
     </div>
     <div class="card-body">
         <p>This is where common tools to all registered users will go </p>
+
+        
     </div>
 </div>
+
 <br>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Profile</h5>
+    </div>
+    <div class="card-body">
+            @include('layouts.profileHorizontalCard')
+        
+    </div>
+</div>
+
+<br>
+
 @if( $user->hasRole('organizer') ||  $user->hasRole('admin') )
     <div class="card">
         <div class="card-header">
@@ -24,14 +40,15 @@
 
             <h5>Members</h5>
             
-            @foreach($members as $member)
-                {{$member->username}} <br>
+            @foreach($members as $user)
+                @include('layouts.profileSmallHorizontalCard')<br>
             @endforeach
-            <br>
-            <a href='users/add' class="btn btn-small btn-primary"> Add a Member </a>
+            
+            <a href='/users/add' class="btn btn-small btn-primary"> Add a Member </a>
 
         </div>
     </div>
+    
 @endif
 <br>
 @if( $user->hasRole('admin') )

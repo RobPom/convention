@@ -109,5 +109,13 @@ class User extends Authenticatable
         return $this->hasOne('App\VerifyUser');
     }
 
+    public function profile()
+    {
+        return $this->hasOne('App\profile')->withDefault([
+            'location' => 'Parts Unknown',
+            'description' => 'A mysterious stranger...',
+        ]);
+    }
+
 
 }
