@@ -10,6 +10,7 @@
         </h4>
     </div>
     <div class="card-body">
+
         <h5>Info Visible to Community Members</h5>
         
         <p><strong>email: </strong>{{$member->email}}<br>
@@ -23,6 +24,7 @@
             <strong>Full Name: </strong>{{$member->firstname}} {{$member->lastname}}<br>
             <strong>Location: </strong> {{$member->profile->location}}
         @endif
+        
     </div>
 </div>
 
