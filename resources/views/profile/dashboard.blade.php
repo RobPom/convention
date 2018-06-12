@@ -11,7 +11,7 @@
         </h3>
     </div>
     <div class="card-body">
-        <h4 class='d-inline'>Profile</h5><a href='#'> - edit</a><br><br>
+        <h4 class='d-inline'>Profile</h5><a href='/profile/{{$user->id}}/edit'> - edit</a><br><br>
         <h5>Community Info</h5>
             
         <strong>Email: </strong>{{$user->email}}<br>
@@ -55,7 +55,7 @@
                             <td>{{$member->firstname}}</td>
                             <td>{{$member->lastname}}</td>
                             <td>{{$member->email}}</td>
-                            <td><a href=''>edit</a></td>
+                            <td><a href='/profile/{{$member->id}}/edit'>edit</a></td>
                             </a>
                         </tr>
                         @endforeach

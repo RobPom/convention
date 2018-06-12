@@ -14,3 +14,27 @@ table.sortable thead {
     line-height: 60px;
     background-color: #666666;
 }
+
+ul.archiveList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    
+}
+
+ul.archiveList li {
+    margin-bottom: 4px;
+}
+
+p.authorTitle {
+    font-weight: bolder;
+    font-size: 0.8em;
+    margin-bottom: 2px;
+}
+
+p.authorLead {
+    font-weight: bolder;
+    font-size: 0.8em;
+    color: #666666;
+}

@@ -22,6 +22,9 @@ Route::get('/profile/dashboard', 'ProfileController@dashboard');
 Route::get('/profile/show/{id}', 'ProfileController@show');
 Route::get('/profile/user/', 'ProfileController@user');
 
+Route::get('/profile/{id}/edit', 'ProfileController@edit');
+Route::put('/profile/{id}', 'ProfileController@update');
+
 Route::get('/users/add', 'ContactController@add');
 Route::post('/users/add', 'ContactController@store');
 
