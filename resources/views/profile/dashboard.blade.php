@@ -5,13 +5,19 @@
     <div class="card-header">
             
         <h3>
-            <small><i class="far  fa-user"></i></small>
-            {{$user->username}}<br>
-            <small>{{$user->roles->first()->name}}</small>
+            <small><i class="far fa-user"></i></small>
+            {{$user->username}}
         </h3>
     </div>
     <div class="card-body">
-        <h4 class='d-inline'>Profile</h5><a href='/profile/{{$user->id}}/edit'> - edit</a><br><br>
+
+        @if (session('profileUpdate'))
+            <div class="alert alert-success">
+                    <i class="far fa-address-card"></i> {{ session('profileUpdate') }}
+            </div>
+        @endif
+
+        <h4 class='d-inline'>Profile   </h4>  <a class="btn btn-secondary btn-sm" href='/profile/{{$user->id}}/edit'>edit</a><br><br>
         <h5>Community Info</h5>
             
         <strong>Email: </strong>{{$user->email}}<br>
@@ -19,6 +25,7 @@
         <strong>About: </strong>{{$user->profile->description}} <br>
         <hr>
         <h5>Private Info</h5>
+        <strong>Member Level: </strong> {{$user->roles->first()->name}} <br>
         <strong>Full Name: </strong>{{$user->firstname}} {{$user->lastname}}<br>
         <strong>Location: </strong> {{$user->profile->location}}
 
@@ -36,27 +43,47 @@
         <div class="card-body">
                 <h5>All Members</h5>
                 <br>
-                <table class="table table-sm sortable">
-                        
+
+                @if (session('memberUpdate'))
+                    <div class="alert alert-success">
+                        <i class="far fa-address-card"></i> {{ session('memberUpdate') }}
+                    </div>
+                @endif
+
+                <table class="table table-sm sortable">  
                     <thead>
                         <tr>
                             <th scope="col">User</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">email</th>
+                            <th scope="col" class="d-none d-md-table-cell">First</th>
+                            <th scope="col" class="d-none d-md-table-cell">Last</th>
+                            <th scope="col" class="d-none d-sm-table-cell">email</th>
+                            <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($members as $member)
-                        <tr >
-                            <a href="#">
-                            <th scope="row">{{$member->username}}</th>
-                            <td>{{$member->firstname}}</td>
-                            <td>{{$member->lastname}}</td>
-                            <td>{{$member->email}}</td>
-                            <td><a href='/profile/{{$member->id}}/edit'>edit</a></td>
-                            </a>
+
+                        <tr>
+ 
+                            <th scope="row">
+                                <a href='/profile/show/{{$member->id}}'>{{$member->username}}</a>
+                            </th>
+                            <td class="d-none d-md-table-cell">{{$member->firstname}}</td>
+                            <td class="d-none d-md-table-cell">{{$member->lastname}}</td>
+                            <td class="d-none d-sm-table-cell">{{$member->email}}</td>
+                            <td><a class="btn btn-secondary btn-sm" href='/profile/{{$member->id}}/edit'>edit</a></td>
+                            <td>
+                                <form 
+                                    onsubmit="return confirm('Are you sure you want to delete this user?');"
+                                    action="{{action('ContactController@destroy', $member->id)}}" 
+                                    method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger  btn-sm" type="submit">Delete</button>
+                                </form>
+                            </td>
+
                         </tr>
                         @endforeach
                     </tbody>
@@ -67,6 +94,7 @@
     </div>
     
 @endif
+
 <br>
 @if( $user->hasRole('admin') )
     <div class="card">
@@ -81,5 +109,7 @@
         </div>
     </div>
 @endif
+
+
 
 @endsection

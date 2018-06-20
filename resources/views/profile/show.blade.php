@@ -4,10 +4,10 @@
 
 <div class="card">
     <div class="card-header">      
-        <h4>
+        <h3>
             <small><i class="far  fa-user"></i></small>
             {{$member->username}}<br>
-        </h4>
+        </h3>
     </div>
     <div class="card-body">
 

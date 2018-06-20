@@ -59,8 +59,6 @@
                                     
                                     <a class="dropdown-item" href="/profile/dashboard">Dashboard</a>
 
-                                    <a class="dropdown-item" href="/profile/user">Profile</a>
-
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

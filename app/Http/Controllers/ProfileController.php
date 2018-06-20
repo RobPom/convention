@@ -21,37 +21,6 @@ class ProfileController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Show the user profile
      *
      * @param  \App\Profile  $profile
@@ -97,8 +66,6 @@ class ProfileController extends Controller
             ->with('organizers', $organizers);
     }
 
-
-
      /**
      * Show the form for editing the specified resource.
      *
@@ -109,9 +76,13 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $member = User::find($id); 
-        return view('profile.edit')
+        if( $user->id == $id || $user->hasRole('organizer') ){
+            return view('profile.edit')
             ->with('user', $user)
             ->with('member' , $member);
+            
+        }
+        abort(403, 'This action is unauthorized.');
     }
 
     /**
@@ -124,6 +95,7 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $member = USER::find($id);
+        $user = Auth::user();
        
         $this->validate($request, [
             'firstname'  => 'required|alpha|max:50',
@@ -131,11 +103,13 @@ class ProfileController extends Controller
             'location'  => 'max:50',
             'description'  => 'max:144',
         ]);
-
        
         $member->firstname = $request->input('firstname');
         $member->lastname = $request->input('lastname');
         $member->save();
+
+        // if a profile is attached, delete it then save.
+
         if( Profile::where('user_id', $member->id )->first()){
             $profile = Profile::where('user_id', $member->id )->first();
             $profile->delete();
@@ -144,15 +118,20 @@ class ProfileController extends Controller
         $profile = new Profile();
         $profile->location = $request->input('location');
         $profile->description =  $request->input('description');
-       
+
         $member->profile()->save($profile);
+
+
+        if(Auth::id() == $id ) {
+            return redirect('profile/dashboard')
+            ->with('profileUpdate', 'Profile Updated');
+        }
         
-      
+        if ($user->hasRole('organizer')) {
+            return redirect('profile/dashboard')
+            ->with('memberUpdate', 'member profile updated');
+        }
         
-       /*  dd($member);
-        return redirect('/events/'. $member->id)->with('success', 'profile updated');
- */
-        return redirect('/profile/show/'.$member->id)->with('success', 'profile updated');
     }
 
     /**
@@ -161,20 +140,6 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $event = Event::find($id);
-        
-        if($event->event_image != 'noimage.jpg'){
-            //delete image
-            Storage::delete('public/event_images/' . $event->event_image);
-        }
-        
-        $event->delete();
-        return redirect('/events')->with('success', 'Event Removed');
-    }
-
-
-
+    
 
 }

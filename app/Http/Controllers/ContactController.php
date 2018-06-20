@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use App\Role;
 use Validator;
 use Redirect;
@@ -17,7 +18,6 @@ class ContactController extends Controller
 
     public function index(Request $request)
     {
-       
         return view('home');
     }
     /*
@@ -65,6 +65,20 @@ class ContactController extends Controller
         $user->save();
         $user->roles()->attach(Role::where('name', 'member')->first());
         User::sendWelcomeEmail($user);
-        return redirect('profile/dashboard');
+        return redirect('profile/dashboard')->with('memberUpdate', 'member added');
+    }
+
+    public function destroy($id)
+    {
+        $member = User::find($id);
+        $user = User::find(Auth::id());
+        
+        if( $user->hasRole('organizer') ||  $user->hasRole('admin') ){
+            $member->delete();
+            return redirect('profile/dashboard')->with('memberUpdate', 'User Deleted');
+        }
+        
+            abort(403, 'This action is unauthorized.');
+        
     }
 }
