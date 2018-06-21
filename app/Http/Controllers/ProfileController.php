@@ -66,6 +66,29 @@ class ProfileController extends Controller
             ->with('organizers', $organizers);
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $user = Auth::user();
+
+        $members = User::whereHas('roles', function($query)
+                        { $query->where('name', 'like', 'member'); }
+                    ) ->get();
+
+        if(  $user->hasRole('admin') || $user->hasRole('organizer') ){
+            return view('profile.index')
+            ->with('user', $user)
+            ->with('members' , $members);
+            
+        }
+        abort(403, 'This action is unauthorized.');
+    }
+
      /**
      * Show the form for editing the specified resource.
      *

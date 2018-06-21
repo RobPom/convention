@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\BlogPost;
+use App\Role;
 use Illuminate\Support\Facades\Auth;
 use Request;
 use Redirect;
@@ -31,7 +33,9 @@ class PagesController extends Controller
      */
 
     public function home()
-    {
+    {   
+
+
         return view('home');
     }
 
@@ -44,7 +48,16 @@ class PagesController extends Controller
     public function checkCookie()
     {
         if (Cookie::get('visited') !== null){
-            return view('home');
+
+            $posts = BlogPost::all();
+            $latestPosts = $posts->sortByDesc('created_at')->take(5);
+            $latestPost = $posts->sortByDesc('created_at')->first();
+            $latestAuthor = User::find($latestPost->user_id);
+            return view('home')
+                ->with('latestPost', $latestPost)
+                ->with('latestAuthor', $latestAuthor)
+                ->with('latestPosts' , $latestPosts); 
+
         }
         
         return redirect('welcome')->cookie('visited','true' , 280060);
