@@ -28,8 +28,9 @@ ul.archiveList li {
 }
 
 p.authorTitle {
+    margin-top: 1em;
     font-weight: bolder;
-    font-size: 0.8em;
+    font-size: 1em;
     margin-bottom: 2px;
 }
 
@@ -37,6 +38,15 @@ p.authorLead {
     font-weight: bolder;
     font-size: 0.8em;
     color: #666666;
+}
+
+.card-link:hover, .card-link:active {
+        text-decoration: none;
+}
+
+.horizontal-header {
+    background: #fff !important;
+    border-bottom: none !important;
 }
 
 .headerbox {

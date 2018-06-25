@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BlogPost;
+use App\BlogCategory;
 use Illuminate\Http\Request;
 
 class BlogPostController extends Controller
@@ -14,7 +15,19 @@ class BlogPostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = BlogPost::all();
+        return view ('blog.index')->with('posts' , $posts);
+    }
+
+    public function categoryIndex( $id )
+    {
+        $category = BlogCategory::find($id);
+        $categories = BlogCategory::orderBy('title')->get();
+        $posts = BlogPost::where('category' , $category->id)->orderBy('posted_on', 'DESC')->get();
+        return view ('blog.categories.index')
+            ->with('category' , $category)
+            ->with('categories' , $categories)
+            ->with('posts' , $posts );
     }
 
     /**
@@ -44,9 +57,17 @@ class BlogPostController extends Controller
      * @param  \App\BlogPost  $blogPost
      * @return \Illuminate\Http\Response
      */
-    public function show(BlogPost $blogPost)
+    public function show( $post_id )
     {
-        //
+        $post = BlogPost::find($post_id);
+        $category = BlogCategory::find($post->category);
+        $categoryPosts = BlogPost::where('category' , $category->id)->orderBy('posted_on', 'DESC')->get();
+
+        //dd($category);
+        return view('blog.show')
+            ->with('post' , $post)
+            ->with('category' , $category)
+            ->with('categoryPosts' , $categoryPosts);
     }
 
     /**

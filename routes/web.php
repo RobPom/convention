@@ -29,4 +29,6 @@ Route::get('/users/add', 'ContactController@add');
 Route::post('/users/add', 'ContactController@store');
 Route::delete('/users/{id}', 'ContactController@destroy');
 
-
+Route::get('/post/{id}' , 'BlogPostController@show');
+Route::get('/posts' , 'BlogPostController@index');
+Route::get('/posts/category/{id}' , 'BlogPostController@categoryIndex');

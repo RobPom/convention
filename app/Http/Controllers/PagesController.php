@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\BlogPost;
+use App\BlogCategory;
 use App\Role;
 use Illuminate\Support\Facades\Auth;
 use Request;
@@ -34,8 +35,6 @@ class PagesController extends Controller
 
     public function home()
     {   
-
-
         return view('home');
     }
 
@@ -67,7 +66,5 @@ class PagesController extends Controller
     public function welcome(){
         return view('welcome');
     }
-
-
     
 }

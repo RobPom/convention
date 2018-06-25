@@ -17,7 +17,10 @@ class DatabaseSeeder extends Seeder
         // User seeder will use the roles above created.
         $this->call(UserTableSeeder::class);
 
-         // Blog Post seeder will use the above user roles to assign the post
+        // Set Up default blog post categories
+        $this->call(PostCategorySeeder::class);
+
+         // Blog Post seeder will use the above user roles and categories when creating posts
         $this->call(BlogPostsTableSeeder::class);
     }
 }
