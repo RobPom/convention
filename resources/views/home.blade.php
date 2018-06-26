@@ -14,7 +14,9 @@
         <div class='row'>
             <div class="col">
                 <h3>{{$latestPost->title}}</h3>
-                <h6><small>posted on 
+                <h6><small>posted by 
+                    <a href='/profile/show/{{$latestPost->user->id}}'>{{$latestPost->user->firstname}} {{$latestPost->user->lastname}} </a>
+                    on 
                     {{ Carbon\Carbon::parse($latestPost->created_at)->format('F jS, Y') }}
                     </small>
                 </h6>
@@ -26,13 +28,8 @@
                 <p class="lead">{{$latestPost->lead}}</p>
                 <a class='btn btn-primary btn-sm float-right' href='post/{{$latestPost->id}}'>Read More...</a>
                 <br>
-                <hr>
-
-                @include('layouts.include.memberblock', array('post' => $latestPost))
-
-                
-            </div>
-            
+            </div>   
+        </div>
     </div>
 </div>
 

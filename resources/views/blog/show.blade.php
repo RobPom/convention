@@ -6,7 +6,7 @@
     <div class="card-body">
         <div class='row'>
             <div class="col-lg-9">
-                <h6><small>{{$category->title}} - {{$post->datePostedString()}}</small></h6>
+                <h6><small><a href='/posts/category/{{$category->id}}'>{{$category->title}} </a> - {{$post->datePostedString()}}</small></h6>
                 <h3>{{$post->title}}</h3>
                 <hr>
                 <p class="lead">{{$post->lead}}</p>
@@ -21,7 +21,8 @@
             </div>
             <br>
             <div class="col">
-                    <h4>Latest {{$category->title}}</h4>
+                <br>
+                    <h5>Latest {{$category->title}}</h5>
                     <br>
                 @if($categoryPosts->count() > 1)
                     

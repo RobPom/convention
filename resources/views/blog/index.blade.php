@@ -4,7 +4,7 @@
 
 <div class='card'>
     <div class='card-body'>
-            <h5>Blog Post Archive</h5>
+            <h3> Post Archive</h3>
             <hr>
         @if ($posts)
             <table class="table table-sm sortable">  
