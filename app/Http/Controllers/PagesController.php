@@ -47,16 +47,17 @@ class PagesController extends Controller
     public function checkCookie()
     {
         if (Cookie::get('visited') !== null){
+           
+            $posts = BlogPost::all()->sortByDesc('posted_on');
+           
 
-            $posts = BlogPost::all();
-            $latestPosts = $posts->sortByDesc('created_at')->take(5);
-            $latestPost = $posts->sortByDesc('created_at')->first();
-            $latestAuthor = User::find($latestPost->user_id);
+            $posts = $posts->reject(function($posts) {
+                return $posts->posted_on == null;
+            });
+
+            
             return view('home')
-                ->with('latestPost', $latestPost)
-                ->with('latestAuthor', $latestAuthor)
-                ->with('latestPosts' , $latestPosts); 
-
+                ->with('posts' , $posts); 
         }
         
         return redirect('welcome')->cookie('visited','true' , 280060);

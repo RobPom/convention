@@ -57,13 +57,18 @@ class ProfileController extends Controller
                     ) ->get();
 
         $organizers = User::whereHas('roles', function($query)
-            { $query->where('name', 'like', 'organizer'); }
-        ) ->get();
+                        { $query->where('name', 'like', 'organizer'); }
+                    ) ->get();
+
+        $admins = User::whereHas('roles', function($query)
+                        { $query->where('name', 'like', 'admin'); }
+                    ) ->get();
 
         return view('profile.dashboard')
             ->with('user', $user)
             ->with('members', $members)
-            ->with('organizers', $organizers);
+            ->with('organizers', $organizers)
+            ->with('admins', $admins);
     }
 
     /**

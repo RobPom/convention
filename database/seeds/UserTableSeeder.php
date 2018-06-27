@@ -70,7 +70,7 @@ class UserTableSeeder extends Seeder
         $admin->save();
         $admin->roles()->attach($role_admin);
 
-      	foreach (range(1,10) as $index) {
+      	foreach (range(6,15) as $index) {
 	        DB::table('users')->insert([
                 'username' => $faker->userName,
                 'firstname' => $faker->firstname,
