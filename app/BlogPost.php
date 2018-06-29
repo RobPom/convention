@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class BlogPost extends Model
 {
+    public function published(){
+        return $this->posted_on !== null ? true : false ;
+    }
+
     public function datePostedString(){
        // $dt = Carbon::parse('$this->posted_on');
         return Carbon::parse($this->posted_on)->format('F jS, Y');

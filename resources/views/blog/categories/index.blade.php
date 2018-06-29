@@ -4,8 +4,14 @@
 
 <div class='card'>
     <div class="card-body">
-        <h3>All {{$category->title}}</h3><br>
+        <h3>All {{$category->title}}</h3>
+        <hr>
+        <h5>Categories</h5>
 
+            @foreach($categories as $link)
+            <a href="/posts/category/{{$link->id}}">{{$link->title }} </a>@if( ! $loop->last) ,  @endif
+            @endforeach
+        <hr>
         @if($posts->count() > 0)
 
         <table class="table table-sm sortable">  
@@ -38,20 +44,7 @@
             <p>{{$category->title}} archive is empty!</p>
         @endif
         <br>
-        <hr>
-        <h6>Other Categories</h6>
-        
-        <p>
-            @foreach($categories as $cat)
-                @if($category->id !== $cat->id)
-                    <a href='/posts/category/{{$cat->id}}'>{{$cat->title}}</a>
-                        @if (! $loop->last)
-                            ,
-                        @endif 
-                @endif
-                
-            @endforeach
-        </p>
+    
     </div>
 
 </div>

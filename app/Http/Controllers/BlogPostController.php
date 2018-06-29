@@ -15,8 +15,9 @@ class BlogPostController extends Controller
      */
     public function index()
     {
-        $posts = BlogPost::all();
-        return view ('blog.index')->with('posts' , $posts);
+        $posts = BlogPost::orderByDesc('posted_on')->get();
+        $categories = BlogCategory::orderBy('title')->get();
+        return view ('blog.index')->with('posts' , $posts)->with('categories' , $categories);
     }
 
     public function categoryIndex( $id )

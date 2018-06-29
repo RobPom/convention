@@ -48,7 +48,7 @@ class PagesController extends Controller
     {
         if (Cookie::get('visited') !== null){
            
-            $posts = BlogPost::all()->sortByDesc('posted_on');
+            $posts = BlogPost::orderByDesc('posted_on')->get();;
            
 
             $posts = $posts->reject(function($posts) {
