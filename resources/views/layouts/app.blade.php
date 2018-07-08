@@ -13,6 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/sorttable.js') }}"></script>
     <script src="{{ asset('js/holder.js') }}"></script>
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -22,16 +23,21 @@
         crossorigin="anonymous">
 
     <!-- Styles -->
+    
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-   
+    
+    @yield('styles')
+
+
 </head>
 <body>
-    <div id="app">
+    <div id="app" style="min-height:100%;
+    position:relative;">
 
         @include('layouts.include.nav')
 
-        <main class="py-4">
+        <main role='main' class="py-4" style="min-height:100%;">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-12">
@@ -39,7 +45,9 @@
                     </div>
                 </div>
             </div>
-        </main>  
+        </main> 
+        
     </div>
+   {{-- @include('layouts.include.footer') --}}
 </body>
 </html>

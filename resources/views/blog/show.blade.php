@@ -10,7 +10,7 @@
                 <h3>{{$post->title}}</h3>
                 <hr>
                 <p class="lead">{{$post->lead}}</p>
-                <p>{!! nl2br(e($post->body)) !!}</p>
+                <p>{!! $post->body !!}</p>
                 
                 <br>
                 <hr>

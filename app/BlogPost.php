@@ -19,7 +19,11 @@ class BlogPost extends Model
 
     public function shortDate(){
         // $dt = Carbon::parse('$this->posted_on');
-         return Carbon::parse($this->posted_on)->format('M Y');
+        if($this->published())
+        {
+            return Carbon::parse($this->posted_on)->format('M Y');
+        }
+            return 'not published';
      }
 
      public function category(){
@@ -30,5 +34,6 @@ class BlogPost extends Model
     public function user() {
         return $this->belongsTo('App\User');
     }
+
 
 }

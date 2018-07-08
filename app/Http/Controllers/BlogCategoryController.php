@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BlogCategory;
+use App\BlogPost;
 use Illuminate\Http\Request;
 
 class BlogCategoryController extends Controller

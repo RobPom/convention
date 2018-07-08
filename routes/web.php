@@ -31,4 +31,10 @@ Route::delete('/users/{id}', 'ContactController@destroy');
 
 Route::get('/post/{id}' , 'BlogPostController@show');
 Route::get('/posts' , 'BlogPostController@index');
+Route::get('/posts/new' , 'BlogPostController@create');
+Route::get('/posts/latest' , 'BlogPostController@latest');
+Route::post('/post' , 'BlogPostController@store');
+
+// are these both necessary?
 Route::get('/posts/category/{id}' , 'BlogPostController@categoryIndex');
+Route::get('/posts/categories' , 'BlogCategoryController@index');

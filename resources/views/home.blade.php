@@ -31,34 +31,32 @@
 </div>
 <br>
 <div class="container">
-<div class="row p3">
-<div class="card col-sm-6">
-        <div class="card-body">
-            <h6><small>{{App\BlogCategory::find($posts[1]->category)->title}}</small></h6>
-            <h5 class="card-title">{{$posts[1]->title}}</h5>
-            <h6><small>posted by <a href='/profile/show/{{$posts[1]->user->id}}'>{{$posts[1]->user->firstname}} {{$posts[1]->user->lastname}} </a>
-                on 
-                {{ Carbon\Carbon::parse($posts[1]->posted_on)->format('F jS, Y') }}
-            </small></h6>
-            <br>
-            <p class="lead">{{substr($posts[1]->lead , 1 , 120) }} ...</p>
-            
-            <a class='float-right' href='post/{{$posts[1]->id}}'>Read More...</a>
+    <div class="row">
+        <div class="col-sm-6 mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <h6><small>{{App\BlogCategory::find($posts[1]->category)->title}}</small></h6>
+                    <h5 class="card-title">{{$posts[1]->title}}</h5>
+                    <h6><small>posted by <a href='/profile/show/{{$posts[1]->user->id}}'>{{$posts[1]->user->firstname}} {{$posts[1]->user->lastname}} </a>
+                        on 
+                        {{ Carbon\Carbon::parse($posts[1]->posted_on)->format('F jS, Y') }}
+                    </small></h6>
+                    <br>
+                    <p class="lead">{{substr($posts[1]->lead , 1 , 120) }} ...</p>
+                    <a class='float-right' href='post/{{$posts[1]->id}}'>Read More...</a>
+                </div>
+            </div>
         </div>
-
-</div>
-
-<div class="card col-sm-6">
-
-        <div class="card-body">
-            <h5>The Con</h5>
-            <p>All about IntrigueCon, convention archive, photos</p>
-            <a class='float-right' href='post/{{$posts[0]->id}}'>More...</a>
+        <div class="col-sm-6 mt-2">
+        <div class="card">
+            <div class="card-body">
+                <h5>The Con</h5>
+                <p>All about IntrigueCon, convention archive, photos</p>
+                <a class='float-right' href='post/{{$posts[0]->id}}'>More...</a>
+            </div>
         </div>
-
-</div>
-
-</div>
+    </div>
+    </div>
 </div>
 
 

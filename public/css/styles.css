@@ -6,15 +6,6 @@ table.sortable thead {
     cursor: pointer;
 }
 
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 80px;
-    line-height: 60px;
-    background-color: #666666;
-}
-
 ul.archiveList {
     list-style-type: none;
     margin: 0;
@@ -76,4 +67,20 @@ p.authorLead {
 
 .white-background{
     background-color: #fff;
+}
+
+
+
+.footer.archive{
+    text-align: right;
+    height: 80px;
+}
+
+.footer {
+    bottom: 0;    
+    width: 100%;
+    height: 120px;
+    background-color: #fff;
+    box-shadow:  0 -2px 4px rgba(0,0,0,.04);
+    font-size: .8em;
 }
