@@ -10,9 +10,20 @@ use Validator;
 use Redirect;
 use App\User;
 use Purifier;
+use Carbon\Carbon;
 
 class BlogPostController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index','show', 'latest', 'categoryIndex']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -53,8 +64,11 @@ class BlogPostController extends Controller
      */
     public function create()
     {
-        $categories = BlogCategory::orderBy('title')->get();
-        return view('blog.create')->with('categories' , $categories);
+        if(Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin')) {
+            $categories = BlogCategory::orderBy('title')->get();
+            return view('blog.create')->with('categories' , $categories);
+        }
+        abort(403, 'This action is unauthorized.');
     }
 
     /**
@@ -86,7 +100,7 @@ class BlogPostController extends Controller
         $post->user_id = $user->id;
         $post->save();
 
-        return redirect('post/' . $post->id);
+        return redirect('post/' . $post->id)->with('status', 'Post Saved');;
     }
 
     /**
@@ -123,9 +137,14 @@ class BlogPostController extends Controller
      * @param  \App\BlogPost  $blogPost
      * @return \Illuminate\Http\Response
      */
-    public function edit(BlogPost $blogPost)
-    {
-        //
+    public function edit($id)
+    {   
+        $blogPost = BlogPost::find($id);
+        if(Auth::user()->hasRole('admin') || Auth::user()->id == $blogPost->user->id ) {
+            $categories = BlogCategory::orderBy('title')->get();
+            return view('blog.edit')->with('blogPost', $blogPost)->with('categories' , $categories);
+        }
+        abort(403, 'This action is unauthorized.');
     }
 
     /**
@@ -135,9 +154,36 @@ class BlogPostController extends Controller
      * @param  \App\BlogPost  $blogPost
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BlogPost $blogPost)
+    public function update(Request $request, $id)
+    {        
+        $validator = Validator::make($request->all(), [
+            'title'  => 'required|max:255',
+            'lead'  => 'max:255',
+        ]);
+
+        if($validator->fails()){
+            return back()
+            ->withErrors($validator)
+            ->withInput();
+        } 
+
+        $blogPost = BlogPost::find($id);
+
+        $blogPost->title = $request->title;
+        $blogPost->lead = $request->lead;
+        $blogPost->body = Purifier::clean($request->body);
+        $blogPost->category = $request->category;
+        $blogPost->save();
+
+        return redirect('post/' . $blogPost->id)->with('status', 'Post Updated');
+    }
+
+    public function publish(Request $request, $id)
     {
-        //
+        $blogPost = BlogPost::find($id);
+        $blogPost->posted_on = Carbon::now()->toDateTimeString();
+        $blogPost->save();
+        return redirect('post/' . $blogPost->id)->with('status', 'Post Published');
     }
 
     /**
@@ -146,8 +192,18 @@ class BlogPostController extends Controller
      * @param  \App\BlogPost  $blogPost
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BlogPost $blogPost)
+
+
+    public function destroy($id)
     {
-        //
+        $blogPost = BlogPost::find($id);
+
+        if( Auth::user()->id == $blogPost->user->id ||  Auth::user()->hasRole('admin') ){
+            $blogPost->delete();
+            return redirect('profile/dashboard')->with('status', 'Post Deleted');
+        }
+        
+            abort(403, 'This action is unauthorized.');
+        
     }
 }

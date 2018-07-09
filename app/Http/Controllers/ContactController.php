@@ -65,7 +65,7 @@ class ContactController extends Controller
         $user->save();
         $user->roles()->attach(Role::where('name', 'member')->first());
         User::sendWelcomeEmail($user);
-        return redirect('profile/dashboard')->with('memberUpdate', 'member added');
+        return redirect('profiles/all')->with('status', 'member added');
     }
 
     public function destroy($id)
@@ -75,7 +75,7 @@ class ContactController extends Controller
         
         if( $user->hasRole('organizer') ||  $user->hasRole('admin') ){
             $member->delete();
-            return redirect('profile/dashboard')->with('memberUpdate', 'User Deleted');
+            return redirect('profiles/all')->with('status', 'member deleted');
         }
         
             abort(403, 'This action is unauthorized.');

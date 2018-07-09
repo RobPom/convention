@@ -39,6 +39,29 @@
 
         <main role='main' class="py-4" style="min-height:100%;">
             <div class="container">
+
+                @if (session('status'))
+
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <strong>Info</strong><br> {{ session('status') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                @endif
+                @if (session('warning'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Warning</strong><br> {{ session('warning') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @endif
+
+            
+
+
                 <div class="row justify-content-center">
                     <div class="col-md-12">
                         @yield('content')

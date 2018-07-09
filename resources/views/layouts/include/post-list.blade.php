@@ -6,6 +6,11 @@
             <th scope="col" class="d-none d-md-table-cell">
                 {{$archive ? 'Category' : 'Author'}}
             </th>
+            @auth
+                @if(Auth::user()->id == $posts->first()->user->id ||  Auth::user()->hasRole('admin') )
+                    <th scope="col" colspan="2"></th>
+                @endif
+            @endauth
         </tr>
     </thead>
     <tbody>
@@ -22,9 +27,15 @@
                         <a href='/posts/category/{{$post->category()->id}}'>{{$post->category()->title}}</a>
                     @else
                         <a href='/profile/show/{{$post->user->id}}'>{{$post->user->firstname}} {{$post->user->lastname}}</a>
-                    @endif
-                    
+                    @endif  
                 </td>
+                @auth
+                @if($edit)
+                    @if(Auth::user()->id == $posts->first()->user->id ||  Auth::user()->hasRole('admin') )
+                        <td colspan='2'><a href="/post/{{$post->id}}/edit" class="btn btn-sm btn-primary">edit</a></td>   
+                    @endif
+                @endif
+                @endauth
             </tr>
             @else
                 @if($showUnpublished)
@@ -36,6 +47,22 @@
                     <td class="d-none d-md-table-cell">
                         <a href='/posts/category/{{$post->category()->id}}'>{{$post->category()->title}}</a>
                     </td>
+                    @auth
+                    @if(Auth::user()->id == $posts->first()->user->id ||  Auth::user()->hasRole('admin') )
+                        <td><a href="/post/{{$post->id}}/edit" class="btn btn-sm btn-primary">edit</a></td>
+                        <td>
+                        <form 
+                            onsubmit="return confirm('You cannot undo this. Are you sure you want to delete this post?');"
+                            action="{{action('BlogPostController@destroy', $post->id)}}" 
+                            method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                        </form>
+                    </td>
+                        
+                    @endif
+                @endauth
                 </tr>
                 @endif
             @endif

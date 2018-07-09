@@ -11,7 +11,7 @@
 
         @if($posts->count() > 0)
 
-            @include('layouts.include.post-list', array('showUnpublished' => true , 'archive' => false))
+            @include('layouts.include.post-list', array('showUnpublished' => true , 'edit' => false,  'archive' => false))
 
         @else
             <p>{{$category->title}} archive is empty!</p>

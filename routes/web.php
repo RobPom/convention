@@ -30,6 +30,11 @@ Route::post('/users/add', 'ContactController@store');
 Route::delete('/users/{id}', 'ContactController@destroy');
 
 Route::get('/post/{id}' , 'BlogPostController@show');
+Route::delete('/post/{id}', 'BlogPostController@destroy');
+Route::get('/post/{id}/edit' , 'BlogPostController@edit');
+Route::patch('/post/{id}' , 'BlogPostController@update');
+Route::patch('/post/{id}/publish' , 'BlogPostController@publish');
+
 Route::get('/posts' , 'BlogPostController@index');
 Route::get('/posts/new' , 'BlogPostController@create');
 Route::get('/posts/latest' , 'BlogPostController@latest');

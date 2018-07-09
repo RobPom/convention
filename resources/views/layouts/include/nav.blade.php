@@ -11,7 +11,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 
-                <li><a class="nav-link" href="">About</a></li>
+               <!--  <li><a class="nav-link" href="">About</a></li> -->
 
                 <li class="nav-item dropdown  text-right">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" 
@@ -23,13 +23,14 @@
                         <a class="dropdown-item" href="/posts/latest">Lastest</a>
                         <a class="dropdown-item" href="/posts">Archive</a>
                         @auth
-                            @if(Auth::user()->hasRole('organizer') ||  Auth::user()->hasRole('admin') )
+                        
+                            @if(Auth::user()->hasAnyRole(['organizer' , 'admin']))
                             <a class="dropdown-item" href="/posts/new">New Post</a>
                             @endif
                         @endauth
                     </div>
                 </li>
-                <li><a class="nav-link" href="">Latest Convention link</a></li>
+                <!-- <li><a class="nav-link" href="">Latest Convention link</a></li> -->
             </ul>
 
             <!-- Right Side Of Navbar -->

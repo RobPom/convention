@@ -5,13 +5,9 @@
 <div class="card">
         <div class="card-header">
             <h5>All Members</h5>
+            <a href="/profile/dashboard">Back to Dashboard</a>
         </div>
         <div class="card-body">
-            @if (session('memberUpdate'))
-                <div class="alert alert-success">
-                    <i class="far fa-address-card"></i> {{ session('memberUpdate') }}
-                </div>
-            @endif
 
             <table class="table table-sm sortable">  
                 <thead>

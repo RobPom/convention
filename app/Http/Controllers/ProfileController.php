@@ -152,12 +152,12 @@ class ProfileController extends Controller
 
         if(Auth::id() == $id ) {
             return redirect('profile/dashboard')
-            ->with('profileUpdate', 'Profile Updated');
+            ->with('status', 'Profile Updated');
         }
         
         if ($user->hasRole('organizer')) {
-            return redirect('profile/dashboard')
-            ->with('memberUpdate', 'member profile updated');
+            return redirect('profiles/all')
+            ->with('status', 'member profile updated');
         }
         
     }

@@ -10,7 +10,7 @@
 
         @if ($posts)
         
-        @include('layouts.include.post-list', array('showUnpublished' => false , 'archive' => true))
+        @include('layouts.include.post-list', array('showUnpublished' => false , 'edit' => false, 'archive' => true))
             
         @else
             <p>No posts to show</p>
