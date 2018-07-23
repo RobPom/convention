@@ -74,9 +74,6 @@ class User extends Authenticatable
     }
 
     
-    
-
-
 //----------------------------------------------------------------------
 
 
@@ -123,6 +120,16 @@ class User extends Authenticatable
             'location' => 'Parts Unknown',
             'description' => 'A mysterious stranger...',
         ]);
+    }
+
+    public function sessions()
+    {
+        return $this->belongsToMany('App\GameSession', 'game_session_user', 'user_id' , 'game_timeslot_id');
+    }
+
+    public function games()
+    {
+        return $this->hasMany('App\Game');
     }
 
 }

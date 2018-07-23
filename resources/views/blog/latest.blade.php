@@ -19,7 +19,7 @@
                                 <h6><small>posted by 
                                     <a href='/profile/show/{{$post->user->id}}'>{{$post->user->firstname}} {{$post->user->lastname}} </a>
                                     on 
-                                    {{ $post->datePostedString()}}
+                                    {{ $post->datePosted()}}
                                     </small>
                                 </h6>
                                 <hr>

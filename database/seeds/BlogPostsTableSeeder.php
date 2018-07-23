@@ -5,6 +5,7 @@ use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Role;
+use App\Page;
 use App\BlogPost;
 use App\BlogCategory;
 use Carbon\Carbon;
@@ -44,7 +45,13 @@ class BlogPostsTableSeeder extends Seeder
                 'posted_on' => $posted,
                 'created_at' => $created->toDateTimeString(),
 	        ]);
-	    }   
+        }  
+        
+        $page = new Page();
+        $page->title = 'Front Page';
+        $page->lead_article = 1;
+        $page->featured_article = 2;
+        $page->save();
 
     }
 }

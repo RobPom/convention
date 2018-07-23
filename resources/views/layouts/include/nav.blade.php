@@ -6,14 +6,14 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
+        
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 
                <!--  <li><a class="nav-link" href="">About</a></li> -->
 
-                <li class="nav-item dropdown  text-right">
+                <li class="nav-item dropdown ">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" 
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         Blog <span class="caret"></span>
@@ -30,7 +30,7 @@
                         @endauth
                     </div>
                 </li>
-                <!-- <li><a class="nav-link" href="">Latest Convention link</a></li> -->
+                <li><a class="nav-link" href="/calendar/convention">Convention</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -42,7 +42,7 @@
                     <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     
                 @else
-                    <li class="nav-item dropdown  text-right">
+                    <li class="nav-item dropdown  ">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" 
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->username }} <span class="caret"></span>

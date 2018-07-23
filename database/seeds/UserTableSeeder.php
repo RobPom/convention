@@ -75,7 +75,7 @@ class UserTableSeeder extends Seeder
                 'username' => $faker->userName,
                 'firstname' => $faker->firstname,
                 'lastname' => $faker->lastname,
-	            'email' => $faker->email,
+	            'email' => $faker->safeEmail,
 	            'password' => bcrypt('secret'),
             ]);
 

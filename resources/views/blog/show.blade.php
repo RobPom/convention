@@ -9,11 +9,12 @@
         <div class='row'>
             <div class="col-lg-9">
                 <h6><small><a href='/posts/category/{{$category->id}}'>{{$category->title}} </a>
-                     {{$post->published() ?  ' - ' . $post->datePostedString() : ''}}</small></h6>
+                     {{$post->published() ?  ' - ' . $post->datePosted() : ''}}</small></h6>
                 <h3>{{$post->title}}</h3>
                 
                 @if(  !$post->published())
-                    <div class="alert alert-success" role="alert">
+                    @if(Auth::user()->id == $post->user->id)
+                    <div class="alert alert-warning" role="alert">
                             <h4 class="alert-heading">Unpublished. </h4>
                             <p>This post is unpublished. Once it is published you will still be able to edit, but not delete the post.</p>
 
@@ -25,13 +26,19 @@
                             @method('PATCH')
                             <button class="btn btn-outline-success" type="submit">Publish</button>
                         </form>
-
+                    </div>
+                    @else
+                    <div class="alert alert-warning" role="alert">
+                            <h4 class="alert-heading">Unpublished. </h4>
+                            <p>This post is unpublished. </p>
 
                     </div>
+                    
+                    @endif
                 @endif
 
                 @auth
-                    @if(Auth::user()->id =- $post->user->id)
+                    @if(Auth::user()->id == $post->user->id)
                         <a href="/post/{{$post->id}}/edit" class="btn btn-sm btn-primary">edit</a>
                         @if(! $post->published())
                              <form 

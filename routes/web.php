@@ -14,9 +14,9 @@
 Auth::routes();
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
-Route::get('/', 'PagesController@checkCookie');
-Route::get('/home', 'PagesController@home');
-Route::get('/welcome', 'PagesController@welcome');
+Route::get('/', 'FrontPageController@checkCookie');
+Route::get('/home', 'FrontPageController@home');
+Route::get('/welcome', 'FrontPageController@welcome');
 
 Route::get('/profile/dashboard', 'ProfileController@dashboard');
 Route::get('/profile/show/{id}', 'ProfileController@show');
@@ -40,6 +40,17 @@ Route::get('/posts/new' , 'BlogPostController@create');
 Route::get('/posts/latest' , 'BlogPostController@latest');
 Route::post('/post' , 'BlogPostController@store');
 
+Route::get('/game/{id}' , 'GameController@show');
+
 // are these both necessary?
 Route::get('/posts/category/{id}' , 'BlogPostController@categoryIndex');
 Route::get('/posts/categories' , 'BlogCategoryController@index');
+
+//dev - calendar
+Route::get('/calendar/convention/' , 'Calendar\ConventionController@show');
+Route::get('/calendar/convention/timeslot/{id}' , 'Calendar\CalendarController@show');
+Route::get('/calendar/convention/gamesession/{id}' , 'Calendar\GameSessionController@show');
+
+//Route::get('/calendar/timeslots' , 'Calendar\CalendarController@index');
+//Route::get('/calendar/timeslot/{id}' , 'Calendar\CalendarController@show');
+//Route::get('/session/game/{id}' , 'Calendar\GameSessionController@show');

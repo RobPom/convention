@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        
         // Role comes before User seeder here.
         $this->call(RoleTableSeeder::class);
         
@@ -22,5 +23,14 @@ class DatabaseSeeder extends Seeder
 
          // Blog Post seeder will use the above user roles and categories when creating posts
         $this->call(BlogPostsTableSeeder::class);
+
+         // Game Post seeder will use the above users when creating games
+         $this->call(GameTableSeeder::class);
+
+         //seed a couple of conventions
+         $this->call(ConventionTableSeeder::class);
+
+         //seed timeslots with session 1 to 5
+         $this->call(TimeslotTableSeeder::class);
     }
 }

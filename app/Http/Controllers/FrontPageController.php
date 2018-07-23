@@ -6,6 +6,7 @@ use App\User;
 use App\BlogPost;
 use App\BlogCategory;
 use App\Role;
+use App\Page;
 use Illuminate\Support\Facades\Auth;
 use Request;
 use Redirect;
@@ -14,7 +15,7 @@ use DB;
 
 
 
-class PagesController extends Controller
+class FrontPageController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -26,18 +27,6 @@ class PagesController extends Controller
         $this->middleware('auth')->only('dashboard');
     }
 
-
-    /**
-     *  default home page
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    public function home()
-    {   
-        return view('home');
-    }
-
     /**
      * A landing page for first time visitors
      *
@@ -47,17 +36,21 @@ class PagesController extends Controller
     public function checkCookie()
     {
         if (Cookie::get('visited') !== null){
+
+            $frontpage = Page::where('title' , 'Front Page')->first();
+            $lead = BlogPost::find($frontpage->lead_article);
+            $featured = BlogPost::find($frontpage->featured_article);
            
             $posts = BlogPost::orderByDesc('posted_on')->get();;
            
-
             $posts = $posts->reject(function($posts) {
                 return $posts->posted_on == null;
             });
 
-            
             return view('home')
-                ->with('posts' , $posts); 
+                ->with('posts' , $posts)
+                ->with('lead' , $lead)
+                ->with('featured' , $featured); 
         }
         
         return redirect('welcome')->cookie('visited','true' , 280060);

@@ -84,3 +84,16 @@ p.authorLead {
     box-shadow:  0 -2px 4px rgba(0,0,0,.04);
     font-size: .8em;
 }
+
+@media (max-width: 767.98px) { 
+    
+    .navbar-brand {
+        position: absolute;
+        display: block;
+        left: calc(50% - 40px);
+        top: .32rem;
+        text-align: center;
+        font-size: 36px;
+      }
+
+ }

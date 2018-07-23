@@ -6,8 +6,6 @@
         @php $member = $user; @endphp
         @include('profile.member.dash')
     </div>
-
-
 </div>
 
 <br>
@@ -17,10 +15,9 @@
 @endif
 
 <br>
+
 @if( $user->hasRole('admin') )
     @include('profile.admin.dash')
 @endif
-
-
 
 @endsection

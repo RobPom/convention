@@ -12,13 +12,16 @@ class BlogPost extends Model
         return $this->posted_on !== null ? true : false ;
     }
 
-    public function datePostedString(){
-       // $dt = Carbon::parse('$this->posted_on');
-        return Carbon::parse($this->posted_on)->format('F jS, Y');
+    public function datePosted(){
+        if($this->published())
+        {
+            return Carbon::parse($this->posted_on)->format('F jS, Y');
+        }
+            return 'not published';
+        
     }
 
     public function shortDate(){
-        // $dt = Carbon::parse('$this->posted_on');
         if($this->published())
         {
             return Carbon::parse($this->posted_on)->format('M Y');
@@ -27,13 +30,11 @@ class BlogPost extends Model
      }
 
      public function category(){
-        // $dt = Carbon::parse('$this->posted_on');
          return BlogCategory::find($this->category);
      }
 
     public function user() {
         return $this->belongsTo('App\User');
     }
-
 
 }

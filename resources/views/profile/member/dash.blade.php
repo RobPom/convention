@@ -10,11 +10,7 @@
 <br>
 
 @auth
-<hr>
-    @if( $user->id == $member->id ||$user->hasRole('organizer') ||  $user->hasRole('admin') )
-        
-    @endif
-    
+<hr> 
     <div class="card">
         <div class="card-body">
             <h5>Community Profile</h5>
@@ -33,17 +29,11 @@
             @endif
         </div>   
     </div> 
-   
-    
-    
-
-    
-    
 @endauth
 
 @if($member->blogPosts->count())
 <hr>
-    <h5>Latest Posts</h5>
+    <h5 class="mb-4">Latest Posts</h5>
     @auth
         @if ($user->id == $member->id)
             @include('layouts.include.post-list', array('showUnpublished' => true, 'edit' => true,  'posts' => $member->blogPosts, 'archive' => true))
@@ -57,6 +47,26 @@
     @else
         @include('layouts.include.post-list', array('showUnpublished' => false, 'edit' => false,'posts' => $member->blogPosts, 'archive' => true))
     @endauth
+@endif
 
-   
+@if($member->games->count())
+    <hr class="mb-4">
+
+    <h5 class="mb-4" >{{$member->username}}'s Games</h5>
+
+    <div class="card-deck">
+        @foreach($member->games as $game)
+            <div class="card">
+                <div class="card-header">
+                    {{$game->title}}
+                    @if($game->isActive($game->id))
+                        <small> - <a href="/game/{{$game->id}}">scheduled</a></small>
+                    @endif
+                </div>
+                <div class="card-body">
+                    {{$game->tagline}}
+                </div>
+            </div>
+        @endforeach
+    </div>
 @endif
