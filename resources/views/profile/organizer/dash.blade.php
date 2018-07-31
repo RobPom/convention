@@ -1,6 +1,6 @@
-<div class="card">
-    <div class="card-header"> 
-        <h5>Organizer</h5>
+<div class="card ">
+    <div class="card-header text-white bg-success"> 
+        <h5>Organizer Tools</h5>
     </div>
 
     <div class="card-body">
@@ -15,7 +15,18 @@
 
     </div>
     <div class="card-body">
-        <h5> Front Page </h5>
-        <p>The latest 2 blog posts are shown on the front page for now.</p>
+        <h5> Conventions </h5>
+        <p><strong>Active</strong></p>
+        @php
+            $active_con = $conventions->where('status' , 'active')->first();
+            $inactive_cons = $conventions->where('status' , 'inactive');
+        @endphp
+        <a href="/calendar/convention">{{$active_con->title}} | <a href="/calendar/convention/attendees">Attendees</a></a><br>
+        <br>
+
+        <p><strong>Inactive</strong></p>
+        @foreach($inactive_cons as $con)
+            {{$con->title}}<br>
+        @endforeach
     </div>
 </div>

@@ -17,4 +17,9 @@ class CalendarController extends Controller
         $timeslot = Timeslot::find($id);
         return view('calendar.timeslots.show')->with('timeslot' , $timeslot);
     }
+
+    public function devshow($id){
+        $timeslot = Timeslot::find($id);
+        return view('calendar.timeslots.devshow')->with('timeslot' , $timeslot);
+    }
 }

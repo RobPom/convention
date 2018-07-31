@@ -2,9 +2,7 @@
 
 @section('content')
 
-<div class="card">
-        
-              
+<div class="card">          
     <div class="card-body">
         <div class='row'>
             <div class="col-lg-9">
@@ -15,9 +13,8 @@
                 @if(  !$post->published())
                     @if(Auth::user()->id == $post->user->id)
                     <div class="alert alert-warning" role="alert">
-                            <h4 class="alert-heading">Unpublished. </h4>
-                            <p>This post is unpublished. Once it is published you will still be able to edit, but not delete the post.</p>
-
+                        <h4 class="alert-heading">Unpublished. </h4>
+                        <p>This post is unpublished. Once it is published you will still be able to edit, but not delete the post.</p>
                         <form 
                             onsubmit="return confirm('Publish Post?');"
                             action="{{action('BlogPostController@publish', $post->id)}}" 
@@ -29,9 +26,8 @@
                     </div>
                     @else
                     <div class="alert alert-warning" role="alert">
-                            <h4 class="alert-heading">Unpublished. </h4>
-                            <p>This post is unpublished. </p>
-
+                        <h4 class="alert-heading">Unpublished. </h4>
+                        <p>This post is unpublished. </p>
                     </div>
                     
                     @endif
@@ -65,29 +61,84 @@
             </div>
             <br>
             <div class="col">
-                <br>
-                    <h5>Latest {{$category->title}}</h5>
-                    <br>
-                @if($categoryPosts->count() > 1)
-                    
-                    <ul class='archiveList'>
-                        @foreach($categoryPosts as $categoryPost)
-                            @if($categoryPost->id !== $post->id)
-                                <li> {{$categoryPost->shortDate()}} - <a href='/post/{{$categoryPost->id}}'>{{$categoryPost->title}}</a></li>
-                            @endif
-                        @endforeach
-                    </ul>
+                <div class="row">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <h5>Latest {{$category->title}}</h5>
+                            <br>
+                            @if($categoryPosts->count() > 1)
+                                
+                                <ul class='archiveList'>
+                                    @foreach($categoryPosts as $categoryPost)
+                                        @if($categoryPost->id !== $post->id)
+                                            <li> {{$categoryPost->shortDate()}} - <a href='/post/{{$categoryPost->id}}'>{{$categoryPost->title}}</a></li>
+                                        @endif
+                                    @endforeach
+                                </ul>
 
-                @else
-                    <p>No other {{$category->title}} in archives.</p>
+                            @else
+                                <p>No other {{$category->title}} in archives.</p>
+                            @endif
                     
-                @endif
-                    <br>
-                    <a href="/posts" class='float-right'>Post Archives</a>
+                            <a href="/posts" class="float-right">Archives</a>
+                        </div>
+                    </div>
+                </div>    
             </div>
+        </div>
     </div>
 </div>
-
-
+@auth
+    @if(Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin'))
+        <div class="card my-3">
+            <div class="card-header text-white bg-success ">
+                Organizer Tools
+            </div>
+            <div class="card-body">
+                <div class="row">
+                <div class="col-lg">
+                    <table class="table">
+                        <caption>Front Page Posts</caption>
+                        <tr>
+                            <th class="text-right">Lead:</th>
+                            <td class="text-left">
+                                @if($frontpage->lead_article == $post->id)
+                                    This is the lead article.
+                                @else
+                                    <form method="POST" action="{{ action('FrontPageController@update' , $post->id) }}">
+                                        @method('PATCH')
+                                        @csrf
+                                        <input type="hidden" id="type" name="type" value="lead">
+                                        <input type="hidden" id="article" name="article" value="{{$post->id}}">
+                                        <button type="submit" class="btn btn-danger btn-sm" style="display: inline;" >Set</button>
+                                    </form>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">Featured:</th>
+                            <td class="text-left">
+                                @if($frontpage->featured_article == $post->id)
+                                    This is the featured article.
+                                @else
+                                    <form method="POST" action="{{ action('FrontPageController@update' , $post->id) }}">
+                                        @method('PATCH')
+                                        @csrf
+                                        <input type="hidden" id="type" name="type" value="featured">
+                                        <input type="hidden" id="article" name="article" value="{{$post->id}}">
+                                        <button type="submit" class="btn btn-danger btn-sm" >Set</button>
+                                    </form>
+                                @endif
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-lg"></div>
+                <div class="col-lg"></div>
+            </div>
+            </div>
+        </div>
+    @endif
+@endauth
 
 @endsection

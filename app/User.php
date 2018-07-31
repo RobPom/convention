@@ -132,4 +132,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Game');
     }
 
+    public function conventions(){
+        return $this->belongsToMany('App\Convention');
+    }
+
 }

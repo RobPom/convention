@@ -8,7 +8,7 @@ use App\BlogCategory;
 use App\Role;
 use App\Page;
 use Illuminate\Support\Facades\Auth;
-use Request;
+use Illuminate\Http\Request;
 use Redirect;
 use Cookie;
 use DB;
@@ -41,7 +41,7 @@ class FrontPageController extends Controller
             $lead = BlogPost::find($frontpage->lead_article);
             $featured = BlogPost::find($frontpage->featured_article);
            
-            $posts = BlogPost::orderByDesc('posted_on')->get();;
+            $posts = BlogPost::orderByDesc('posted_on')->get();
            
             $posts = $posts->reject(function($posts) {
                 return $posts->posted_on == null;
@@ -52,9 +52,30 @@ class FrontPageController extends Controller
                 ->with('lead' , $lead)
                 ->with('featured' , $featured); 
         }
-        
         return redirect('welcome')->cookie('visited','true' , 280060);
+    }
 
+    public function update(Request $request)
+    {
+        if(  Auth::user()->hasRole('admin')|| Auth::user()->hasRole('organizer') ){
+
+            $frontpage = Page::where('title' , 'Front Page')->first();
+            if( $request->input('type') == 'lead' ) {
+                $frontpage->lead_article = $request->input('article');
+                $frontpage->save();
+                $status = 'Set as the lead article on the front page';
+            }
+
+            if( $request->input('type') == 'featured' ) {
+                $frontpage->featured_article = $request->input('article');
+                $frontpage->save();
+                $status = 'Set as the featured article on the front page';
+            }
+
+        return redirect("/post/" . $request->input('article'))->with('status', $status); 
+            
+        }
+        abort(403, 'This action is unauthorized.');
     }
 
     public function welcome(){

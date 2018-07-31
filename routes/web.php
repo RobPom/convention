@@ -5,10 +5,6 @@
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
 Auth::routes();
@@ -17,6 +13,7 @@ Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 Route::get('/', 'FrontPageController@checkCookie');
 Route::get('/home', 'FrontPageController@home');
 Route::get('/welcome', 'FrontPageController@welcome');
+Route::patch('/frontpage/{id}' , 'FrontPageController@update');
 
 Route::get('/profile/dashboard', 'ProfileController@dashboard');
 Route::get('/profile/show/{id}', 'ProfileController@show');
@@ -46,11 +43,12 @@ Route::get('/game/{id}' , 'GameController@show');
 Route::get('/posts/category/{id}' , 'BlogPostController@categoryIndex');
 Route::get('/posts/categories' , 'BlogCategoryController@index');
 
-//dev - calendar
-Route::get('/calendar/convention/' , 'Calendar\ConventionController@show');
-Route::get('/calendar/convention/timeslot/{id}' , 'Calendar\CalendarController@show');
-Route::get('/calendar/convention/gamesession/{id}' , 'Calendar\GameSessionController@show');
 
-//Route::get('/calendar/timeslots' , 'Calendar\CalendarController@index');
-//Route::get('/calendar/timeslot/{id}' , 'Calendar\CalendarController@show');
-//Route::get('/session/game/{id}' , 'Calendar\GameSessionController@show');
+Route::get('/calendar/convention/' , 'Calendar\ConventionController@show');
+Route::get('/calendar/convention/attendees' , 'Calendar\ConventionController@Attendees');
+Route::post('/calendar/convention/attendees' , 'Calendar\ConventionController@storeAttendees');
+Route::get('/calendar/convention/gamesession/{id}' , 'Calendar\GameSessionController@show');
+Route::get('/calendar/convention/sessions/{id}' , 'Calendar\GameSessionController@userCalendar');
+
+//dev - return to @show when complete
+Route::get('/calendar/convention/timeslot/{id}' , 'Calendar\CalendarController@devshow');

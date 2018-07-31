@@ -8,8 +8,13 @@
     </div>
 </div>
 <br>
+
+
     
 <div class="card">
+
+        
+
     <div class="card-body">
         <div class='row'>
             <div class="col">
@@ -32,7 +37,7 @@
 <br>
 <div class="container">
     <div class="row">
-        <div class="col-sm-6 mt-2">
+        <div class="col-sm-6 pl-0 pr-2">
             <div class="card">
                 <div class="card-body">
                     <h6><small>{{$featured->category()->title}}</small></h6>
@@ -47,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 mt-2">
+        <div class="col-sm-6 pl-2 pr-0">
         <div class="card">
             <div class="card-body">
                 <h5>The Con</h5>

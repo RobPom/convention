@@ -2,18 +2,34 @@
 
 @section('content')
 
-@isset($gamesession->timeslot->convention)
-    <div class="card">
-        <div class="card-body">
-            <h3>{{$gamesession->timeslot->convention->title}}</h3>
-        </div>
-    </div>
-    <br> 
-@endisset
-
 <div class="card">
     <div class="card-body">
-        <h4>{{$gamesession->timeslot->title}}</h4>
+            @isset($gamesession->timeslot->convention)
+
+            @php
+                $convention = $gamesession->timeslot->convention
+            @endphp
+                @include('calendar.conventions.conventionheader')
+            
+            @endisset
+
+         <div style='font-size: 1.2em;'>
+        @foreach($gamesession->timeslot->convention->timeslots as $ts)
+            
+            @if($ts->id == $gamesession->timeslot->id)
+            <div style='font-size: 1.3em; display: inline;'>
+                    <a href="/calendar/convention/timeslot/{{$ts->id}}">{{$ts->title}}</a>
+            </div>
+                
+            @else
+                <a href="/calendar/convention/timeslot/{{$ts->id}}">{{$ts->title}}</a>
+            @endif
+
+            @if( ! $loop->last)
+                |
+            @endif
+        @endforeach
+        </div>
         <h4><small>
             {{$gamesession->timeslot->start_time()->format('l')}}  
             {{ 
@@ -59,8 +75,8 @@
                             @if($timeslot->id != $gamesession->timeslot->id)
                                 <a href="/calendar/convention/gamesession/{{ $gamesession->game->getGamesSession($gamesession->game->id, $timeslot->id)->id}}" 
                                 class="list-group-item list-group-item-action">
-                                    <strong></strong>
-                                    {{$timeslot->start_time()->format('l')}}  
+                                    <strong>{{$timeslot->title}}</strong>
+                                     - {{$timeslot->start_time()->format('l')}}  
                                     {{ 
                                         $timeslot->start_time()->minute == 0 ? 
                                         $timeslot->start_time()->format('ga') : 
@@ -75,8 +91,6 @@
                                 </a>
                             @endif
                         @endforeach
-                        
-                        
                     </div>
                 </div>
             </div>

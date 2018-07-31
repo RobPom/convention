@@ -24,7 +24,7 @@
                                 </h6>
                                 <hr>
                                 <p class="lead">{{$post->lead}}</p>
-                                <a class='float-right' href='/post/{{$posts[0]->id}}'>Read More...</a>
+                                <a class='float-right' href='/post/{{$post->id}}'>Read More...</a>
                                 <br>
                             </div>   
                         </div>

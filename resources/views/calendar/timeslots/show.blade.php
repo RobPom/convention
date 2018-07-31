@@ -2,19 +2,33 @@
 
 @section('content')
 
-@isset($timeslot->convention)
 <div class="card">
     <div class="card-body">
-        <h3>{{$timeslot->convention->title}}</h3>
-    </div>
-</div>
-<br> 
-@endisset
+            @isset($timeslot->convention)
+                @php
+                    $convention = $timeslot->convention
+                @endphp
+                @include('calendar.conventions.conventionheader')
+            @endisset
 
+        <div style='font-size: 1.2em;'>
+        @foreach($timeslot->convention->timeslots as $ts)
+            
+            @if($ts->id == $timeslot->id)
+            <div style='font-size: 1.3em; display: inline;'>
+                    {{$timeslot->title}}
+            </div>
+                
+            @else
+                <a href="/calendar/convention/timeslot/{{$ts->id}}">{{$ts->title}}</a>
+            @endif
 
-<div class="card">
-    <div class="card-body">
-        <h4>{{$timeslot->title}}</h4>
+            @if( ! $loop->last)
+                |
+            @endif
+        @endforeach
+        </div>
+
         <h4><small>
             {{$timeslot->start_time()->format('l')}}  
             {{ 

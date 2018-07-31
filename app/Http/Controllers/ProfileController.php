@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Profile;
+use App\Convention;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,11 +65,16 @@ class ProfileController extends Controller
                         { $query->where('name', 'like', 'admin'); }
                     ) ->get();
 
+        $conventions = Convention::all();
+        $convention = Convention::where('status', 'active')->first();
+
         return view('profile.dashboard')
             ->with('user', $user)
             ->with('members', $members)
             ->with('organizers', $organizers)
-            ->with('admins', $admins);
+            ->with('admins', $admins)
+            ->with('conventions', $conventions)
+            ->with('convention', $convention);
     }
 
     /**
@@ -122,7 +128,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $member = USER::find($id);
+        $member = User::find($id);
         $user = Auth::user();
        
         $this->validate($request, [

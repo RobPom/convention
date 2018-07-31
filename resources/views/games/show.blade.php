@@ -27,15 +27,15 @@
 @if($game->timeslots->count())
     <div class="card mt-4">
         <div class="card-header">
-            Convention Schedule
+            {{$game->timeslots->first()->convention->title}} Schedule
         </div>
         <div class="card-body">
             <div class="list-group">
                 @foreach($game->timeslots as $timeslot)
                         <a href="/calendar/convention/gamesession/{{ $game->getGamesSession($game->id, $timeslot->id)->id}}" 
                         class="list-group-item list-group-item-action">
-                            <strong></strong>
-                            {{$timeslot->start_time()->format('l')}}  
+                            <strong>{{$timeslot->title}}</strong>
+                             - {{$timeslot->start_time()->format('l')}}  
                             {{ 
                                 $timeslot->start_time()->minute == 0 ? 
                                 $timeslot->start_time()->format('ga') : 

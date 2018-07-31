@@ -4,9 +4,8 @@
 
 <div class="card">
     <div class="card-body">
-        <h3>{{$convention->title}}</h3>
-        <h5><small>{{$convention->tagline}}</small></h5>
-        <br>
+        @include('calendar.conventions.conventionheader')
+        
         <p class="lead">
             {{$convention->lead}}
         </p>

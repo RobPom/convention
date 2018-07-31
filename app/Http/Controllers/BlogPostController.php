@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\BlogPost;
-use App\BlogCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Redirect;
-use App\User;
 use Purifier;
 use Carbon\Carbon;
+use App\BlogPost;
+use App\BlogCategory;
+use App\User;
+use App\Page;
 
 class BlogPostController extends Controller
 {
@@ -114,12 +115,14 @@ class BlogPostController extends Controller
         $post = BlogPost::find($post_id);
         $category = BlogCategory::find($post->category);
         $categoryPosts = BlogPost::where('category' , $category->id)->whereNotNull('posted_on')->orderBy('posted_on', 'DESC')->get();
+        $frontpage = Page::where('title' , 'Front Page')->first();
 
         //dd($category);
         return view('blog.show')
             ->with('post' , $post)
             ->with('category' , $category)
-            ->with('categoryPosts' , $categoryPosts);
+            ->with('categoryPosts' , $categoryPosts)
+            ->with('frontpage' , $frontpage);
     }
 
     public function latest()

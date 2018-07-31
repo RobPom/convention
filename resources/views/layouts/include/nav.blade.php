@@ -50,6 +50,13 @@
 
                         <div class="dropdown-menu " aria-labelledby="navbarDropdown">
                             
+                            @php
+                                $convention = App\Convention::where('status' , 'active')->first();
+                            @endphp
+                            @if ( $convention->attendees->contains( Auth::user() ) )
+                                <a href="/calendar/convention/sessions/{{Auth::user()->id}}" class="dropdown-item">My Schedule</a>
+                            @endif
+
                             <a class="dropdown-item" href="/profile/dashboard">Dashboard</a>
 
                             <a class="dropdown-item" href="{{ route('logout') }}"
