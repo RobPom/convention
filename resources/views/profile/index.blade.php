@@ -16,6 +16,7 @@
                         <th scope="col" class="d-none d-md-table-cell">First</th>
                         <th scope="col" class="d-none d-md-table-cell">Last</th>
                         <th scope="col" class="d-none d-sm-table-cell">email</th>
+                        <th scope="col" class="d-none d-lg-table-cell">verified</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
@@ -30,6 +31,11 @@
                             <td class="d-none d-md-table-cell">{{$member->firstname}}</td>
                             <td class="d-none d-md-table-cell">{{$member->lastname}}</td>
                             <td class="d-none d-sm-table-cell">{{$member->email}}</td>
+                            @if($member->verified)
+                                <td class="d-none d-lg-table-cell">Yes</td>
+                            @else
+                                <td class="d-none d-lg-table-cell">No</td>
+                            @endif
                             <td><a class="btn btn-secondary btn-sm" href='/profile/{{$member->id}}/edit'>edit</a></td>
                             <td>
                                 <form 

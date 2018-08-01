@@ -140,6 +140,13 @@ class ProfileController extends Controller
        
         $member->firstname = $request->input('firstname');
         $member->lastname = $request->input('lastname');
+
+        if($request->input('verify')){
+            $member->verified = true;
+        } else {
+            $member->verified = false;
+        }
+        
         $member->save();
 
         // if a profile is attached, delete it then save.
