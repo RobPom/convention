@@ -47,8 +47,8 @@ Route::get('/posts/categories' , 'BlogCategoryController@index');
 Route::get('/calendar/convention/' , 'Calendar\ConventionController@show');
 Route::get('/calendar/convention/attendees' , 'Calendar\ConventionController@Attendees');
 Route::post('/calendar/convention/attendees' , 'Calendar\ConventionController@storeAttendees');
-Route::get('/calendar/convention/gamesession/{id}' , 'Calendar\GameSessionController@show');
 Route::get('/calendar/convention/sessions/{id}' , 'Calendar\GameSessionController@userCalendar');
 
 //dev - return to @show when complete
 Route::get('/calendar/convention/timeslot/{id}' , 'Calendar\CalendarController@devshow');
+Route::get('/calendar/convention/timeslot/game/{id}' , 'Calendar\GameSessionController@devshow');

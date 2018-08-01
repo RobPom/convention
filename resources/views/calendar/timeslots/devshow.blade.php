@@ -23,6 +23,7 @@
                 </li>
             @endforeach
         </ul>
+        
         <div class="tab-content" id="timeslotTabContent">
 
             @foreach($timeslot->convention->timeslots as $ts)
@@ -35,20 +36,26 @@
                 @else
                     <div class="tab-pane fade" id="tab{{$ts->id}}" role="tabpanel" aria-labelledby="{{$ts->id}}tab">
                 @endif
-                        <div class="card">
-                            <div class="card-header">
-                                {{$ts->pretty_times()}}
-                            </div>
-                            <div class="card-body">
-
-                            </div>
+                
+                    <div class="card">
+                        <div class="card-header">
+                            {{$ts->pretty_times()}}
                         </div>
-                        
-                               
- 
-
+                        <div class="card-body">                                
+                            @if($ts->games->count())
+                                <div class="list-group">
+                                    @foreach($ts->games as $game)
+                                        <a href="/calendar/convention/timeslot/game/{{ $game->getGamesSession($game->id, $ts->id)->id}}" 
+                                            class="list-group-item list-group-item-action"> {{$game->title}} <br>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            @else
+                            <div class="list-group-item disabled"> No games scheduled</div>
+                            @endif
+                        </div>
                     </div>
-        
+                </div>
             @endforeach
         </div>
     </div>

@@ -15,10 +15,9 @@
         @foreach($timeslot->convention->timeslots as $ts)
             
             @if($ts->id == $timeslot->id)
-            <div style='font-size: 1.3em; display: inline;'>
-                    {{$timeslot->title}}
-            </div>
-                
+                <div style='font-size: 1.3em; display: inline;'>
+                        {{$timeslot->title}}
+                </div>
             @else
                 <a href="/calendar/convention/timeslot/{{$ts->id}}">{{$ts->title}}</a>
             @endif

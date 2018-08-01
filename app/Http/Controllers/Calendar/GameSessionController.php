@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Calendar;
 
 use App\GameSession;
+use App\Game;
 use App\Convention;
 use App\Timeslot;
 use App\User;
@@ -19,7 +20,7 @@ class GameSessionController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('show');
+        $this->middleware('auth')->except('show' , 'devshow');
     }
 
     public function show($id){
@@ -28,6 +29,18 @@ class GameSessionController extends Controller
 
         if(isset($gamesession)){
            return view('calendar.sessions.show')
+                ->with('gamesession' , $gamesession); 
+        } else {
+                abort(404, 'This Game Session does not exist.');
+        }
+    }
+
+    public function devshow($id){
+       
+        $gamesession = GameSession::where('id' ,$id)->first();
+
+        if(isset($gamesession)){
+           return view('calendar.sessions.devshow')
                 ->with('gamesession' , $gamesession); 
         } else {
                 abort(404, 'This Game Session does not exist.');

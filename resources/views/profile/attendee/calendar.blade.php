@@ -43,7 +43,7 @@
 
                     @isset($game)
                         <small>You are playing </small><br>
-                        <strong> <a href="/calendar/convention/gamesession/{{$session->id}}"> {{$game->title}}</a></strong>
+                        <strong> <a href="/calendar/convention/timeslot/game/{{$session->id}}"> {{$game->title}}</a></strong>
                     @else    
                         @if($timeslot->games->count())
                             @if($timeslot->games->count() == 1)
