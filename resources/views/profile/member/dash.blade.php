@@ -28,8 +28,8 @@ $convention = App\Convention::where('status' , 'active')->first();
         </li>
     @endif
     @auth
-        @if( $convention->attendees()->where('user_id', $user->id)->exists() )
-            @if(Auth::user() == $member || $user->hasRole('organizer') || $user->hasRole('admin'))
+    @if( $convention->attendees()->where('user_id', $member->id)->exists() )
+    @if(Auth::user() == $member || $user->hasRole('organizer') || $user->hasRole('admin'))
             <li class="nav-item">
                 <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar" aria-selected="false">Convention Schedule</a>
             </li>
@@ -44,7 +44,7 @@ $convention = App\Convention::where('status' , 'active')->first();
             <div class="card-header">
                 <div class="row">
                     <div class="col">
-                        <small>{{$user->username}}'s</small><br>
+                        <small>{{$member->username}}'s</small><br>
                         <strong>Community Profile</strong>
                     </div>
                     <div class="col text-right">
@@ -82,7 +82,7 @@ $convention = App\Convention::where('status' , 'active')->first();
                 <div class="card-header">
                     <div class="row">
                         <div class="col">
-                                <small>{{$user->username}}'s</small><br>
+                                <small>{{$member->username}}'s</small><br>
                                 <strong>Latest Posts</strong>
                         </div>
                         <div class="col text-right">
@@ -120,7 +120,7 @@ $convention = App\Convention::where('status' , 'active')->first();
                 <div class="card-header">
                     <div class="row">
                         <div class="col">
-                                <small>{{$user->username}}'s</small><br>
+                                <small>{{$member->username}}'s</small><br>
                                 <strong>Games</strong>
                         </div>
                         <div class="col text-right">
@@ -158,7 +158,8 @@ $convention = App\Convention::where('status' , 'active')->first();
     @if( $convention->attendees()->where('user_id', $member->id)->exists() )
         @if(Auth::user() == $member || $user->hasRole('organizer') || $user->hasRole('admin'))
             <div class="tab-pane fade" id="calendar" role="tabpanel" aria-labelledby="calendar-tab">   
-                @include('profile.attendee.calendar')
+                @include('profile.attendee.calendar', ['user' => $member])
+
             </div>
         @endif
     @endif
