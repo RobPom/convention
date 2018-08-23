@@ -38,14 +38,16 @@
                             @endif
                             <td><a class="btn btn-secondary btn-sm" href='/profile/{{$member->id}}/edit'>edit</a></td>
                             <td>
-                                <form 
-                                    onsubmit="return confirm('Are you sure you want to delete this user?');"
-                                    action="{{action('ContactController@destroy', $member->id)}}" 
-                                    method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger  btn-sm" type="submit">Delete</button>
-                                </form>
+                                @if(Auth::user()->hasRole('admin'))
+                                    <form 
+                                        onsubmit="return confirm('Are you sure you want to delete this user?');"
+                                        action="{{action('ContactController@destroy', $member->id)}}" 
+                                        method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger  btn-sm" type="submit">Delete</button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                      

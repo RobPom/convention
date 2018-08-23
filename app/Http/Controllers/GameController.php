@@ -3,10 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Game;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Validator;
+use Redirect;
 
 class GameController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except('show');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +37,7 @@ class GameController extends Controller
      */
     public function create()
     {
-        //
+        return view('games.create');
     }
 
     /**
@@ -35,7 +48,56 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title'  => 'required|max:140',
+            'tagline'  => 'required|max:140',
+            'system'  => 'max:140',
+            'advisory'  => 'max:140',
+            'min'=> 'required',
+            'max' => 'required|gte:min|max:12',
+            'lead'  => 'required|max:350',
+            'description'  => 'required|max:2000',
+        ]);
+
+        if($validator->fails()){
+            return back()
+            ->withErrors($validator)
+            ->withInput();
+        } 
+
+        $game = new Game();
+        $game->title = $request->title;
+        $game->tagline = $request->tagline;
+        $game->system = $request->system;
+        $game->advisory = $request->advisory;
+        $game->min = $request->min;
+        $game->max = $request->max;
+        $game->lead = $request->lead;
+        $game->description = $request->description;
+        $request->active ?  $game->active = false : $game->active = true ;
+        $game->user_id = Auth::user()->id;
+        $game->save();
+
+        return redirect('/profile?tab=games')->with('status', 'Game Created');
+
+    }
+
+    public function copy($id){
+        $oldGame = Game::find($id);
+        $game = new Game();
+        $game->title = "Copy of " .  $oldGame->title ;
+        $game->tagline = $oldGame->tagline;
+        $game->system = $oldGame->system;
+        $game->advisory = $oldGame->advisory;
+        $game->min = $oldGame->min;
+        $game->max = $oldGame->max;
+        $game->lead = $oldGame->lead;
+        $game->description = $oldGame->description;
+        $game->active =  false;
+        $game->user_id = Auth::user()->id;
+        $game->save();
+
+        return redirect('/profile?tab=games')->with('status', 'A Copy of the game has been saved');
     }
 
     /**
@@ -47,7 +109,7 @@ class GameController extends Controller
     public function show($id)
     {
         $game = Game::find($id);
-        return view('games.show')->with('game' , $game);
+        return view('profile.member.game')->with('game' , $game);
     }
 
     /**
@@ -58,7 +120,8 @@ class GameController extends Controller
      */
     public function edit($id)
     {
-        //
+        $game = Game::find($id);
+        return view('games.edit')->with('game' , $game);
     }
 
     /**
@@ -70,7 +133,36 @@ class GameController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title'  => 'required|max:140',
+            'tagline'  => 'required|max:140',
+            'system'  => 'max:140',
+            'advisory'  => 'max:140',
+            'min'=> 'required',
+            'max' => 'required|gte:min|max:12',
+            'lead'  => 'required|max:350',
+            'description'  => 'required|max:2000',
+        ]);
+
+        if($validator->fails()){
+            return back()
+            ->withErrors($validator)
+            ->withInput();
+        } 
+
+        $game = Game::find($id);
+        $game->title = $request->title;
+        $game->tagline = $request->tagline;
+        $game->system = $request->system;
+        $game->advisory = $request->advisory;
+        $game->min = $request->min;
+        $game->max = $request->max;
+        $game->lead = $request->lead;
+        $game->description = $request->description;
+        $request->active ?  $game->active = false : $game->active = true ;
+        $game->save();
+
+        return redirect('/profile?tab=games')->with('status', 'Changes Saved');
     }
 
     /**
@@ -81,6 +173,16 @@ class GameController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $game = Game::find($id);
+
+        if( Auth::user()->id == $game->user->id ||  Auth::user()->hasRole('organizer') ){
+            $game->delete();
+            return redirect('profile?tab=games')->with('status', 'Game Deleted');
+        }
+        
+            abort(403, 'This action is unauthorized.');
+        
+
     }
 }

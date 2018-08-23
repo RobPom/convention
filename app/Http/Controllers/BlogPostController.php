@@ -101,7 +101,7 @@ class BlogPostController extends Controller
         $post->user_id = $user->id;
         $post->save();
 
-        return redirect('post/' . $post->id)->with('status', 'Post Saved');;
+        return redirect('post/' . $post->id)->with('status', 'Post Saved');
     }
 
     /**

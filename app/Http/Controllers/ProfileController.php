@@ -29,9 +29,11 @@ class ProfileController extends Controller
      */
     public function show($id)
     {   
+        $convention = Convention::where('status' , 'active')->first();
         $member = User::find($id);
         $user = Auth::user();
         return view('profile.show')
+        ->with('convention' , $convention)
             ->with('user', $user)
             ->with('member', $member);
     }
@@ -52,29 +54,50 @@ class ProfileController extends Controller
     public function dashboard()
     {
         $user = Auth::user();
+        $convention = Convention::where('status', 'active')->first();
+        return view('profile.dashboard')
+            ->with('user', $user)
+            ->with('convention', $convention);
+    }
 
-        $members = User::whereHas('roles', function($query)
-                        { $query->where('name', 'like', 'member'); }
-                    ) ->get();
+    /**
+     * Show the user dashboard
+     *
+     * @return \Illuminate\Http\Response
+     */
 
-        $organizers = User::whereHas('roles', function($query)
-                        { $query->where('name', 'like', 'organizer'); }
-                    ) ->get();
-
-        $admins = User::whereHas('roles', function($query)
-                        { $query->where('name', 'like', 'admin'); }
-                    ) ->get();
-
+    public function organizer()
+    {
+        $user = Auth::user();
+        $users = User::all();
         $conventions = Convention::all();
         $convention = Convention::where('status', 'active')->first();
 
-        return view('profile.dashboard')
+        if(  $user->hasRole('admin') || $user->hasRole('organizer') ){
+            return view('profile.organizer.dash')
             ->with('user', $user)
-            ->with('members', $members)
-            ->with('organizers', $organizers)
-            ->with('admins', $admins)
+            ->with('users' , $users)
             ->with('conventions', $conventions)
-            ->with('convention', $convention);
+            ->with('convention', $convention);     
+        }
+        abort(403, 'This action is unauthorized.');
+    }
+
+    public function admin()
+    {
+        $user = Auth::user();
+        $users = User::all();
+        $conventions = Convention::all();
+        $convention = Convention::where('status', 'active')->first();
+
+        if(  $user->hasRole('admin')){
+            return view('profile.admin.dash')
+            ->with('user', $user)
+            ->with('users' , $users)
+            ->with('conventions', $conventions)
+            ->with('convention', $convention);     
+        }
+        abort(403, 'This action is unauthorized.');
     }
 
     /**
@@ -86,15 +109,13 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $members = User::all();
 
-        $members = User::whereHas('roles', function($query)
-                        { $query->where('name', 'like', 'member'); }
-                    ) ->get();
 
         if(  $user->hasRole('admin') || $user->hasRole('organizer') ){
             return view('profile.index')
             ->with('user', $user)
-            ->with('members' , $members);
+            ->with('members', $members);
             
         }
         abort(403, 'This action is unauthorized.');
@@ -110,7 +131,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $member = User::find($id); 
-        if( $user->id == $id || $user->hasRole('organizer') ){
+        if( $user->id == $id || $user->hasRole('organizer') || $user->hasRole('admin') ){
             return view('profile.edit')
             ->with('user', $user)
             ->with('member' , $member);
@@ -131,10 +152,11 @@ class ProfileController extends Controller
         $member = User::find($id);
         $user = Auth::user();
        
+        $member->lastname = urldecode($member->lastname);
         $this->validate($request, [
-            'firstname'  => 'required|alpha|max:50',
-            'lastname'  => 'required|alpha|max:50',
-            'location'  => 'max:50',
+            "lastname'  => 'required|max:50|regex:/^[a-z ,.'-]+$/i",
+            "lastname'  => 'required|max:50|regex:/^[a-z ,.'-]+$/i",
+            "location'  => max:50|regex:/^[a-z ,.'-]+$/i",
             'description'  => 'max:144',
         ]);
        
@@ -164,7 +186,7 @@ class ProfileController extends Controller
 
 
         if(Auth::id() == $id ) {
-            return redirect('profile/dashboard')
+            return redirect('/profile')
             ->with('status', 'Profile Updated');
         }
         

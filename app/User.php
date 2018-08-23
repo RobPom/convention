@@ -6,6 +6,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Password;
 use Mail;
+use App\Timeslot;
+use App\Game;
+use App\GameSession;
 
 class User extends Authenticatable
 {
@@ -122,7 +125,7 @@ class User extends Authenticatable
         ]);
     }
 
-    public function sessions()
+    public function gamesessions()
     {
         return $this->belongsToMany('App\GameSession', 'game_session_user', 'user_id' , 'game_timeslot_id');
     }
@@ -136,4 +139,19 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Convention');
     }
 
+    public function gamemaster($id) {
+        $timeslot = Timeslot::find($id);
+
+        if( $this->games()->has('timeslots')->exists() ) {
+            $games = $this->games()->has('timeslots')->get();
+            foreach($games as $game) {
+                foreach($game->timeslots as $ts) {
+                    if($ts->id == $timeslot->id){
+                        return $timeslot->gamesession($game);
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }

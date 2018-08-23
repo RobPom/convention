@@ -43,6 +43,7 @@
 
 <div class='card'>
     <div class='card-body'>
+            
         <h3>Create a Post</h3>
 
         <form method="POST" action="{{ action('BlogPostController@store') }}">

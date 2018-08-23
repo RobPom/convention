@@ -23,14 +23,15 @@
                         <a class="dropdown-item" href="/posts/latest">Lastest</a>
                         <a class="dropdown-item" href="/posts">Archive</a>
                         @auth
-                        
                             @if(Auth::user()->hasAnyRole(['organizer' , 'admin']))
                             <a class="dropdown-item" href="/posts/new">New Post</a>
                             @endif
                         @endauth
                     </div>
                 </li>
-                <li><a class="nav-link" href="/calendar/convention">Convention</a></li>
+                @if ( App\Convention::where('status' , 'active')->count() )
+                    <li><a class="nav-link" href="/calendar/convention">Convention</a></li>
+                @endif
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -50,14 +51,21 @@
 
                         <div class="dropdown-menu " aria-labelledby="navbarDropdown">
                             
-                            @php
-                                $convention = App\Convention::where('status' , 'active')->first();
-                            @endphp
-                            @if ( $convention->attendees->contains( Auth::user() ) )
-                                <a href="/calendar/convention/sessions/{{Auth::user()->id}}" class="dropdown-item">My Schedule</a>
+                            @if ( App\Convention::where('status' , 'active')->count() )
+                                @if ( App\Convention::where('status' , 'active')->first()->attendees->contains( Auth::user() ) )
+                                    <a href="/calendar/convention/sessions/{{Auth::user()->id}}" class="dropdown-item">My Schedule</a>
+                                @endif
                             @endif
 
-                            <a class="dropdown-item" href="/profile/dashboard">Dashboard</a>
+                            <a class="dropdown-item" href="/profile">Profile</a>
+
+                            @if ( Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin') )
+                                <a class="dropdown-item" href="/organizer">Organizer </a>
+                            @endif
+
+                            @if ( Auth::user()->hasRole('admin') )
+                                <a class="dropdown-item" href="/admin">Admin </a>
+                            @endif
 
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

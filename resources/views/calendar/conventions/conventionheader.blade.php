@@ -1,5 +1,5 @@
 <div class="mb-4">
-  
+
     @if(Request::path() == 'calendar/convention')
         <h3>{{$convention->title}}</h3>
     @else
@@ -7,5 +7,6 @@
     @endif
     
     <h5><small>{{$convention->tagline}}</small></h5>
+
 </div>
 

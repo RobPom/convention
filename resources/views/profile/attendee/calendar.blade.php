@@ -6,59 +6,41 @@
                     <strong>Convention Schedule</strong>
             </div>
             <div class="col text-right">
-                <a href="" class="mt-2 btn btn-sm btn-secondary">Edit</a>
+                
             </div>
         </div>
         
     </div>
     <div class="card-body">
         <table class="table">
-         
-        
-        @foreach($convention->timeslots as $timeslot)
-        @php $game = null; @endphp
+            @foreach($convention->timeslots as $timeslot)
             <tr>
-                <td>
-                    <strong>
-                        {{$timeslot->title}}
-                    </strong> <br>
-                    <small>
-                            @include('layouts.include.prettydate')
-                    </small>
-                </td>
-                <td>                  
-                    @php
-                        $game_sessions = App\GameSession::where('timeslot_id' , $timeslot->id)->get()
-                    @endphp
-                   
-                    @foreach($game_sessions as $gs)
-                        @php
-                            if($gs->attendees()->where('user_id' , $user->id)->first())
-                            {
-                                $game = $gs->game;
-                                $session = $gs;
-                            } 
-                        @endphp
-                    @endforeach
-
-                    @isset($game)
-                        <small>You are playing </small><br>
-                        <strong> <a href="/calendar/convention/timeslot/game/{{$session->id}}"> {{$game->title}}</a></strong>
-                    @else    
-                        @if($timeslot->games->count())
-                            @if($timeslot->games->count() == 1)
-                                <small>{{$timeslot->games->count()}} Game Available</small><br>
-                            @else
-                                <small>{{$timeslot->games->count()}} Games to Choose From</small><br>
-                            @endif
-                            
+                <th>{{$timeslot->title}} - <small>{{$timeslot->pretty_times()}}</small></th>
+   
+                @if($user->gamemaster($timeslot->id))
+                    <td>
+                        You are hosting <a href="/calendar/convention/timeslot/game/{{$user->gamemaster($timeslot->id)->id}}">
+                                            {{$user->gamemaster($timeslot->id)->game->title}}.
+                                        </a>
+                    </td>
+                    <td></td>
+                @else
+                        @if($gamesession = $user->gamesessions->where('timeslot_id' , $timeslot->id)->first())
+                            <td> You are playing {{$gamesession->game->title}}</td>
+                            <td><a href="/calendar/convention/session/{{$timeslot->id}}/edit" class="btn btn-sm btn-secondary">Change</a></td>
                         @else
-                            <small>No Games Scheduled</small><br>
-                        @endempty                  
-                    @endif
-                </td>
-            </tr>
-        @endforeach
-    </table>
+                            @if($timeslot->gamesessions()->count())
+                                <td>{{$timeslot->gamesessions()->count()}} games to choose from</td>
+                                <td><a href="/calendar/convention/session/{{$timeslot->id}}/edit" class="btn btn-sm btn-secondary">Select a Game</a></td>
+                            @else
+                                <td>No games scheduled.</td>
+                                <td></td>
+                            @endif
+                        @endif
+
+                    </tr>
+                @endif
+            @endforeach
+        </table>
     </div>
 </div>

@@ -4,62 +4,60 @@
 
 <div class="card">
     <div class="card-body">
-            @isset($timeslot->convention)
-                @php
-                    $convention = $timeslot->convention
+        @isset($timeslot->convention)
+            @php
+                $convention = $timeslot->convention
+            @endphp
+            @include('calendar.conventions.conventionheader')
+        @endisset
+        
+        <ul class="nav nav-tabs" id="timeslotTabs" role="tablist">
+
+            @foreach($timeslot->convention->timeslots as $ts)
+                <li class="nav-item">
+                    @if($ts->id == $timeslot->id)
+                        <a class="nav-link active" id="{{$ts->id}}tab" data-toggle="tab" href="#tab{{$ts->id}}" role="tab" aria-controls="home" aria-selected="true">{{$ts->title}}</a>
+                    @else
+                        <a class="nav-link" id="{{$ts->id}}tab" data-toggle="tab" href="#tab{{$ts->id}}" role="tab" aria-controls="home" aria-selected="false">{{$ts->title}}</a>
+                    @endif
+                </li>
+            @endforeach
+        </ul>
+        
+        <div class="tab-content" id="timeslotTabContent">
+
+            @foreach($timeslot->convention->timeslots as $ts)
+                @php 
+                    $time = $ts->pretty_times();
                 @endphp
-                @include('calendar.conventions.conventionheader')
-            @endisset
-
-        <div style='font-size: 1.2em;'>
-        @foreach($timeslot->convention->timeslots as $ts)
-            
-            @if($ts->id == $timeslot->id)
-                <div style='font-size: 1.3em; display: inline;'>
-                        {{$timeslot->title}}
-                </div>
-            @else
-                <a href="/calendar/convention/timeslot/{{$ts->id}}">{{$ts->title}}</a>
-            @endif
-
-            @if( ! $loop->last)
-                |
-            @endif
-        @endforeach
-        </div>
-
-        <h4><small>
-            {{$timeslot->start_time()->format('l')}}  
-            {{ 
-                $timeslot->start_time()->minute == 0 ? 
-                $timeslot->start_time()->format('ga') : 
-                $timeslot->start_time()->format('g:ia')
-            }}
-            to
-            {{ 
-                $timeslot->end_time()->minute == 0 ? 
-                $timeslot->end_time()->format('ga') : 
-                $timeslot->end_time()->format('g:ia')
-            }}
-        </small></h4>
-        <hr>
-
-        @if($timeslot->games->count())
-            <div class="card">
-                <div class="card-header">{{$timeslot->games->count()}} games scheduled.</div>
-                <div class="card-body">
-                    <div class="list-group">
-                        @foreach($timeslot->games as $game)
-                            <a href="/calendar/convention/gamesession/{{ $game->getGamesSession($game->id, $timeslot->id)->id}}" 
-                                class="list-group-item list-group-item-action"> {{$game->title}} <br>
-                            </a>
-                        @endforeach
+                
+                @if($ts->id == $timeslot->id)
+                    <div class="tab-pane fade show active" id="tab{{$ts->id}}" role="tabpanel" aria-labelledby="{{$ts->id}}tab">
+                @else
+                    <div class="tab-pane fade" id="tab{{$ts->id}}" role="tabpanel" aria-labelledby="{{$ts->id}}tab">
+                @endif
+                
+                    <div class="card">
+                        <div class="card-header">
+                            {{$ts->pretty_times()}}
+                        </div>
+                        <div class="card-body">                                
+                            @if($ts->games->count())
+                                <div class="list-group">
+                                    @foreach($ts->games as $game)
+                                        <a href="/calendar/convention/timeslot/game/{{ $game->getGamesSession($game->id, $ts->id)->id}}" 
+                                            class="list-group-item list-group-item-action"> {{$game->title}} <br>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            @else
+                            <div class="list-group-item disabled"> No games scheduled</div>
+                            @endif
+                        </div>
                     </div>
                 </div>
-            </div>
-        @else
-            No games scheduled.
-        @endif
+            @endforeach
+        </div>
     </div>
 </div>
 

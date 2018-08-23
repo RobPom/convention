@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="card">
     <div class="card-body">
-        @php $member = $user;  @endphp
-        @include('profile.member.dash')
+        @include('calendar.conventions.conventionheader')   
+        
     </div>
 </div>
 
-<br>
 @endsection

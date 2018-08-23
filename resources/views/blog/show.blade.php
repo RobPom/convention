@@ -37,7 +37,7 @@
                     @if(Auth::user()->id == $post->user->id)
                         <a href="/post/{{$post->id}}/edit" class="btn btn-sm btn-primary">edit</a>
                         @if(! $post->published())
-                             <form 
+                        <form 
                             onsubmit="return confirm('You cannot undo this. Are you sure you want to delete this post?');"
                             action="{{action('BlogPostController@destroy', $post->id)}}" 
                             method="post">

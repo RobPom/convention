@@ -81,5 +81,9 @@ class FrontPageController extends Controller
     public function welcome(){
         return view('welcome');
     }
+
+    public function home(){
+        return $this->checkCookie();
+    }
     
 }

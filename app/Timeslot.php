@@ -18,6 +18,12 @@ class Timeslot extends Model
         return $this->hasMany('App\GameSession');
     }
 
+    public function gamesession($game)
+    {
+        $gamesession = GameSession::where('timeslot_id', $this->id)->where('game_id' , $game->id)->first();
+        return  $gamesession;
+    }
+
     public function convention(){
         return $this->belongsTo('App\Convention');
     }
@@ -38,6 +44,16 @@ class Timeslot extends Model
         $end = new Carbon($this->end_time);
         $string = '';
         $string .= $start->format('l') . ' ';
+        $string .= $start->minute == 0 ? $start->format('ga') : $start->format('g:ia');
+        $string .= ' to ';
+        $string .= $end->minute == 0 ? $end->format('ga') : $end->format('g:ia');
+        return $string;
+    }
+
+    public function only_times() {
+        $start = new Carbon($this->start_time);
+        $end = new Carbon($this->end_time);
+        $string = '';
         $string .= $start->minute == 0 ? $start->format('ga') : $start->format('g:ia');
         $string .= ' to ';
         $string .= $end->minute == 0 ? $end->format('ga') : $end->format('g:ia');

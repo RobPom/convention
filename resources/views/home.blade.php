@@ -2,20 +2,16 @@
 
 @section('content')
 
-<div class="card">
-    <div class="card-body">
-        <img  src="holder.js/100px275?text=Convention Banner" class="img-fluid" alt="Responsive image">
+@if ( App\Convention::where('status' , 'active')->count() )
+    <div class="card mb-2">
+        <div class="card-body ">
+            <img  src="holder.js/100px275?text=Convention Banner" class="img-fluid" alt="Responsive image">
+        </div>
     </div>
-</div>
-<br>
-
-
+@endif
     
-<div class="card">
-
-        
-
-    <div class="card-body">
+<div class="card my-2">
+    <div class="card-body ">
         <div class='row'>
             <div class="col">
                 <h6><small>{{$lead->category()->title}}</small></h6>
@@ -34,10 +30,10 @@
         </div>
     </div>
 </div>
-<br>
+
 <div class="container">
     <div class="row">
-        <div class="col-sm-6 pl-0 pr-2">
+        <div class="col-sm-6 pl-0 pr-1">
             <div class="card">
                 <div class="card-body">
                     <h6><small>{{$featured->category()->title}}</small></h6>
@@ -52,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 pl-2 pr-0">
+        <div class="col-sm-6 pl-1 pr-0">
         <div class="card">
             <div class="card-body">
                 <h5>The Con</h5>

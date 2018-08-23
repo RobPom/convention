@@ -37,7 +37,7 @@
 
         @include('layouts.include.nav')
 
-        <main role='main' class="py-4" style="min-height:100%;">
+        <main role='main' class="py-2" style="min-height:100%;">
             <div class="container">
 
                 @if (session('status'))
