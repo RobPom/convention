@@ -17,7 +17,7 @@ class Convention extends Model
     }
     
     public function games(){
-        return $this->belongsToMany('App\Game');
+        return $this->hasMany('App\Game' , 'event_id'); //use event_id for convention
     }
     
     public function attendees(){

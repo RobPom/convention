@@ -34,6 +34,15 @@ class Game extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function parent(){
+        if ($this->parent_id){
+            return Game::find($this->parent_id);
+        }
+        return null;
+
+    }
+
+
     public function getGamesSession($gameId , $timeslotId)
     {
         return GameSession::where('game_id', $gameId)->where('timeslot_id' , $timeslotId)->first();

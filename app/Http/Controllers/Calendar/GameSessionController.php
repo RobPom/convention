@@ -25,18 +25,21 @@ class GameSessionController extends Controller
     }
 
     public function show($id){
-        if( Convention::where('status' , 'active')->first() ) {
-            $gamesession = GameSession::where('id' ,$id)->first();
 
-            if(isset($gamesession)){
-                 return view('calendar.sessions.show')
-                    ->with('gamesession' , $gamesession); 
-            } else {
-                    abort(404, 'This Game Session does not exist.');
-            }
+        $gamesession = GameSession::find($id);        
+
+        if(isset($gamesession)){
+           
+            $convention = Convention::find($gamesession->timeslot->convention_id);
+            
+            return view('calendar.sessions.show')
+               ->with('gamesession' , $gamesession)
+               ->with('convention' , $convention); 
         } else {
-            abort(403, 'No upcoming conventions scheduled.');   
+                abort(404, 'This Game Session does not exist.');
         }
+
+       
     }
 
     public function userCalendar($id){

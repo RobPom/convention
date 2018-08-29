@@ -29,9 +29,21 @@
                         @endauth
                     </div>
                 </li>
-                @if ( App\Convention::where('status' , 'active')->count() )
-                    <li><a class="nav-link" href="/calendar/convention">Convention</a></li>
-                @endif
+                <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" 
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        Conventions <span class="caret"></span>
+                    </a>
+                    <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                        @if ( App\Convention::where('status' , 'active')->count() )
+                            <a class="dropdown-item" href="/calendar/convention">
+                            <small class="text-muted"> Registration Open! </small><br> {{ App\Convention::where('status' , 'active')->first()->title }}</a>
+                        @endif
+                                <a class="dropdown-item" href="/calendar/conventions">All</a>
+                  
+                    </div>
+                    
+
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -60,7 +72,11 @@
                             <a class="dropdown-item" href="/profile">Profile</a>
 
                             @if ( Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin') )
-                                <a class="dropdown-item" href="/organizer">Organizer </a>
+                                @if ( App\Convention::where('status' , 'active')->count() )
+                                <a class="dropdown-item" href="/calendar/convention/{{App\Convention::where('status' , 'active')->first()->id}}/manage">
+                                    Manage Con
+                                </a>
+                                @endif
                             @endif
 
                             @if ( Auth::user()->hasRole('admin') )
@@ -69,7 +85,7 @@
 
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                                    document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 

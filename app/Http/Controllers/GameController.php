@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Game;
+use App\Submission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Validator;
@@ -159,7 +160,7 @@ class GameController extends Controller
         $game->max = $request->max;
         $game->lead = $request->lead;
         $game->description = $request->description;
-        $request->active ?  $game->active = false : $game->active = true ;
+        $request->active ?  $game->active = true : $game->active = false ;
         $game->save();
 
         return redirect('/profile?tab=games')->with('status', 'Changes Saved');
@@ -175,14 +176,16 @@ class GameController extends Controller
     {
         
         $game = Game::find($id);
+        $submissions = Submission::where('game_id' , $game->id)->get();
 
         if( Auth::user()->id == $game->user->id ||  Auth::user()->hasRole('organizer') ){
+            foreach($submissions as $submission){
+                $submission->delete();
+            }
             $game->delete();
             return redirect('profile?tab=games')->with('status', 'Game Deleted');
         }
         
             abort(403, 'This action is unauthorized.');
-        
-
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Calendar;
 
 use App\Convention;
 use App\User;
+use App\Game;
 use App\Submission;
 use Validator;
 use Redirect;
@@ -18,7 +19,7 @@ class ConventionController extends Controller
     public function __construct()
     {
         $this->active_convention = Convention::where('status' , 'active')->first();
-        $this->middleware('auth')->except('show' , 'index');
+        $this->middleware('auth')->except('show' , 'index' , 'showActive', 'schedule', 'showGame' , 'allGames');
     }
 
     public function index() {
@@ -31,12 +32,23 @@ class ConventionController extends Controller
         return view('calendar.convention.show')->with('convention' , $convention);
     }
 
+    public function manage($id) {
+        if(Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin')){
+            $convention = Convention::find($id);
+            if($convention->status != 'archived'){
+                return view('calendar.convention.manage')->with('convention' , $convention);
+            }
+            
+        }
+        abort(403, 'Not Authorized.'); 
+    }
+
     //shows the active convention, it will take the first if more than one is active.
 
     public function showActive()
     {
         if( $this->active_convention ) {
-            return view('calendar.conventions.show')->with('convention' , $this->active_convention );
+            return view('calendar.convention.show')->with('convention' , $this->active_convention );
         }
 
         abort(403, 'No conventions scheduled.'); 
@@ -49,11 +61,8 @@ class ConventionController extends Controller
             return view('calendar.conventions.attendees')
                 ->with('convention' , $this->active_convention )
                 ->with('users' , $users );
-
-        } else {
-            abort(403, 'Not Authorized.');   
-        }
-        
+        } 
+            abort(403, 'Not Authorized.');    
     }
 
     public function storeAttendees(Request $request)
@@ -65,6 +74,13 @@ class ConventionController extends Controller
             ->with('users' , $users );
     }
 
+    public function schedule($id){
+        $convention = Convention::find($id);
+        return view('calendar.convention.schedule')->with('convention' , $convention);
+    }
+
+    
+
       /**
      * Show the form for creating a new resource.
      *
@@ -72,7 +88,10 @@ class ConventionController extends Controller
      */
     public function create()
     {
-        return view('calendar.conventions.create');
+        if(Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin')){
+            return view('calendar.convention.create');
+        }
+        abort(403, 'This action is unauthorized.');
     }
 
 
@@ -104,8 +123,51 @@ class ConventionController extends Controller
        
         $convention->save();
 
-        return redirect('/organizer')->with('status', 'Convention Created');
+        return redirect('/calendar/conventions')->with('status', 'Convention Created');
 
+    }
+
+    public function edit($id){
+
+        $convention = Convention::find($id);
+        return view('calendar.convention.edit')->with('convention', $convention);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\BlogPost  $blogPost
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    { 
+        $validator = Validator::make($request->all(), [
+            'title'  => 'required|max:140',
+            'tagline'  => 'required|max:140',
+            'start_date'=> 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'lead'  => 'required|max:350',
+            'description'  => 'required|max:2000',
+        ]);
+
+        if($validator->fails()){
+            return back()
+            ->withErrors($validator)
+            ->withInput();
+        } 
+
+        $convention = Convention::find($id);
+        $convention->title = $request->title;
+        $convention->tagline = $request->tagline;
+        $convention->start_date = date( 'Y-m-d', strtotime( $request->start_date ) );
+        $convention->end_date = date( 'Y-m-d', strtotime( $request->end_date ) );
+        $convention->lead = $request->lead;
+        $convention->description = $request->description;
+       
+        $convention->save();
+
+        return redirect('/calendar/convention/' . $id . '/manage')->with('status', 'Changes Saved');
     }
 
 
@@ -116,29 +178,114 @@ class ConventionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        
+    { 
         $convention = Convention::find($id);
 
-        if( Auth::user()->hasRole('organizer') ){
-            $convention->delete();
-            return redirect('/organizer')->with('status', 'Convention Deleted');
+        if( Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin') ){
+            if($convention->status == 'inactive') {
+                $convention->delete();
+                return redirect('/calendar/conventions')->with('status', 'Convention Deleted');
+            }   
         }
-        
             abort(403, 'This action is unauthorized.');
+
+    }
+
+    public function allGames($id){
+        $convention = Convention::find($id);
+        $games = Game::where('event_id' , $id)->get();
+        return view('calendar.convention.game.index')->with('games' , $games)->with('convention', $convention);
         
+    }
+
+    public function pool($id) {
+        if( Auth::user()->hasRole('organizer') ){
+            $convention = Convention::find($id);
+            $games = Game::where('event_id' , $id)->get();
+            return view('calendar.convention.game.pool')->with('games' , $games)->with('convention' , $convention);
+        }
+        abort(403, 'This action is unauthorized.');
+    }
+
+    public function editGame($id)
+    {   
+        $game = Game::find($id);
+        $convention = Convention::find($game->event_id);
+        if(Auth::user()->hasRole('admin') || Auth::user()->hasRole('organizer')  ) {
+            return view('calendar.convention.game.edit')->with('game' , $game)->with('convention' , $convention);
+        }
+        abort(403, 'This action is unauthorized.');
+    }
+
+    public function updateGame(Request $request, $id)
+    {
+        
+        $validator = Validator::make($request->all(), [
+            'title'  => 'required|max:140',
+            'tagline'  => 'required|max:140',
+            'system'  => 'max:140',
+            'advisory'  => 'max:140',
+            'min'=> 'required',
+            'max' => 'required|gte:min|max:12',
+            'lead'  => 'required|max:350',
+            'description'  => 'required|max:2000',
+        ]);
+
+        if($validator->fails()){
+            return back()
+            ->withErrors($validator)
+            ->withInput();
+        } 
+
+        $game = Game::find($id);
+        $game->title = $request->title;
+        $game->tagline = $request->tagline;
+        $game->system = $request->system;
+        $game->advisory = $request->advisory;
+        $game->min = $request->min;
+        $game->max = $request->max;
+        $game->lead = $request->lead;
+        $game->description = $request->description;
+        $game->active = true ;
+        $game->event_id = $request->event_id ;
+        $game->save();
+        $convention = Convention::find($request->event_id);
+        return redirect('/calendar/convention/game/' . $game->id . '/schedule')->with('status', 'Changes Saved');
+    }
+
+    public function showGame($convention_id, $game_id) {
+        $convention = Convention::find($convention_id);
+        $game = Game::find($game_id);
+        return view('calendar.convention.game.show')->with('game' , $game)->with('convention' , $convention);
+    }
+
+    public function gameSchedule($id) {
+       
+        $game = Game::find($id);
+        $convention = Convention::find($game->event_id);
+        return view('calendar.convention.game.schedule')->with('game' , $game)->with('convention' , $convention);
+    }
+
+    public function deleteGame($id){
+        $game = Game::find($id);
+        $convention = Convention::find($game->event_id);
+        $games = Game::where('event_id' , $game->event_id)->get();
+        $game->delete();
+        return redirect('calendar/convention/' . $convention->id . '/pool')->with('games', $games)->with('convention' , $convention)->with('status', 'game removed');
 
     }
 
     public function submitGame() {
         $member = Auth::user();
         $convention = Convention::where('status' , 'active')->first();
-        return view('calendar.conventions.games.submit')->with('member' , $member)->with('convention' , $convention);
+        return view('calendar.convention.game.submit')->with('member' , $member)->with('convention' , $convention);
     }
 
     public function submit(Request $request) {
-        $submission = new Submission();
 
+        $game = Game::find($request->game_id);
+
+        $submission = new Submission();
         $submission->convention_id = $request->convention_id;
         $submission->user_id = $request->user_id;
         $submission->game_id = $request->game_id;
@@ -152,7 +299,7 @@ class ConventionController extends Controller
     public function submissions($id){
         if( Auth::user()->hasRole('organizer') ){
             $convention = Convention::find($id);
-            return view('calendar.conventions.games.submissions')->with('convention', $convention);
+            return view('calendar.convention.game.submissions')->with('convention', $convention);
         }
         abort(403, 'This action is unauthorized.');
     }
@@ -161,8 +308,28 @@ class ConventionController extends Controller
         if( Auth::user()->hasRole('organizer') ){
 
             $submission = Submission::find($request->submission_id);
-            dd($submission->game);
-            //return view('calendar.conventions.games.submissions')->with('convention', $convention);
+            $convention = $submission->convention;
+           
+            $game = new Game();
+            $game->title = $submission->game->title;
+            $game->tagline = $submission->game->tagline;
+            $game->system = $submission->game->system;
+            $game->advisory = $submission->game->advisory;
+            $game->min = $submission->game->min;
+            $game->max = $submission->game->max;
+            $game->lead = $submission->game->lead;
+            $game->description = $submission->game->description;
+            $game->active  = true ;
+            $game->user_id = $submission->user->id;
+            $game->event_id = $submission->convention->id;
+            $game->parent_id = $submission->game->id;
+            $game->save();
+            $submission->delete();
+            
+            return redirect('/calendar/convention/game/' . $game->id . '/schedule')
+            ->with('convention', $convention)
+            ->with('game' , $game)
+            ->with('status' , 'Game added to the convention game pool.');
         }
         abort(403, 'This action is unauthorized.');
     }
@@ -177,6 +344,5 @@ class ConventionController extends Controller
             return view('calendar.conventions.games.submissions')->with('convention', $convention)->with('status' , 'Game removed ');
         }
         abort(403, 'This action is unauthorized.');
-
     }
 }

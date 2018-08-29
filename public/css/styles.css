@@ -98,3 +98,7 @@ p.authorLead {
 
  }
 
+ .breadcrumb{
+     font-size: .8em;
+     margin-bottom: .5rem !important;
+ }

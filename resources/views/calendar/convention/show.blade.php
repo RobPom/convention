@@ -5,47 +5,62 @@
 <div class="card p-2">
     <div class="card-header bg-white">
         <div class="row">
-            <div class="col-md-6 text-md-left text-sm-center ">
+            <div class="col-md-8 text-center text-md-left">
                 <h5>{{$convention->title}}</h5>
             </div>
-            <div class="col-md-6 text-md-right text-sm-center ">
+            <div class="col-md-4 text-center text-md-right">
                 <small>{{$convention->pretty_dates()}}</small>
             </div>
         </div>
         <div class="row mt-1">
-            <div class="col-md-6 text-md-left text-sm-center ">
+
+            <div class="col-md-8 text-center text-md-left">
                 <h5><small>{{$convention->tagline}}</small></h5>
             </div>
-            <div class="col-md-6 text-right">
-                <a href="" class="btn btn-sm btn-primary">Manage</a>
-            </div>
+            
+            @auth
+                @if( Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin')  )
+                    @if($convention->status != 'archived')
+                        <div class="col-md-4 text-right">
+                            <a href="/calendar/convention/{{$convention->id}}/manage" class="btn btn-sm btn-primary">Manage</a>
+                        </div>
+                    @endif
+                @endif
+            @endauth
+
         </div>  
     </div>
     <div class="card-body">
         <div class="lead">{{$convention->lead}}</div>
-        <p class='mt-3'>{!! nl2br(e($convention->description)) !!}</p>
+        <p class='mt-3'>{!!$convention->description!!}</p>
         <hr class="my-3">
 
         <div class="row">
-            <div class="col-md-10 offset-md-1">
+            <div class="col-lg-10 offset-lg-1 ">
                 <div class="m-2 p-1 text-center">
-                    <strong>Schedule</strong>
+                    <strong> <a href="/calendar/convention/{{$convention->id}}/schedule">Schedule</a></strong>
                 </div>
                 <div class="p-1 mt-3">
                     <div class="row">
                         @foreach($convention->days() as $day)
-                        <div class="col-md-6 col-sm-12 col-lg-4">
+                            @if( (count($convention->days()) % 2) == 0)
+                                <div class="col-md-6">
+                            @else
+                                <div class="col-md-8 offset-md-2 col-lg-4 offset-lg-0">
+
+                            @endif
+                        
                             <div class="card">
                                 <div class="card-header">
                                     {{$day->format('l')}} <small>{{$day->format('M jS')}}</small>
                                 </div>
                                 <div class="card-body">
-                                    <ul class="list-group list-group">
-                                        @foreach($convention->timeslots as $timeslot)
+                                    <ul class="list-group">
+                                        @foreach($convention->timeslots()->orderBy('start_time', 'asc')->get() as $timeslot)
                                             @if($day->isSameDay($timeslot->start_time()))
                                                 <a href="/calendar/convention/timeslot/{{$timeslot->id}}" class="list-group-item list-group-item-action">
                                                     <div class="row">
-                                                        <div class="col text-center">
+                                                        <div class="col text-left">
                                                            <small>{{$timeslot->only_times()}}</small>
                                                         </div>
                                                         <div class="col text-right">
@@ -70,14 +85,17 @@
             <div class="col-md-6">
                 <hr class="my-3">
                 <div class="m-2 p-1 text-center">
+                    <strong>
+                        <a href="/calendar/convention/{{$convention->id}}/games">Games</a>
+                    </strong>
                     <div id="carouselExampleControls" class="carousel slide mt-3" data-ride="carousel">
                         <div class="carousel-inner">
 
                             @foreach($convention->games as $game)
                                 @if($loop->first)
-                                    <div class="card carousel-item active" style="height:180px;">
+                                    <div class="card carousel-item active border-0" style="height:180px;">
                                 @else
-                                    <div class="card carousel-item " style="height:180px;">
+                                    <div class="card carousel-item border-0" style="height:180px;">
                                 @endif
                                         <div class="card-body">
                                             <h5 class="card-title">{{$game->title}}</h5>
@@ -100,8 +118,8 @@
                             <span class="sr-only">Next</span>
                         </a>
 
-                        <div class="m-3">
-                            <a href="#">Browse all Games</a>
+                        <div class="m-3 text-right">
+                            <a href="#" class='btn btn-sm btn-secondary'>all games</a>
                         </div>
                         
                     </div>
@@ -111,7 +129,7 @@
             <div class="col-md-6">
                 <hr class="my-3">
                 <div class="m-2 p-1 text-center">
-                    <div class="card mt-3" style="height:100px;">
+                    <div class="card mt-3 border-0" style="height:100px;">
                         <div class="card-body">
                             <h5 class="card-title">No Games</h5>
                             <h6 class="card-subtitle mb-2 text-muted">(yet)</h6>
@@ -128,7 +146,8 @@
             <div class="col-md-6">
                     <hr class="my-3">
                 <div class="m-2 p-1 text-center">
-                    <div class="card mt-3">    
+                        <strong>Location</strong>
+                    <div class="card mt-3 border-0">    
                         <div class="card-body">
                             <h5 class="card-title">Queen Alexandra Community League</h5>
                             <h6 class="card-subtitle mb-2 text-muted">10425 University Ave, <br> Edmonton, AB</h6>
@@ -142,9 +161,15 @@
     </div>
     <div class="card-footer bg-white">
         <div class="row">
-            <div class="col text-center"> <small><a href="/calendar/conventions"> Convention Archive</a></small></div>
+            <div class="col text-center"> <small><a href="/calendar/conventions">Index</a></small></div>
             <div class="col text-center"></div>
-            <div class="col text-center"> <small>{{$convention->status}}</small></div>
+            <div class="col text-center">
+                @auth
+                    @if( Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin')  ) 
+                        <small>{{$convention->status}}</small>
+                    @endif
+                @endauth             
+            </div>
         </div>
     </div>
 </div>

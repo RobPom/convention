@@ -17,10 +17,10 @@ class CreateTimeslotsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->integer('convention_id')->nullable();
-
+            $table->mediumText('description')->nullable()->default(null);
+            $table->boolean('accept_games')->default(true);
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-
             $table->timestamps();
         });
     }

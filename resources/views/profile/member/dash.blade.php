@@ -159,8 +159,8 @@
                                 <div class="card-body">
                                     <ul class="list-group list-group-flush">
                                         
-                                        @foreach($member->games as $game)
-                                            @if($game->active)
+                                        @foreach($member->games->where('active' , true ) as $game)
+                                            @if($game->event_id == 0)
                                                 <li class="list-group-item">
                                                     <div class="row">
                                                         <div class="col-md-6">
@@ -169,7 +169,7 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             @auth
-                                                                @if($member->id == Auth::user()->id || Auth::user()->hasRole('organizer'))
+                                                                @if($member->id == Auth::user()->id || Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin'))
                                                                     <form class='form-inline float-right'
                                                                         onsubmit="return confirm('You cannot undo this. Are you sure you want to delete this game?');"
                                                                         action="{{action('GameController@destroy', $game->id)}}" 
@@ -258,7 +258,7 @@
                                     <div class="card-body">
 
 
-                                    @if($convention->games()->where('user_id' , $member->id)->get()->count())
+                                    @if($convention->games()->where('user_id' , $member->id)->where('event_id' , $convention->id)->get()->count())
                                        <div class="card border-0">
                                            <div class="card-body">
                                                <div class="card-title">

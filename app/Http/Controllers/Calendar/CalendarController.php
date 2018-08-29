@@ -30,13 +30,11 @@ class CalendarController extends Controller
     public function show($id){
         if( Convention::where('status' , 'active')->first() ) {
             $timeslot = Timeslot::find($id);
-            return view('calendar.timeslots.show')->with('timeslot' , $timeslot);
+            return view('calendar.timeslots.show')->with('timeslot' , $timeslot)->with('convention' , $timeslot->convention);
         } else {
             abort(403, 'No upcoming conventions scheduled.');   
         }
     }
-
-    
 
 
 }

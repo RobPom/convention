@@ -50,7 +50,7 @@
         <div class="card ">
             <div class="card-header">Edit Game</div>
             <div class="card-body">
-                    <form method="POST" action="{{ action('GameController@update' , $game->id) }}">
+                <form method="POST" action="{{ action('GameController@update' , $game->id) }}">
                             @method('PATCH')
                             @csrf
 
@@ -175,7 +175,7 @@
         
                         <div class="form-row">
                             <div class="form-check m-2"> 
-                                <input class="form-check-input" type="checkbox" {{$game->active ? 'checked' : ''}} name='active'>
+                                <input class="form-check-input" type="checkbox" {{$game->active ? '' : 'checked'}} name='active'>
                                 <label class="form-check-label active"  for="draft" >Save as Draft</label>
                             </div>
                         </div>
