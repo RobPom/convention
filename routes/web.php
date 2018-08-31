@@ -81,18 +81,29 @@ Route::post('/calendar/convention/event/store' , 'Calendar\TimeslotController@st
 Route::get('/calendar/convention/attendees' , 'Calendar\ConventionController@Attendees');
 Route::post('/calendar/convention/attendees' , 'Calendar\ConventionController@storeAttendees');
 
+/* Convention Location */
+
+Route::get('/calendar/convention/{id}/location' , 'LocationController@show');
+Route::get('/calendar/convention/{id}/location/create' , 'LocationController@create');
+Route::get('/calendar/convention/location/{id}/edit' , 'LocationController@edit');
+Route::post('/calendar/convention/location/{id}' , 'LocationController@store');
+Route::delete('/calendar/convention/{id}/location' , 'LocationController@destroy');
+Route::patch('/calendar/convention/{id}/location' , 'LocationController@update');
+
 /* Convention Gamesessions */
 Route::get('/calendar/convention/sessions/{id}' , 'Calendar\GameSessionController@userCalendar');
 Route::get('/calendar/convention/session/{id}/edit' , 'Calendar\GameSessionController@setGameSession');
 Route::post('/calendar/convention/session/save' , 'Calendar\GameSessionController@updateUserGameSession');
 Route::get('/calendar/convention/session/{id}' , 'Calendar\GameSessionController@show');
 
-/* Convetion Games */
+/* Convention Games */
 Route::get('calendar/convention/{id}/games', 'Calendar\ConventionController@allGames');
 Route::get('calendar/convention/game/{id}/edit', 'Calendar\ConventionController@editGame');
 Route::patch('calendar/convention/game/{id}', 'Calendar\ConventionController@updateGame');
-Route::delete('calendar/convention/game/{id}/', 'Calendar\ConventionController@deleteGame')
-;
+Route::delete('calendar/convention/game/{id}/', 'Calendar\ConventionController@deleteGame');
+
+Route::post('calendar/convention/game/schedule/add', 'Calendar\ConventionController@addToTimeslot');
+Route::post('calendar/convention/game/schedule/remove', 'Calendar\ConventionController@removeFromTimeslot');
 Route::get('calendar/convention/game/{id}/schedule', 'Calendar\ConventionController@gameSchedule');
 
 Route::get('calendar/convention/{id}/pool', 'Calendar\ConventionController@pool'); // convention games organizer views

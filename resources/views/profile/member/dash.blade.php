@@ -278,7 +278,7 @@
 
                                                                 @if( $game->timeslots()->count() > 1)
                                                                     <div class="col-md-6">
-                                                                        <a href="/calendar/convention/timeslot/game/{{$firstsession->id}}">
+                                                                            <a href="/calendar/convention/{{$convention->id}}/game/{{$game->id}}">
                                                                             {{$game->title}}
                                                                         </a> <br>
                                                                     </div>
@@ -287,7 +287,7 @@
                                                                     </div>
                                                                 @else
                                                                     <div class="col-md-6">
-                                                                        <a href="/calendar/convention/timeslot/game/{{$firstsession->id}}">
+                                                                        <a href="/calendar/convention/{{$convention->id}}/game/{{$game->id}}">
                                                                             {{$game->title}}
                                                                         </a> <br>
                                                                     </div>

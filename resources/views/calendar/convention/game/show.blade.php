@@ -58,6 +58,35 @@
                         <p>{!! $game->description !!}</p>
                     </div>
 
+
+                    @if($game->timeslots->count())
+                        <div class="card m-4">
+                            <div class="card-header">
+                                Convention Schedule
+                            </div>
+                            <div class="card-body">
+                                @foreach($game->timeslots as $timeslot)
+                                    <li class='list-group-item'>
+                                        <div class="row">        
+                                            <div class="col">
+                                                <strong>{{$timeslot->title}}</strong>
+                                            </div>
+                                            <div class="col">
+                                                {{$timeslot->pretty_times()}}
+                                            </div>
+                                            <div class="col">
+                                                # Players
+                                            </div>
+                                        </div>
+                                        
+
+
+                                    </li>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+                    
                 </div>
                 <div class="card-footer">
                     <div class="row">
@@ -75,6 +104,7 @@
                 </div>
     
             </div>
+           
         </div>
     </div>
 </div>

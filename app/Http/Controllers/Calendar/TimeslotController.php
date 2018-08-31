@@ -35,7 +35,8 @@ class TimeslotController extends Controller
     public function edit($id){
 
         $timeslot = Timeslot::find($id);
-        return view('calendar.timeslots.edit')->with('timeslot', $timeslot);
+        $convention = Convention::find($timeslot->convention_id);
+        return view('calendar.timeslots.edit')->with('convention' , $convention)->with('timeslot', $timeslot);
     }
 
     public function store(Request $request) {
@@ -128,7 +129,8 @@ class TimeslotController extends Controller
     public function editEvent($id){
 
         $timeslot = Timeslot::find($id);
-        return view('calendar.events.edit')->with('timeslot', $timeslot);
+        $convention = Convention::find($timeslot->convention_id);
+        return view('calendar.events.edit')->with('convention' , $convention)->with('timeslot', $timeslot);
     }
 
     public function storeEvent(Request $request) {

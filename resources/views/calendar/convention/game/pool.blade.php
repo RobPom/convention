@@ -4,12 +4,13 @@
 
 <div class="card p-2">
     <div class="card-header bg-white">
-        <h5>Manage {{$convention->title}}</h5>
+            <h5><a href="/calendar/convention/{{$convention->id}}/manage">Manage {{$convention->title}}</h5></a>
     </div>
     <div class="card-body">
         <div class="card">
             <div class="card-header">
-                <strong>Game Pool</strong>
+                    <a href="/calendar/convention/{{$convention->id}}/manage" class=""><i class="material-icons text-with-icon">event</i></a>
+                    <div class="inline-block text-with-icon "><strong>Game Pool </strong></div> 
             </div>
             <div class="card-body">
                 <div class="card-title">
@@ -17,7 +18,11 @@
                 </div>      
                 
                 @foreach($games as $game)
-                <div class="row p-2">
+                    @if($game->timeslots->count())
+                        <div class="row p-2 bg-light">
+                    @else
+                        <div class="row p-2">
+                    @endif
                     <div class="col-sm-4">
                         <a href="/calendar/convention/game/{{$game->id}}/schedule">
                         {{$game->title}}</a>

@@ -64,10 +64,10 @@
                                             </div>
                                             @if($timeslot->accept_games == true)
                                                 @php  
-                                                $seat_count = 0;
+                                                $max_players = 0;
                                             
                                                 foreach($timeslot->games as $game){
-                                                    $seat_count += $game->max;
+                                                    $max_players += $game->max;
                                                 }
                                                 @endphp
                                         
@@ -78,7 +78,7 @@
                                                         </div>
                     
                                                         <div class="col small">
-                                                            Seats: ## / {{$seat_count}}
+                                                            Players: ## / {{$max_players}}
                                                         </div>
                                                     </div>
                                                 </div>

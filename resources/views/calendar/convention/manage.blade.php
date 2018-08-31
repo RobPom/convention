@@ -133,7 +133,7 @@
                         <strong>Location</strong>
                     </div>
                     <div class="col-md-6 text-right">
-                        <a href="" class="btn btn-sm btn-primary">edit</a> 
+                        <a href="/calendar/convention/location/{{$convention->id}}/edit" class="btn btn-sm btn-secondary">edit</a> 
                     </div>
                 </div>
             </div>

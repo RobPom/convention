@@ -24,6 +24,10 @@ class Convention extends Model
         return $this->belongsToMany('App\User');
     }
 
+    public function location(){
+        return $this->hasOne('App\Location');
+    }
+
     public function pretty_dates() {
         $start = new Carbon($this->start_date);
         $end = new Carbon($this->end_date);

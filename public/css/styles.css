@@ -102,3 +102,9 @@ p.authorLead {
      font-size: .8em;
      margin-bottom: .5rem !important;
  }
+
+
+ .text-with-icon{
+     display: inline;
+     vertical-align: middle;
+ }

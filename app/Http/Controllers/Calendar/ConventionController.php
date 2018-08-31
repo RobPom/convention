@@ -6,6 +6,7 @@ use App\Convention;
 use App\User;
 use App\Game;
 use App\Submission;
+use App\Timeslot;
 use Validator;
 use Redirect;
 use Illuminate\Support\Facades\Auth;
@@ -264,6 +265,22 @@ class ConventionController extends Controller
         $game = Game::find($id);
         $convention = Convention::find($game->event_id);
         return view('calendar.convention.game.schedule')->with('game' , $game)->with('convention' , $convention);
+    }
+
+    public function addToTimeslot(Request $request){
+        $timeslot = Timeslot::find($request->timeslot);
+        $convention = Convention::find($timeslot->convention_id);
+        $game = Game::find($request->game);
+        $timeslot->games()->attach($game);
+        return redirect('/calendar/convention/game/' . $game->id . '/schedule')->with('game' , $game)->with('convention' , $convention);
+    }
+
+    public function removeFromTimeslot(Request $request){
+        $timeslot = Timeslot::find($request->timeslot);
+        $convention = Convention::find($timeslot->convention_id);
+        $game = Game::find($request->game);
+        $timeslot->games()->detach($game);
+        return redirect('/calendar/convention/game/' . $game->id . '/schedule')->with('game' , $game)->with('convention' , $convention);
     }
 
     public function deleteGame($id){
