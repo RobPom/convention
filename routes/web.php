@@ -78,22 +78,59 @@ Route::get('/calendar/convention/event/{id}/edit' , 'Calendar\TimeslotController
 Route::post('/calendar/convention/event/store' , 'Calendar\TimeslotController@storeEvent');
 
 /* Convention Attendees*/
-Route::get('/calendar/convention/attendees' , 'Calendar\ConventionController@Attendees');
+Route::get('/calendar/convention/{id}/attendees' , 'Calendar\ConventionController@attendees');
 Route::post('/calendar/convention/attendees' , 'Calendar\ConventionController@storeAttendees');
 
-/* Convention Location */
+//new user and add to convention
+Route::get('/calendar/convention/{id}/attendee/new' , 'Calendar\AttendeeController@new');
+Route::post('/calendar/convention/attendee/new', 'Calendar\AttendeeController@store');
+//select from exisiting users to add to convention
+Route::get('/calendar/convention/{id}/attendee/add' , 'Calendar\AttendeeController@add');
+Route::post('/calendar/convention/attendee/add', 'Calendar\AttendeeController@addAttendee');
 
+//users convention schedule
+Route::get('calendar/convention/{id}/attendee/schedule', 'Calendar\AttendeeController@attendeeSchedule');
+//organizer view attendee games and schedule
+Route::get('/calendar/convention/{convention_id}/attendee/{user_id}' , 'Calendar\AttendeeController@view');
+
+//organizer removing attendee from convention
+Route::post('/calendar/convention/attendee/remove', 'Calendar\AttendeeController@remove');
+
+//organizer editing user calendar
+Route::get('calendar/convention/attendee/{member}/timeslot/{timeslot}', 'Calendar\AttendeeController@viewAttendeeTimeslot');
+Route::post('calendar/convention/attendee/{id}/add/gamesession', 'Calendar\AttendeeController@addAttendGamesession');
+Route::post('calendar/convention/attendee/{id}/remove/gamesession', 'Calendar\AttendeeController@removeAttendeeGamesession');
+
+//users editing own calendar
+Route::get('calendar/convention/attendee/timeslot/{id}', 'Calendar\AttendeeController@attendeeTimeslot');
+Route::post('calendar/convention/attendee/gamesession/{id}', 'Calendar\AttendeeController@attendGamesession');
+Route::post('calendar/convention/attendee/gamesession/{id}/leave', 'Calendar\AttendeeController@leaveGamesession');
+
+/* Convention Games*/
+Route::get('calendar/convention/{convention_id}/attendee/{user_id}/game/new', 'GameController@createAttendeeGame');
+Route::post('calendar/convention/attendee/game/store', 'GameController@storeAttendeeGame');
+
+Route::get('calendar/convention/game/{id}/edit', 'GameController@editAttendeeGame');
+Route::patch('calendar/convention/game/{id}', 'GameController@updateAttendeeGame');
+//get only unscheduled games
+Route::get('calendar/convention/{convention_id}/games/unscheduled', 'GameController@unscheduled');
+
+/* Convention Location */
 Route::get('/calendar/convention/{id}/location' , 'LocationController@show');
+Route::get('/calendar/convention/{id}/location/change' , 'LocationController@change');
 Route::get('/calendar/convention/{id}/location/create' , 'LocationController@create');
-Route::get('/calendar/convention/location/{id}/edit' , 'LocationController@edit');
-Route::post('/calendar/convention/location/{id}' , 'LocationController@store');
+Route::get('/calendar/convention/{id}/location/edit' , 'LocationController@edit');
+Route::post('/calendar/convention/location/' , 'LocationController@store');
+
+Route::post('/calendar/convention/setlocation' , 'LocationController@set');
 Route::delete('/calendar/convention/{id}/location' , 'LocationController@destroy');
 Route::patch('/calendar/convention/{id}/location' , 'LocationController@update');
 
-/* Convention Gamesessions */
+/* Convention Gamesessions 
 Route::get('/calendar/convention/sessions/{id}' , 'Calendar\GameSessionController@userCalendar');
 Route::get('/calendar/convention/session/{id}/edit' , 'Calendar\GameSessionController@setGameSession');
 Route::post('/calendar/convention/session/save' , 'Calendar\GameSessionController@updateUserGameSession');
+*/
 Route::get('/calendar/convention/session/{id}' , 'Calendar\GameSessionController@show');
 
 /* Convention Games */
@@ -108,6 +145,8 @@ Route::get('calendar/convention/game/{id}/schedule', 'Calendar\ConventionControl
 
 Route::get('calendar/convention/{id}/pool', 'Calendar\ConventionController@pool'); // convention games organizer views
 Route::get('calendar/convention/{convention_id}/game/{game_id}', 'Calendar\ConventionController@showGame');
+
+
 /* Convention Submissions */
 //user submissions
 Route::get('/calendar/convention/game/submit' , 'Calendar\ConventionController@submitGame');

@@ -93,14 +93,14 @@
 
                             @foreach($convention->games as $game)
                                 @if($loop->first)
-                                    <div class="card carousel-item active border-0" style="height:180px;">
+                                    <div class="card carousel-item active border-0" style="height:200px;">
                                 @else
-                                    <div class="card carousel-item border-0" style="height:180px;">
+                                    <div class="card carousel-item border-0" style="height:200px;">
                                 @endif
                                         <div class="card-body">
                                             <h5 class="card-title">{{$game->title}}</h5>
                                             <h6 class="card-subtitle mb-2 text-muted">{{$game->tagline}}</h6>
-                                            <p class="card-text">{{ str_limit($game->lead, 80) }}</p>
+                                            <p class="card-text">{{ str_limit($game->lead, 240) }}</p>
                                             <a href="#" class="card-link">More Info</a>
                                         </div>
                                     </div>

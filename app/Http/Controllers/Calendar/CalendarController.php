@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Calendar;
 
 use App\Convention;
+use App\GameSession;
 use App\Timeslot;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Validator;
 use Redirect;
@@ -36,5 +39,6 @@ class CalendarController extends Controller
         }
     }
 
+    
 
 }

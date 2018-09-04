@@ -88,62 +88,98 @@
             </div>
         </div>
         
-        <div class="card mt-3">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-6">
-                        <strong>Games</strong>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>Games</strong>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6 text-right">
+                    <div class="card-body">
+                        
+                        @if($convention->games->count())    
+                            <strong> Total: </strong> <a href="/calendar/convention/{{$convention->id}}/pool">{{$convention->games->count() }} games </a><br>
+                            <strong> Not on Schedule: </strong><a href="/calendar/convention/{{$convention->id}}/games/unscheduled">{{$convention->games()->doesntHave('timeslots')->count()}} games</a>  <br>
+                        @else
+                            no games! <br>
+                        @endif 
+
+                        @if($convention->submissions->count())
+                            <strong> Submissions: </strong><a href="/calendar/convention/submissions/{{$convention->id}}">{{$convention->submissions->count()}} submissions</a><br>
+                        @else
+                            no game submissions! <br>
+                        @endif
+                    
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <strong>Attendees</strong>
+                    </div>
+                    <div class="card-body">
+                        <a href="/calendar/convention/{{$convention->id}}/attendees">{{$convention->attendees->count()}} Attendees</a> <br>
+                        <a href="/calendar/convention/{{$convention->id}}/attendee/new">Add New</a> <br>
+                        <a href="/calendar/convention/{{$convention->id}}/attendee/add">Add from Users</a> <br>
                         
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                
-                @if($convention->games->count())
-                    @php 
-                        $scheduled_count = 0;
-                        foreach($convention->timeslots as $timeslot){
-                            if($timeslot->games->count()) {
-                                $scheduled_count += $timeslot->games->count();
-                            }
-                        } 
-                    @endphp
-
-                    <strong> Pool: </strong> <a href="/calendar/convention/{{$convention->id}}/pool">{{$convention->games->count() }} games </a><br>
-                    <strong> Scheduled: </strong><a href="">{{$scheduled_count}} games scheduled</a>  <br>
-                @else
-                    no games! <br>
-                @endif 
-
-                @if($convention->submissions->count())
-                    <strong> Submissions: </strong><a href="/calendar/convention/submissions/{{$convention->id}}">{{$convention->submissions->count()}} submissions</a><br>
-                @else
-                    no game submissions! <br>
-                @endif
-             
-            </div>
         </div>
-
-        <div class="card mt-3">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-6">
-                        <strong>Location</strong>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>Location</strong>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <a href="/calendar/convention/{{$convention->id}}/location/change" class="btn btn-sm btn-secondary">change</a> 
+                                @if($convention->location !== null)
+                                    <a href="/calendar/convention/{{$convention->id}}/location/edit" class="btn btn-sm btn-secondary">edit</a> 
+                                @endif
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6 text-right">
-                        <a href="/calendar/convention/location/{{$convention->id}}/edit" class="btn btn-sm btn-secondary">edit</a> 
+                    <div class="card-body">
+                        @if($convention->location !== null)
+                        <h5>{{$convention->location->name}}</h5>
+                        <h6 class="text-muted">{{$convention->location->address1}}<br>{{$convention->location->address2}}</h6>
+                        <a href="{{$convention->location->link}}" class="card-link">Google Maps</a>
+                        @endif
+                        
+                    </div>
+                </div>  
+            </div>
+
+            <div class="col-md-6">
+                <div class="card mt-3">
+                    <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <strong>Paypal</strong>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <a href="/calendar/convention/location/{{$convention->id}}/edit" class="btn btn-sm btn-secondary">edit</a> 
+                                </div>
+                            </div>
+                    </div>
+                    <div class="card-body">
+                        
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                <h5>Queen Alexandra Community League</h5>
-                <h6 class="text-muted">10425 University Ave, <br> Edmonton, AB</h6>
-                <a href="https://goo.gl/maps/hDGp7AQkAQF2" class="card-link">Google Maps</a>
-            </div>
-        </div>  
-             
+        </div>
  
                 
                             

@@ -108,10 +108,19 @@ class TimeslotController extends Controller
      */
     public function destroy($id)
     {    
-        $timeslot = Timeslot::find($id);
-        $convention = Convention::find($timeslot->convention_id);
-
         if( Auth::user()->hasRole('organizer') ){
+            $timeslot = Timeslot::find($id);
+            $convention = Convention::find($timeslot->convention_id);
+
+            if($timeslot->games->count()){
+                foreach($timeslot->games as $game){
+                    $gamesession = $timeslot->gamesession($game);
+                    $gamesession->attendees()->detach();
+                }
+                $timeslot->games()->detach();
+            }
+
+
             $timeslot->delete();
             return redirect('/calendar/convention/' . $convention->id . '/timeslots')
             ->with('convention' , $convention)

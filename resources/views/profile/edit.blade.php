@@ -91,12 +91,16 @@
                 </div>
             </div>
 
+            @if(Auth::user()->hasRole('admin'))
             <div class="form-group row" >
                 <label for="radio" class="col-sm-4 col-form-label text-md-right"> Verify Email? </label>
                 <label class="radio-inline mt-2 ml-3"><input type="radio" name="verify" {{ $member->verified ? 'checked'  : ''  }} > Yes</label>
                 <label class="radio-inline mt-2 ml-2"><input type="radio" name="verify" {{ $member->verified ? ''  : 'checked'  }} > No</label>
                 
             </div>
+            @else
+            <input type="hidden" name="verify" value={{ $member->verified ? true  : false  }}>
+            @endif
 
             <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">

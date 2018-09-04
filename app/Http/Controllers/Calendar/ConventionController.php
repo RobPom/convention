@@ -55,16 +55,16 @@ class ConventionController extends Controller
         abort(403, 'No conventions scheduled.'); 
     }
 
-    public function attendees()
+    public function attendees($id)
     {
         if(Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin')){
-            $users = User::all();
-            return view('calendar.conventions.attendees')
-                ->with('convention' , $this->active_convention )
-                ->with('users' , $users );
+            $convention = Convention::find(1);
+            return view('calendar.convention.attendee.index')
+                ->with('convention' , $convention );
         } 
             abort(403, 'Not Authorized.');    
     }
+
 
     public function storeAttendees(Request $request)
     {
@@ -271,6 +271,14 @@ class ConventionController extends Controller
         $timeslot = Timeslot::find($request->timeslot);
         $convention = Convention::find($timeslot->convention_id);
         $game = Game::find($request->game);
+        $member = User::find($game->user->id);
+        
+       if($member->gamesessions->where('timeslot_id' , $timeslot->id)->count()){
+            $slot = $member->gamesessions->where('timeslot_id' , $timeslot->id)->first();
+            $slot->attendees()->detach($member);
+           
+       }
+        
         $timeslot->games()->attach($game);
         return redirect('/calendar/convention/game/' . $game->id . '/schedule')->with('game' , $game)->with('convention' , $convention);
     }
@@ -279,6 +287,8 @@ class ConventionController extends Controller
         $timeslot = Timeslot::find($request->timeslot);
         $convention = Convention::find($timeslot->convention_id);
         $game = Game::find($request->game);
+        $gamesession = $timeslot->gamesession($game);
+        $gamesession->attendees()->detach();
         $timeslot->games()->detach($game);
         return redirect('/calendar/convention/game/' . $game->id . '/schedule')->with('game' , $game)->with('convention' , $convention);
     }
@@ -286,6 +296,13 @@ class ConventionController extends Controller
     public function deleteGame($id){
         $game = Game::find($id);
         $convention = Convention::find($game->event_id);
+        if($game->timeslots->count()){
+            foreach($game->timeslots as $timeslot){
+                $gamesession = $timeslot->gamesession($game);
+                $gamesession->attendees()->detach();
+                $timeslot->games()->detach($game);
+            }
+        }
         $games = Game::where('event_id' , $game->event_id)->get();
         $game->delete();
         return redirect('calendar/convention/' . $convention->id . '/pool')->with('games', $games)->with('convention' , $convention)->with('status', 'game removed');

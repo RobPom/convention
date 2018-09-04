@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Game;
 use App\Submission;
+use App\Convention;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Validator;
@@ -26,9 +28,12 @@ class GameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function unscheduled($id)
     {
-        //
+        $convention = Convention::find($id);
+        $games = $convention->games()->doesntHave('timeslots')->get();
+  
+        return view('calendar.convention.game.unscheduled')->with('convention' , $convention)->with('games' , $games);
     }
 
     /**
@@ -39,6 +44,65 @@ class GameController extends Controller
     public function create()
     {
         return view('games.create');
+    }
+
+    public function createAttendeeGame($convention_id, $user_id)
+    {
+        $convention = Convention::find($convention_id);
+        $member = User::find($user_id);
+        return view('calendar.convention.game.create')
+            ->with('convention' , $convention)
+            ->with('member' , $member);
+    }
+
+    public function storeAttendeeGame(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'title'  => 'required|max:140',
+            'tagline'  => 'required|max:140',
+            'system'  => 'max:140',
+            'advisory'  => 'max:140',
+            'min'=> 'required',
+            'max' => 'required|gte:min|max:12',
+            'lead'  => 'required|max:350',
+            'description'  => 'required|max:2000',
+        ]);
+
+        if($validator->fails()){
+            return back()
+            ->withErrors($validator)
+            ->withInput();
+        } 
+
+        $usergame = new Game();
+        $usergame->title = $request->title;
+        $usergame->tagline = $request->tagline;
+        $usergame->system = $request->system;
+        $usergame->advisory = $request->advisory;
+        $usergame->min = $request->min;
+        $usergame->max = $request->max;
+        $usergame->lead = $request->lead;
+        $usergame->description = $request->description;
+        $usergame->active  = true ;
+        $usergame->user_id = $request->user;
+        $usergame->save();
+
+        $conventiongame = new Game();
+        $conventiongame->title = $request->title;
+        $conventiongame->tagline = $request->tagline;
+        $conventiongame->system = $request->system;
+        $conventiongame->advisory = $request->advisory;
+        $conventiongame->min = $request->min;
+        $conventiongame->max = $request->max;
+        $conventiongame->lead = $request->lead;
+        $conventiongame->description = $request->description;
+        $conventiongame->active  = true ;
+        $conventiongame->user_id = $request->user;
+        $conventiongame->event_id = $request->convention;
+        $conventiongame->parent_id = $usergame->id;
+        $conventiongame->save();
+
+        return redirect('/calendar/convention/' . $request->convention. '/attendee/' . $request->user)->with('status', 'Game Created');
     }
 
     /**
@@ -83,7 +147,7 @@ class GameController extends Controller
 
     }
 
-    public function copy($id){
+   /*  public function copy($id){
         $oldGame = Game::find($id);
         $game = new Game();
         $game->title = "Copy of " .  $oldGame->title ;
@@ -100,7 +164,7 @@ class GameController extends Controller
 
         return redirect('/profile?tab=games')->with('status', 'A Copy of the game has been saved');
     }
-
+ */
     /**
      * Display the specified resource.
      *
@@ -123,6 +187,12 @@ class GameController extends Controller
     {
         $game = Game::find($id);
         return view('games.edit')->with('game' , $game);
+    }
+
+    public function editAttendeeGame($id)
+    {
+        $game = Game::find($id);
+        return view('calendar.convention.games.edit')->with('game' , $game);
     }
 
     /**

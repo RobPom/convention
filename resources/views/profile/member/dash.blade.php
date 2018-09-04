@@ -244,7 +244,7 @@
                             @endauth 
                         @endif
                             
-                        @if(null !== $convention)
+                        @if(null !== $convention && $convention->attendees->where('id' , $member->id)->count() && $member->games->count())
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">

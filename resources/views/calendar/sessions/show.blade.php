@@ -34,7 +34,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-white">
                 <li class="breadcrumb-item">
-                    <a href="/calendar/convention/{{$convention->id}}">Overview</a>
+                    <a href="/calendar/convention/{{$convention->id}}">Convention</a>
                 </li>
                 <li class="breadcrumb-item"><a href="/calendar/convention/{{$convention->id}}/schedule">Schedule</a></li>
                 <li class="breadcrumb-item"><a href="/calendar/convention/timeslot/{{$gamesession->timeslot->id}}">Timeslot</a></li>

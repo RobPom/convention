@@ -21,6 +21,7 @@ class CreateConventionsTable extends Migration
             $table->mediumText('description');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
+            $table->integer('location_id')->nullable();
             $table->string('status');
             $table->timestamps();
         });

@@ -33,45 +33,59 @@
 
 </head>
 <body>
-    <div id="app" style="min-height:100%;
-    position:relative;">
+    <header>
+            @include('layouts.include.nav')
 
-        @include('layouts.include.nav')
+    </header>
 
-        <main role='main' class="py-2" style="min-height:100%;">
-            <div class="container">
+        
+    <main role='main' class="container mt-3">
+        <div class="container">
 
-                @if (session('status'))
+            @if (session('status'))
 
-                <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                    <strong>Info</strong><br> {{ session('status') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <strong>Info</strong><br> {{ session('status') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-                @endif
-                @if (session('warning'))
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Warning</strong><br> {{ session('warning') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                @endif
+            @endif
+            @if (session('warning'))
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Warning</strong><br> {{ session('warning') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @endif
 
-            
-
-
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        @yield('content')
-                    </div>
+        
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    @yield('content')
                 </div>
             </div>
-        </main> 
+        </div>
+    </main> 
         
-    </div>
+    <footer class="footer font-small text-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="text-muted"></span>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <a href="" class="text-secondary">Our Twitter</a> <br>
+                        <a href="" class="text-secondary">Our Facebook Page</a> <br>
+                        <a href="" class="text-secondary">About Us</a> <br>
+                        <a href="" class="text-secondary">Code of Conduct</a>
+                    </div>
+                </div>
+              
+            </div>
+        </footer>
    {{-- @include('layouts.include.footer') --}}
 </body>
 </html>

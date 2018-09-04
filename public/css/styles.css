@@ -108,3 +108,31 @@ p.authorLead {
      display: inline;
      vertical-align: middle;
  }
+
+ .navbar-brand {
+    font-size: 1.4rem !important;
+    padding-bottom: .4rem !important;
+ }
+
+ /* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+  }
+  body {
+    /* Margin bottom by footer height */
+    margin-bottom: 160px !important;
+    background-color: white !important;
+  }
+  .footer {
+    position: absolute;
+    padding: 10px;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 152px;
+    line-height: 2em; 
+    background-color: #212529;
+  }
+  
