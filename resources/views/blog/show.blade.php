@@ -11,26 +11,28 @@
                 <h3>{{$post->title}}</h3>
                 
                 @if(  !$post->published())
-                    @if(Auth::user()->id == $post->user->id)
-                    <div class="alert alert-warning" role="alert">
-                        <h4 class="alert-heading">Unpublished. </h4>
-                        <p>This post is unpublished. Once it is published you will still be able to edit, but not delete the post.</p>
-                        <form 
-                            onsubmit="return confirm('Publish Post?');"
-                            action="{{action('BlogPostController@publish', $post->id)}}" 
-                            method="post">
-                            @csrf
-                            @method('PATCH')
-                            <button class="btn btn-outline-success" type="submit">Publish</button>
-                        </form>
-                    </div>
-                    @else
-                    <div class="alert alert-warning" role="alert">
-                        <h4 class="alert-heading">Unpublished. </h4>
-                        <p>This post is unpublished. </p>
-                    </div>
-                    
-                    @endif
+                    @auth
+                        @if(Auth::user()->id == $post->user->id)
+                        <div class="alert alert-warning" role="alert">
+                            <h4 class="alert-heading">Unpublished. </h4>
+                            <p>This post is unpublished. Once it is published you will still be able to edit, but not delete the post.</p>
+                            <form 
+                                onsubmit="return confirm('Publish Post?');"
+                                action="{{action('BlogPostController@publish', $post->id)}}" 
+                                method="post">
+                                @csrf
+                                @method('PATCH')
+                                <button class="btn btn-outline-success" type="submit">Publish</button>
+                            </form>
+                        </div>
+                        @else
+                        <div class="alert alert-warning" role="alert">
+                            <h4 class="alert-heading">Unpublished. </h4>
+                            <p>This post is unpublished. </p>
+                        </div>
+                        
+                        @endif
+                    @endauth
                 @endif
 
                 @auth

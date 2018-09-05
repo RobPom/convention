@@ -90,7 +90,7 @@ p.authorLead {
     .navbar-brand {
         position: absolute;
         display: block;
-        left: calc(50% - 40px);
+        left: calc(50% - 63px);
         top: .32rem;
         text-align: center;
         font-size: 36px;
@@ -112,6 +112,10 @@ p.authorLead {
  .navbar-brand {
     font-size: 1.4rem !important;
     padding-bottom: .4rem !important;
+    text-shadow: black 0.1em 0.1em 0.25em;
+ }
+ nav {
+    box-shadow: inset 0px 0px 80px rgba(0, 0, 0, 0.50);
  }
 
  /* Sticky footer styles
@@ -135,4 +139,4 @@ html {
     line-height: 2em; 
     background-color: #212529;
   }
-  
+

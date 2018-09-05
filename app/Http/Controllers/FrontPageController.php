@@ -36,10 +36,12 @@ class FrontPageController extends Controller
     public function checkCookie()
     {
         if (Cookie::get('visited') !== null){
-
-            $frontpage = Page::where('title' , 'Front Page')->first();
-            $lead = BlogPost::find($frontpage->lead_article);
-            $featured = BlogPost::find($frontpage->featured_article);
+            $frontpage = ''; $lead = null ; $featured = null;
+            if($frontpage = Page::where('title' , 'Front Page')->first()) {
+                $lead = BlogPost::find($frontpage->lead_article);
+                $featured = BlogPost::find($frontpage->featured_article);
+            }
+            
            
             $posts = BlogPost::orderByDesc('posted_on')->get();
            
