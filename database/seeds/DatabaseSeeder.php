@@ -31,6 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GameTableSeeder::class);
 
          //seed timeslots with session 1 to 5
-         $this->call(TimeslotTableSeeder::class);
+         //$this->call(TimeslotTableSeeder::class);
     }
 }

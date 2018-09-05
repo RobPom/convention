@@ -143,25 +143,42 @@
 
             @endif
 
+            
+        @isset($convention->location)
+        <div class="col-md-6">
+                <hr class="my-3">
+            <div class="m-2 p-1 text-center">
+                    <strong>Location</strong>
+                <div class="card mt-3 border-0">    
+                    <div class="card-body">
+                        <h5 class="card-title">{{$convention->location->name}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{$convention->location->address1}} <br> {{$convention->location->address2}}</h6>
+        
+                        <a href="{{$convention->location->link}}" class=" m-2 card-link btn btn-sm btn-primary">Google Maps</a>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        @else
             <div class="col-md-6">
-                    <hr class="my-3">
+                <hr class="my-3">
                 <div class="m-2 p-1 text-center">
-                        <strong>Location</strong>
-                    <div class="card mt-3 border-0">    
+                    <div class="card mt-3 border-0" style="height:100px;">
                         <div class="card-body">
-                            <h5 class="card-title">Queen Alexandra Community League</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">10425 University Ave, <br> Edmonton, AB</h6>
-                            
-                            <a href="https://goo.gl/maps/hDGp7AQkAQF2" class="card-link">Google Maps</a>
+                            <h5 class="card-title">No Location</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">(yet)</h6>
                         </div>
                     </div>
                 </div>
-            </div>  
+                
+            </div>
+        @endisset
+                        
         </div> 
     </div>
     <div class="card-footer bg-white">
         <div class="row">
-            <div class="col text-center"> <small><a href="/calendar/conventions">Index</a></small></div>
+            <div class="col text-center"></div>
             <div class="col text-center"></div>
             <div class="col text-center">
                 @auth

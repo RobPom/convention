@@ -1,5 +1,5 @@
 
-<a href='/profile/show/{{$post->user->id}}' class='card-link'>
+<a href='/profile/{{$post->user->id}}/posts' class='card-link'>
 <div class="card flex-row flex-wrap">
     <div class="card-header d-none d-sm-block horizontal-header">
         <img src="//placehold.it/60" alt="">

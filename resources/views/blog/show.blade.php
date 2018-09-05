@@ -92,7 +92,9 @@
 </div>
 @auth
     @if(Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin'))
-        <div class="card my-3">
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3">
+           <div class="card my-3">
             <div class="card-header text-white bg-success ">
                 Organizer Tools
             </div>
@@ -139,7 +141,10 @@
                 <div class="col-lg"></div>
             </div>
             </div>
+        </div> 
         </div>
+    </div>
+        
     @endif
 @endauth
 

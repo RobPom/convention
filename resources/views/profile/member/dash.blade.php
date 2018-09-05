@@ -22,21 +22,16 @@
             </nav>
         <div class="card">
             <div class="card-header">
-                <div class="row">
-                    <div class="col"><strong>Profile </strong></div>
-                    <div class="col text-right"> 
-                        @auth
-                            @if( $user->id == $member->id )
-                                <a href="/profile/{{$user->id}}/edit" class="mt-2 btn btn-sm btn-secondary ">Edit</a>
-                            @endif
-                        @endauth
-                    </div>
-                </div>
-                
+                <strong>Profile </strong>
             </div>
             <div class="card-body">
                 <div class="card-title">
-                    <strong>Member Info</strong>
+                    <strong class='d-block' >Member Info</strong>  
+                    @auth
+                        @if( $user->id == $member->id )
+                            <a href="/profile/{{$user->id}}/edit" class="mt-2 btn btn-sm btn-primary ">Edit</a>
+                        @endif
+                    @endauth
                 </div>
                 <p>
                     <strong>About: </strong>{{$member->profile->description}} <br>
