@@ -32,11 +32,11 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="start_time">Start Time</label>
-                        <input type="time" class="form-control" id="start_time" name="start_time" value="{{Carbon::now()->format('H:00')}}" required>
+                        <input type="time" class="form-control" id="start_time" name="start_time" value="12:00")}}" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="end_time">End Time</label>
-                        <input type="time" class="form-control" id="end_time" name="end_time"  value="{{Carbon::now()->addHour()->format('H:00')}}" required>
+                        <input type="time" class="form-control" id="end_time" name="end_time"  value="16:00" required>
                     </div>
                 </div>
                 <input type="hidden" name="convention" value="{{$convention->id}}">
