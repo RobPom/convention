@@ -1,20 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card">
-    <div class="card-body">
-        <h3>{{$game->user->username}}</h3>
-        <small>{{$game->user->profile->description}}</small>
-        <hr>
+<div class="card p-2">
+
+        <div class="card-header bg-white">
+            <h5>@if($member->hasRole('organizer') || $member->hasRole('admin'))
+                    {{$member->firstname}} {{$member->lastname}}
+                @else
+                    {{$member->username}}
+                @endif</h5>
+            <h5><small>{{$member->profile->description}}</small></h5>
+        </div>
+        
     
-    <ul class="nav nav-tabs" id="dashboard-tab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="games-tab" href="/profile/show/{{$game->user->id}}?tab=games">Games</a>
-        </li>
-    </ul>
-    <div class="tab-content" id="dashboardTabContent">
-        <div class="tab-pane fade {{ ! count($_GET) ? 'active show' : '' }}" id="games" role="tabpanel" aria-labelledby="games-tab">
-            <div class="card">
+        <div class="card-body">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-white">
+                    <li class="breadcrumb-item">
+                        <a href="/profile/show/{{$member->id}}">Profile</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                            <a href="/profile/{{$member->id}}/games">Games</a>
+                        </li>
+                    <li class="breadcrumb-item active" aria-current="page">{{$game->title}}</li>
+                </ol>
+            </nav>
+            <div class="card ">
                 <div class="card-header">
                     <strong>{{$game->title}}</strong> <br>
                     <small>{{$game->tagline}}</small>
@@ -33,9 +44,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+      
     </div>
 </div>
-</div>
+
 
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Profile;
 use App\Convention;
+use App\Role;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,7 @@ class ProfileController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('show');
+        $this->middleware('auth')->except('show', 'posts', 'games');
     }
 
     /**
@@ -37,6 +38,28 @@ class ProfileController extends Controller
             ->with('user', $user)
             ->with('member', $member);
     }
+    public function posts($id)
+    {   
+        $convention = Convention::where('status' , 'active')->first();
+        $member = User::find($id);
+        $user = Auth::user();
+        return view('profile.member.posts')
+        ->with('convention' , $convention)
+            ->with('user', $user)
+            ->with('member', $member);
+    }
+
+    public function games($id)
+    {   
+        $convention = Convention::where('status' , 'active')->first();
+        $member = User::find($id);
+        $user = Auth::user();
+        return view('profile.member.games')
+        ->with('convention' , $convention)
+            ->with('user', $user)
+            ->with('member', $member);
+    }
+
 
     public function user()
     {
@@ -87,6 +110,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $users = User::all();
+    
         $conventions = Convention::all();
         $convention = Convention::where('status', 'active')->first();
 
@@ -113,7 +137,7 @@ class ProfileController extends Controller
 
 
         if(  $user->hasRole('admin') || $user->hasRole('organizer') ){
-            return view('profile.index')
+            return view('profile.admin.users')
             ->with('user', $user)
             ->with('members', $members);
             
@@ -169,6 +193,12 @@ class ProfileController extends Controller
             $member->verified = false;
         }
         
+        if($request->input('organizer')){
+            $member->roles()->attach(Role::where('name', 'organizer')->first());
+        } else {
+            $member->roles()->detach(Role::where('name', 'organizer')->first());
+        }
+        
         $member->save();
 
         // if a profile is attached, delete it then save.
@@ -190,19 +220,12 @@ class ProfileController extends Controller
             ->with('status', 'Profile Updated');
         }
         
-        if ($user->hasRole('organizer')) {
-            return redirect('profiles/all')
+        if (Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin') ) {
+            return redirect('profile/show/' . $member->id)
             ->with('status', 'member profile updated');
         }
         
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     
-
 }

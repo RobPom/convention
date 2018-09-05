@@ -174,7 +174,8 @@ class GameController extends Controller
     public function show($id)
     {
         $game = Game::find($id);
-        return view('profile.member.game')->with('game' , $game);
+        $member = $game->user;
+        return view('profile.member.game')->with('game' , $game)->with('member' , $member);
     }
 
     /**

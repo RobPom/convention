@@ -1,4 +1,4 @@
-<div class='footer archive'>
+<div class='archive'>
     <div class="container">
         <span class="text-muted">
 

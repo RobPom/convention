@@ -11,11 +11,19 @@
 Auth::routes();
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 Route::get('/profile/', 'ProfileController@dashboard');
+
 Route::get('/admin/', 'ProfileController@admin');
+Route::get('/admin/users', 'ProfileController@adminUsers');
+Route::get('/admin/organizers', 'ProfileController@adminOrganizers');
+
 Route::get('/organizer/', 'ProfileController@organizer');
 Route::get('/profile/show/{id}', 'ProfileController@show');
 Route::get('/profile/{id}/edit', 'ProfileController@edit');
 Route::put('/profile/{id}', 'ProfileController@update');
+
+Route::get('/profile/{id}/games', 'ProfileController@games');
+Route::get('/profile/{id}/posts', 'ProfileController@posts');
+
 Route::get('/profiles/all', 'ProfileController@index');
 Route::get('/users/add', 'ContactController@add');
 Route::post('/users/add', 'ContactController@store');

@@ -2,10 +2,30 @@
 
 @section('content')
 
-<div class="card">
-    <div class="card-header"><h5>Edit Profile</h5></div>
-
+<div class="card p-2">
+    <div class="card-header bg-white">
+        <h5>@if($member->hasRole('organizer') || $member->hasRole('admin'))
+                {{$member->firstname}} {{$member->lastname}}
+            @else
+                {{$member->username}}
+            @endif</h5>
+        <h5><small>{{$member->profile->description}}</small></h5>
+    </div>
     <div class="card-body">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-white">
+                    <li class="breadcrumb-item">
+                        <a href="/profile/show/{{$member->id}}">Profile</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                </ol>
+            </nav>
+        <div class="card">
+            <div class="card-header">
+                <strong>{{$member->username}}'s Games </strong>
+            </div>
+            <div class="card-body">
+
 
         
         @if (session('status'))
@@ -94,8 +114,14 @@
             @if(Auth::user()->hasRole('admin'))
             <div class="form-group row" >
                 <label for="radio" class="col-sm-4 col-form-label text-md-right"> Verify Email? </label>
-                <label class="radio-inline mt-2 ml-3"><input type="radio" name="verify" {{ $member->verified ? 'checked'  : ''  }} > Yes</label>
-                <label class="radio-inline mt-2 ml-2"><input type="radio" name="verify" {{ $member->verified ? ''  : 'checked'  }} > No</label>
+                <label class="radio-inline mt-2 ml-3"><input type="radio" name="verify" value="1" {{ $member->verified ? 'checked'  : ''  }} > Yes</label>
+                <label class="radio-inline mt-2 ml-2"><input type="radio" name="verify" value="0" {{ $member->verified ? ''  : 'checked'  }} > No</label>
+                
+            </div>
+            <div class="form-group row" >
+                <label for="radio" class="col-sm-4 col-form-label text-md-right"> Set as Organizer? </label>
+                <label class="radio-inline mt-2 ml-3"><input type="radio" name="organizer" value="1" {{ $member->hasRole('organizer') ? 'checked'  : ''  }} > Yes</label>
+                <label class="radio-inline mt-2 ml-2"><input type="radio" name="organizer" value="0" {{ $member->hasRole('organizer') ? ''  : 'checked'  }} > No</label>
                 
             </div>
             @else

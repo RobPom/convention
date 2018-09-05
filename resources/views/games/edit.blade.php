@@ -29,26 +29,32 @@
 @endsection
 
 @section('content')
+<div class="card p-2">
 
-<div class="card">
-
-
-    
-
-    <div class="card-body">
-        <div class="mb-4">
-            <h3>
-                @if(Auth::user()->hasRole('organizer'))
-                    {{ Auth::user()->firstname}} {{ Auth::user()->lastname}}
+        <div class="card-header bg-white">
+            <h5>@if(Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin'))
+                    {{Auth::user()->firstname}} {{Auth::user()->lastname}}
                 @else
-                    {{ Auth::user()->username}}
-                @endif
-            </h3>
-            <small>{{ Auth::user()->profile->description }} </small>
-        </div> 
-        <hr>
-        <div class="card ">
-            <div class="card-header">Edit Game</div>
+                    {{Auth::user()->username}}
+                @endif</h5>
+            <h5><small>{{Auth::user()->profile->description}}</small></h5>
+        </div>
+        
+    
+        <div class="card-body">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-white">
+                    <li class="breadcrumb-item">
+                        <a href="/profile/show/{{Auth::user()->id}}">Profile</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                            <a href="/profile/{{Auth::user()->id}}/games">Games</a>
+                        </li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit Game</li>
+                </ol>
+            </nav>
+            <div class="card ">
+                <div class="card-header">Edit {{$game->title}}</div>
             <div class="card-body">
                 <form method="POST" action="{{ action('GameController@update' , $game->id) }}">
                             @method('PATCH')
