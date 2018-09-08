@@ -80,8 +80,8 @@ class FrontPageController extends Controller
         abort(403, 'This action is unauthorized.');
     }
 
-    public function welcome(){
-        return view('welcome');
+    public function landing(){
+        return view('landing');
     }
 
     public function home(){

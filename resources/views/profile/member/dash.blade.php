@@ -48,19 +48,29 @@
                 
 
             @if($member->hasRole('organizer'))
+
+                @php
+                    $unpublished = DB::table('blog_posts')->where('user_id' , $member->id)->whereNull('posted_on')->get();
+                @endphp
             
+               
+
                 <hr>
                 <div class="card-title">
                     <strong>Posts</strong>
                 </div>
                 @if($member->blogPosts()->whereNotNull('posted_on')->count())
-                <a href="/profile/{{$member->id}}/posts">
-                    {{$member->blogPosts()->whereNotNull('posted_on')->count()}} Posts </a><br>
+                    <a href="/profile/{{$member->id}}/posts">
+                    {{$member->blogPosts()->whereNotNull('posted_on')->count()}} Published Posts </a><br>
                 @endif
 
                 @auth
                     @if(Auth::user()->hasRole('organizer') && Auth::user()->id == $member->id)
-                        <a href="">Create a new post</a> <br>
+                        @if($unpublished->count())    
+                        <a href="/profile/{{$member->id}}/posts">
+                            {{$unpublished->count()}} Unpublished Posts </a><br>
+                        @endif
+                        <a href="/posts/new">Create a new post</a> <br>
                     @endif
                 @endauth
                 

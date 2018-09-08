@@ -17,12 +17,12 @@
                     <li class="breadcrumb-item">
                         <a href="/profile/show/{{$member->id}}">Profile</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Games</li>
+                    <li class="breadcrumb-item active" aria-current="page">Posts</li>
                 </ol>
             </nav>
         <div class="card">
             <div class="card-header">
-                <strong>{{$member->username}}'s Games </strong>
+                <strong>{{$member->username}}'s Posts </strong>
             </div>
             <div class="card-body">
 
@@ -36,12 +36,12 @@
                 @include('layouts.include.post-list', array('showUnpublished' => false, 'edit' => false,'posts' => $member->blogPosts, 'archive' => true))
             @endauth
             @auth
-            @if($member->hasAnyRole(['organizer' , 'admin']))
-            <div class="text-right">
-                <a href="/posts/new" class="mt-2 btn btn-sm btn-secondary">New</a>
-            </div>
-            @endif
-        @endauth
+                @if($member->hasAnyRole(['organizer' , 'admin']))
+                <div class="text-right">
+                    <a href="/posts/new" class="mt-2 btn btn-sm btn-secondary">New</a>
+                </div>
+                @endif
+            @endauth
 
         </div>
     </div>

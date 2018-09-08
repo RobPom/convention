@@ -40,48 +40,66 @@
 </div>
 @endif
 
-
-<div class='card'>
-    <div class='card-body'>
-            
-        <h3>Create a Post</h3>
-
-        <form method="POST" action="{{ action('BlogPostController@store') }}">
-                @csrf
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" name='title' class="form-control" required
-                oninvalid="this.setCustomValidity('This post needs a name!')"
-                oninput="setCustomValidity('')">
+<div class="card p-2">
+    <div class="card-header bg-white">
+        <h5>{{Auth::user()->firstname}} {{Auth::user()->lastname}}</h5>
+        <h5><small>{{Auth::user()->profile->description}}</small></h5>
+    </div>
+    <div class="card-body">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-white">
+                <li class="breadcrumb-item">
+                    <a href="/profile/show/{{Auth::user()->id}}">Profile</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="/profile/{{Auth::user()->id}}/posts">Posts</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">New</li>
+            </ol>
+        </nav>
+        <div class="card">
+            <div class="card-header">
+                <strong> Create a New Post </strong>
             </div>
-            <div class="form-group">
-                <label for="category">Select a Category</label>
-                <select name="category" id="category" class="form-control form-control-sm">
-                    @foreach( $categories as $category)
-                        @if($category->title == 'Uncategorized')
-                        <option value="{{$category->id}}" selected>{{$category->title}}</option>
-                        @else
-                            <option value="{{$category->id}}">{{$category->title}}</option>
-                        @endif         
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="lead">Lead Text</label>
-                <textarea class="form-control" name="lead" id="lead" cols="30" rows="2"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="body">Post</label>
+            <div class="card-body">
+                <form method="POST" action="{{ action('BlogPostController@store') }}">
+                        @csrf
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" name='title' class="form-control" required
+                        oninvalid="this.setCustomValidity('This post needs a name!')"
+                        oninput="setCustomValidity('')">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Select a Category</label>
+                        <select name="category" id="category" class="form-control form-control-sm">
+                            @foreach( $categories as $category)
+                                @if($category->title == 'Uncategorized')
+                                <option value="{{$category->id}}" selected>{{$category->title}}</option>
+                                @else
+                                    <option value="{{$category->id}}">{{$category->title}}</option>
+                                @endif         
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="lead">Lead Text</label>
+                        <textarea class="form-control" name="lead" id="lead" cols="30" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="body">Post</label>
 
-                <textarea id="post-body" name='body'></textarea>
-                
-            </div>
+                        <textarea id="post-body" name='body'></textarea>
+                        
+                    </div>
 
-            <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
 
-        </form>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 

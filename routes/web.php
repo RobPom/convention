@@ -32,7 +32,7 @@ Route::delete('/users/{id}', 'ContactController@destroy');
 /* Landing, home */
 Route::get('/', 'FrontPageController@checkCookie');
 Route::get('/home', 'FrontPageController@checkCookie');
-Route::get('/welcome', 'FrontPageController@welcome');
+Route::get('/welcome', 'FrontPageController@landing');
 Route::patch('/frontpage/{id}' , 'FrontPageController@update');
 
 /* Blog */
