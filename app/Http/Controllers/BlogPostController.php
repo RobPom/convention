@@ -22,7 +22,7 @@ class BlogPostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['index','show', 'latest', 'categoryIndex']);
+        $this->middleware('auth')->except(['index','show', 'latest', 'categoryIndex',  'userPosts']);
     }
 
     /**
@@ -32,30 +32,36 @@ class BlogPostController extends Controller
      */
     public function index()
     {
-        $posts = BlogPost::orderByDesc('posted_on')->get();
+        $posts = BlogPost::orderByDesc('posted_on')->whereNotNull('posted_on')->paginate(6);
         $categories = BlogCategory::orderBy('title')->get();
-        return view ('blog.index')->with('posts' , $posts)->with('categories' , $categories);
+        return view ('blog.index')
+            ->with('posts' , $posts)
+            ->with('categories' , $categories)
+            ->with('pagetitle' , 'Latest Posts');
     }
 
     public function categoryIndex( $id )
     {
-        $user = Auth::user();
-        if($id == 0) {
-            $category = new BlogCategory();
-            $category->title = 'unpublished';
-            $posts = BlogPost::whereNull('posted_on')->get();
-        } else {
-            $category = BlogCategory::find($id); 
-            $posts = BlogPost::where('category' , $category->id)->whereNotNull('posted_on')->orderBy('posted_on', 'DESC')->get();   
-        }
-        
+     
+        $category = BlogCategory::find($id); 
+        $posts = BlogPost::where('category' , $category->id)->whereNotNull('posted_on')->orderBy('posted_on', 'DESC')->paginate(6);   
         $categories = BlogCategory::orderBy('title')->get();
        
-        return view ('blog.categories.index')
+        return view ('blog.index')
             ->with('category' , $category)
             ->with('categories' , $categories)
             ->with('posts' , $posts )
-            ->with('user' , $user);
+            ->with('pagetitle' , $category->title);
+    }
+
+    public function userPosts($id){
+        $member = User::find($id);
+        $posts = BlogPost::orderByDesc('posted_on')->where('user_id' , $id)->whereNotNull('posted_on')->paginate(6);
+        $categories = BlogCategory::orderBy('title')->get();
+        return view('blog.index')
+            ->with('posts' , $posts)
+            ->with('categories' , $categories)
+            ->with('pagetitle' , 'Posts by '. $member->firstname. ' '. $member->lastname);
     }
 
     /**
@@ -114,16 +120,17 @@ class BlogPostController extends Controller
     {
         $post = BlogPost::find($post_id);
         $category = BlogCategory::find($post->category);
-        $categoryPosts = BlogPost::where('category' , $category->id)->whereNotNull('posted_on')->orderBy('posted_on', 'DESC')->get();
+        $categories = BlogCategory::orderBy('title')->get();
         $frontpage = Page::where('title' , 'Front Page')->first();
 
         //dd($category);
         return view('blog.show')
             ->with('post' , $post)
             ->with('category' , $category)
-            ->with('categoryPosts' , $categoryPosts)
+            ->with('categories' , $categories)
             ->with('frontpage' , $frontpage);
     }
+
 
     public function latest()
     {
@@ -203,7 +210,7 @@ class BlogPostController extends Controller
 
         if( Auth::user()->id == $blogPost->user->id ||  Auth::user()->hasRole('admin') ){
             $blogPost->delete();
-            return redirect('profile/dashboard')->with('status', 'Post Deleted');
+            return redirect('/profile/'. $blogPost->user->id. '/posts')->with('status', 'Post Deleted');
         }
         
             abort(403, 'This action is unauthorized.');

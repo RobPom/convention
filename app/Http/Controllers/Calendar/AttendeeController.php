@@ -148,8 +148,14 @@ class AttendeeController extends Controller
 
     public function leaveGamesession($id){
         $gamesession = GameSession::find($id);
+        $user = Auth::user();
+        $timeslot = Timeslot::find($gamesession->timeslot->id);  
+        $convention = Convention::find($timeslot->convention_id);
         $gamesession->attendees()->detach(Auth::user());
-        return redirect('/calendar/convention/attendee/timeslot/' . $gamesession->timeslot->id);
+
+        return view('calendar.convention.attendee.timeslot')
+        ->with('user', $user)->with('convention', $convention)->with('timeslot', $timeslot);
+
     }
 
     /*

@@ -143,6 +143,7 @@
                             @endforeach
                             <div class="mt-2 text-center">
                                 <a href="/calendar/convention/submissions/{{$convention->id}}" class="btn btn-sm btn-primary">submissions</a>
+                                <a href="/calendar/convention/{{$convention->id}}/games/unscheduled" class="btn btn-sm btn-primary">unscheduled games</a>
                             </div>
                         </div>
                     </div>

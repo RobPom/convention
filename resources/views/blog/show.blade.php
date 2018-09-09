@@ -2,150 +2,188 @@
 
 @section('content')
 
-<div class="card">          
-    <div class="card-body">
-        <div class='row'>
-            <div class="col-lg-9">
-                <h6><small><a href='/posts/category/{{$category->id}}'>{{$category->title}} </a>
-                     {{$post->published() ?  ' - ' . $post->datePosted() : ''}}</small></h6>
-                <h3>{{$post->title}}</h3>
-                
-                @if(  !$post->published())
-                    @auth
-                        @if(Auth::user()->id == $post->user->id)
-                        <div class="alert alert-warning" role="alert">
-                            <h4 class="alert-heading">Unpublished. </h4>
-                            <p>This post is unpublished. Once it is published you will still be able to edit, but not delete the post.</p>
-                            <form 
-                                onsubmit="return confirm('Publish Post?');"
-                                action="{{action('BlogPostController@publish', $post->id)}}" 
-                                method="post">
-                                @csrf
-                                @method('PATCH')
-                                <button class="btn btn-outline-success" type="submit">Publish</button>
-                            </form>
-                        </div>
-                        @else
-                        <div class="alert alert-warning" role="alert">
-                            <h4 class="alert-heading">Unpublished. </h4>
-                            <p>This post is unpublished. </p>
-                        </div>
-                        
-                        @endif
-                    @endauth
-                @endif
+<div class='card border-0'>
+    <div class='card-body'>
+        <h3>{{$post->title}}</h3>
+        <hr class="my-4">
+        <div class="row">
+            <div class="col-md-8">        
+              
+                <span class="small text-muted">
+                    {{$post->datePosted()}}
+                </span>
 
-                @auth
-                    @if(Auth::user()->id == $post->user->id)
-                        <a href="/post/{{$post->id}}/edit" class="btn btn-sm btn-primary">edit</a>
-                        @if(! $post->published())
-                        <form 
-                            onsubmit="return confirm('You cannot undo this. Are you sure you want to delete this post?');"
-                            action="{{action('BlogPostController@destroy', $post->id)}}" 
-                            method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-danger" type="submit">Delete</button>
-                        </form>
-                        @endif
+                <h5> {{$post->title}} </h5>
+                
+                <h5 class="small mt-2">
+                    @if(Request::segment(2) != 'user')
+                        <span class="mr-4">
+                            <strong>Author: </strong>
+                            <a href="/posts/user/{{$post->user->id}}" >
+                                {{$post->user->firstname}} {{$post->user->lastname}}
+                            </a>
+                        </span>
                     @endif
-                @endauth
-                <hr>
-                <p class="lead">{{$post->lead}}</p>
-                <p>{!! $post->body !!}</p>
-                
-                <br>
-                <hr>
 
-                @include('layouts.include.memberblock')
+                    @if(Request::segment(2) != 'category') 
+                        <strong>Category: </strong>
+                        <a href="/posts/category/{{$post->category}}">
+                            {{$categories->find($post->category)->title}}
+                        </a>
+                    @endif
 
-                <hr class="d-lg-none">
-            </div>
-            <br>
-            <div class="col">
-                <div class="row">
-                    <div class="card border-0">
-                        <div class="card-body">
-                            <h5>Latest {{$category->title}}</h5>
-                            <br>
-                            @if($categoryPosts->count() > 1)
-                                
-                                <ul class='archiveList'>
-                                    @foreach($categoryPosts as $categoryPost)
-                                        @if($categoryPost->id !== $post->id)
-                                            <li> {{$categoryPost->shortDate()}} - <a href='/post/{{$categoryPost->id}}'>{{$categoryPost->title}}</a></li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-
-                            @else
-                                <p>No other {{$category->title}} in archives.</p>
-                            @endif
                     
-                            <a href="/posts" class="float-right">Archives</a>
+                </h5>
+
+                <p class='my-4 lead'>{{$post->lead}}</p>
+
+                <p>{!!$post->body!!}</p>
+
+                
+                <div class="card border-0">
+                    
+                    <div class="card-body text-center">
+                        <div class="btn-group" role="group" aria-label="Edit Buttons">
+                            @if(!$post->published())
+                                @auth
+                                    @if(Auth::user()->id == $post->user->id)
+                                    <form 
+                                        onsubmit="return confirm('Publish Post? (You will only be able to edit, not delete a post once it\'s published)');"
+                                        action="{{action('BlogPostController@publish', $post->id)}}" 
+                                        method="post">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button class="btn btn-sm btn-success mx-1" type="submit">Publish</button>
+                                    </form>
+                                    @else
+                                    
+                                        <strong>Not Published</strong>
+                                        
+                                    @endif
+                                    
+                                @endauth
+                            @endif
+
+                            @auth
+                                @if(Auth::user()->id == $post->user->id)
+                                    <a href="/post/{{$post->id}}/edit" class="btn btn-sm btn-primary mb-1 d-inline-block">edit</a>
+                                    @if(! $post->published())
+                                    <form 
+                                        onsubmit="return confirm('You cannot undo this. Are you sure you want to delete this post?');"
+                                        action="{{action('BlogPostController@destroy', $post->id)}}" 
+                                        method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm btn-danger mx-1 " type="submit">Delete</button>
+                                    </form>
+                                    @endif
+                                @endif
+                            @endauth
                         </div>
                     </div>
-                </div>    
+                </div>
+                
+                
+                    
+            </div>
+            <div class="col-md-4">
+
+                <div class="card">
+                    <div class="card-header">
+                        Categories
+                    </div>
+                    <div class="card-body">
+                        @if(Request::segment(2) == null)
+                            <a href="/posts" >
+                                <div class="mb-2 btn disabled text-muted p-0">Latest</div>
+                            </a> <br>
+                        @else
+                            <a href="/posts" >
+                                <div class="mb-2">Latest</div>
+                            </a>
+                        @endif
+                        @foreach($categories as $category)
+                           
+                            @if(Request::segment(2) == 'category' && Request::segment(3) == $category->id) 
+                            <a href="/posts/category/{{$category->id}}"  class="btn disabled text-muted p-0">
+                                {{$category->title}}
+                            </a> <br>
+                            @else
+                            <a href="/posts/category/{{$category->id}}">
+                                {{$category->title}}
+                            </a> <br>
+                            @endif
+                            
+                        @endforeach
+                    </div>
+                </div>
+
+                @auth
+                    @if(Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin'))
+
+                    <div class="card my-3">
+                        <div class="card-header text-white bg-success ">
+                                Front Page 
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                
+                                    @if($frontpage->lead_article == $post->id)
+                                        <div class="col">
+                                            This is the lead article.
+                                        </div>
+                                    @else
+                                        <div class="col">
+                                            Lead
+                                        </div>
+                                        <div class="col text-right">
+                                            <form method="POST" action="{{ action('FrontPageController@update' , $post->id) }}">
+                                                @method('PATCH')
+                                                @csrf
+                                                <input type="hidden" id="type" name="type" value="lead">
+                                                <input type="hidden" id="article" name="article" value="{{$post->id}}">
+                                                <button type="submit" class="btn btn-danger btn-sm" style="display: inline;" >Set</button>
+                                            </form>
+                                        </div>
+                                    @endif
+                               
+                            </div>
+                            <div class="row mt-2">
+                                
+                                    @if($frontpage->featured_article == $post->id)
+                                        <div class="col-12">
+                                            This is the featured article.
+                                        </div>
+                                    @else
+                                        <div class="col">
+                                            Featured
+                                        </div>
+                                        <div class="col text-right">
+                                            <form method="POST" action="{{ action('FrontPageController@update' , $post->id) }}">
+                                                @method('PATCH')
+                                                @csrf
+                                                <input type="hidden" id="type" name="type" value="featured">
+                                                <input type="hidden" id="article" name="article" value="{{$post->id}}">
+                                                <button type="submit" class="btn btn-danger btn-sm" >Set</button>
+                                            </form>
+                                        </div>
+                                    @endif
+
+                                
+                            </div>
+
+                           
+                        </div>
+                    </div>
+                    @endif
+                @endauth
             </div>
         </div>
     </div>
 </div>
-@auth
-    @if(Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin'))
-    <div class="row">
-        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3">
-           <div class="card my-3">
-            <div class="card-header text-white bg-success ">
-                Organizer Tools
-            </div>
-            <div class="card-body">
-                <div class="row">
-                <div class="col-lg">
-                    <table class="table">
-                        <caption>Front Page Posts</caption>
-                        <tr>
-                            <th class="text-right">Lead:</th>
-                            <td class="text-left">
-                                @if($frontpage->lead_article == $post->id)
-                                    This is the lead article.
-                                @else
-                                    <form method="POST" action="{{ action('FrontPageController@update' , $post->id) }}">
-                                        @method('PATCH')
-                                        @csrf
-                                        <input type="hidden" id="type" name="type" value="lead">
-                                        <input type="hidden" id="article" name="article" value="{{$post->id}}">
-                                        <button type="submit" class="btn btn-danger btn-sm" style="display: inline;" >Set</button>
-                                    </form>
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-right">Featured:</th>
-                            <td class="text-left">
-                                @if($frontpage->featured_article == $post->id)
-                                    This is the featured article.
-                                @else
-                                    <form method="POST" action="{{ action('FrontPageController@update' , $post->id) }}">
-                                        @method('PATCH')
-                                        @csrf
-                                        <input type="hidden" id="type" name="type" value="featured">
-                                        <input type="hidden" id="article" name="article" value="{{$post->id}}">
-                                        <button type="submit" class="btn btn-danger btn-sm" >Set</button>
-                                    </form>
-                                @endif
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-lg"></div>
-                <div class="col-lg"></div>
-            </div>
-            </div>
-        </div> 
-        </div>
-    </div>
-        
-    @endif
-@endauth
+
+
+
+
 
 @endsection

@@ -20,8 +20,8 @@
                     </a>
 
                     <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/posts/latest">Lastest</a>
-                        <a class="dropdown-item" href="/posts">Archive</a>
+                        <a class="dropdown-item" href="/posts">Lastest</a>
+                   
                         @auth
                             @if(Auth::user()->hasAnyRole(['organizer' , 'admin']))
                             <a class="dropdown-item" href="/posts/new">New Post</a>

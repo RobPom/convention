@@ -43,12 +43,11 @@ Route::patch('/post/{id}' , 'BlogPostController@update');
 Route::patch('/post/{id}/publish' , 'BlogPostController@publish');
 Route::get('/posts' , 'BlogPostController@index');
 Route::get('/posts/new' , 'BlogPostController@create');
-Route::get('/posts/latest' , 'BlogPostController@latest');
+//Route::get('/posts/latest' , 'BlogPostController@latest');
 Route::post('/post' , 'BlogPostController@store');
 
-// are these both necessary?
 Route::get('/posts/category/{id}' , 'BlogPostController@categoryIndex');
-Route::get('/posts/categories' , 'BlogCategoryController@index');
+Route::get('/posts/user/{id}' , 'BlogPostController@userPosts');
 
 /* User Game */
 Route::get('/games/new' , 'GameController@create');
@@ -57,6 +56,8 @@ Route::get('/profile/game/{id}' , 'GameController@show');
 Route::get('/profile/game/{id}/edit' , 'GameController@edit');
 Route::delete('/profile/game/{id}', 'GameController@destroy');
 Route::patch('/profile/game/{id}' , 'GameController@update');
+
+
 
 /* Convention */
 Route::get('/calendar/convention/' , 'Calendar\ConventionController@showActive');

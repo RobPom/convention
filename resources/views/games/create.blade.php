@@ -57,7 +57,7 @@
         <div class="card ">
             <div class="card-header">Create a Game</div>
             <div class="card-body">
-                <form method="POST" action="{{ action('GameController@store') }}">
+                <form method="POST" action="{{ action('GameController@store') }}" enctype="multipart/form-data">
 
                     @csrf
 
@@ -149,7 +149,10 @@
                                     
                             </div>
                         </div>
-                        
+                        <hr>
+                            <label>Select image to upload: </label>
+                            <input type="file" name="image" id="file">
+                        <hr>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="lead">Lead Text</label>

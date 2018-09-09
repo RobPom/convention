@@ -9,8 +9,8 @@
     <div class="card-body">
         <div class="card">
             <div class="card-header">
-                <a href="/calendar/convention/{{$convention->id}}/manage" class=""><i class="material-icons text-with-icon">event</i></a>
-                <div class="inline-block text-with-icon "><strong>Game Pool </strong></div> 
+                
+                <div class="inline-block text-with-icon "><strong>Unscheduled Games </strong></div> 
             </div>
             <div class="card-body">
                 <div class="card-title">

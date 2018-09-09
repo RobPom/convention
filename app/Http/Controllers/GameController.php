@@ -130,6 +130,9 @@ class GameController extends Controller
             ->withInput();
         } 
 
+     
+
+
         $game = new Game();
         $game->title = $request->title;
         $game->tagline = $request->tagline;
@@ -147,24 +150,6 @@ class GameController extends Controller
 
     }
 
-   /*  public function copy($id){
-        $oldGame = Game::find($id);
-        $game = new Game();
-        $game->title = "Copy of " .  $oldGame->title ;
-        $game->tagline = $oldGame->tagline;
-        $game->system = $oldGame->system;
-        $game->advisory = $oldGame->advisory;
-        $game->min = $oldGame->min;
-        $game->max = $oldGame->max;
-        $game->lead = $oldGame->lead;
-        $game->description = $oldGame->description;
-        $game->active =  false;
-        $game->user_id = Auth::user()->id;
-        $game->save();
-
-        return redirect('/profile?tab=games')->with('status', 'A Copy of the game has been saved');
-    }
- */
     /**
      * Display the specified resource.
      *
