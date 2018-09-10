@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Image;
 use Validator;
 use File;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -189,7 +190,7 @@ class ProfileController extends Controller
             "lastname'  => 'required|max:50|regex:/^[a-z ,.'-]+$/i",
             "location'  => max:50|regex:/^[a-z ,.'-]+$/i",
             'description'  => 'max:144',
-            'avatar' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'avatar' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1999',
         ]);
 
         if($validator->fails()){
@@ -204,13 +205,16 @@ class ProfileController extends Controller
         if($request->hasFile('avatar')){
             
              
-            $oldfile = public_path().'/uploads/avatars/'. $member->avatar;
-            File::delete($oldfile);
-           
+            $oldfile = public_path() .'/uploads/avatars/'. $member->avatar;
+            unlink($oldfile);
+          
 
              $avatar = $request->file('avatar');
              $filename = time() . '.' . $avatar->getClientOriginalExtension();
-             Image::make($avatar)->save(public_path().'/uploads/avatars/'. $filename);
+             $image = Image::make($avatar)->fit(300)->encode('jpg');
+             $path = 'uploads/avatars/'. $filename;
+
+             $image->save(public_path($path));
              $member->avatar = $filename;
             
          }

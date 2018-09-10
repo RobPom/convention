@@ -1,8 +1,10 @@
 <div class="media avatar-container">
     <img class="img-fluid align-self-center mr-3 mb-2" 
         style="height:60px ; border-radius: 50%;"
-        src="/uploads/avatars/{{$member->avatar}}" 
-        alt="Generic placeholder image">
+
+        src="/uploads/avatars/{{$member->avatar}}"
+        
+        alt="Avatar placeholder">
     <div class="media-body">
         <h5>@if($member->hasRole('organizer') || $member->hasRole('admin'))
                 {{$member->firstname}} {{$member->lastname}}
