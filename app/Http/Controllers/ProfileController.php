@@ -204,13 +204,13 @@ class ProfileController extends Controller
         if($request->hasFile('avatar')){
             
              
-            $oldfile = public_path('/uploads/avatars/'. $member->avatar);
+            $oldfile = public_path().'/uploads/avatars/'. $member->avatar;
             File::delete($oldfile);
            
 
              $avatar = $request->file('avatar');
              $filename = time() . '.' . $avatar->getClientOriginalExtension();
-             Image::make($avatar)->save(public_path('/uploads/avatars/'. $filename));
+             Image::make($avatar)->save(public_path().'/uploads/avatars/'. $filename);
              $member->avatar = $filename;
             
          }
