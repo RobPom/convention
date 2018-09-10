@@ -2,7 +2,7 @@
     <img class="img-fluid align-self-center mr-3 mb-2" 
         style="height:60px ; border-radius: 50%;"
 
-        src="{{Storage::url('uploads/avatars/' . $member->avatar)}}"
+        src="{{ url('/storage/uploads/avatars/'. $member->avatar) }}"
         
         alt="Avatar Placeholder">
     <div class="media-body">
