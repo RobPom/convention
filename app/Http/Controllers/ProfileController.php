@@ -202,24 +202,24 @@ class ProfileController extends Controller
         $member->firstname = $request->input('firstname');
         $member->lastname = $request->input('lastname');
 
+        /* handle the image upload */
+
+        //if the user selected an image to upload
         if($request->hasFile('avatar')){
-            
-             
-            $oldfile = public_path() .'/uploads/avatars/'. $member->avatar;
-            unlink($oldfile);
-          
-
-             $avatar = $request->file('avatar');
-             $filename = time() . '.' . $avatar->getClientOriginalExtension();
-             $image = Image::make($avatar)->fit(300)->encode('jpg');
-             $path = 'uploads/avatars/'. $filename;
-
-             $image->save(public_path($path));
-             $member->avatar = $filename;
-            
+            //see if they are using the default profile image, if not delete the old image
+            if($member->avatar != 'default.jpg'){
+                Storage::delete('public/uploads/avatars/' . $member->avatar);
+            }          
+            //set up the file extention, construct the path, then save the image to disk
+            $filenameWithExt = $request->file('avatar')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('avatar')->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $path = $request->file('avatar')->storeAs('public/uploads/avatars', $fileNameToStore);
+            //add the new image name to the user model
+            $member->avatar = $fileNameToStore;
          }
        
-
         if($request->input('verify')){
             $member->verified = true;
         } else {
@@ -259,6 +259,5 @@ class ProfileController extends Controller
         }
         
     }
-
-    
+  
 }

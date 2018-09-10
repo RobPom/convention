@@ -64,7 +64,7 @@
                         <a id="navbarDropdown" class="nav-link dropdown-toggle  " href="#" role="button" 
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
-                            <img class="mr-2 mb-1" style="height:25px ; border-radius: 50%;" src="/uploads/avatars/{{Auth::user()->avatar}}" alt="Generic placeholder image">
+                            <img class="mr-2 mb-1" style="height:25px ; border-radius: 50%;" src="/storage/uploads/avatars/{{Auth::user()->avatar}}" alt="Generic placeholder image">
                             {{ Auth::user()->username }} <span class="caret"></span>
                         </a>
 
