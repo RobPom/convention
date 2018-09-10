@@ -5,7 +5,15 @@
 <div class='card border-0'>
     <div class='card-body'>
         <h3>{{$pagetitle}}</h3>
+        
         <hr class="my-4">
+        @if(Request::segment(2) == 'user')
+            @php
+                $member = $posts->first()->user;
+            @endphp
+            
+            <div class="my-4">@include('profile.member.header')</div>
+        @endif
         <div class="row">
             <div class="col-md-8">        
                 @foreach($posts as $post)

@@ -4,12 +4,7 @@
 
 <div class="card p-2">
     <div class="card-header bg-white">
-        <h5>@if($member->hasRole('organizer') || $member->hasRole('admin'))
-                {{$member->firstname}} {{$member->lastname}}
-            @else
-                {{$member->username}}
-            @endif</h5>
-        <h5><small>{{$member->profile->description}}</small></h5>
+            @include('profile.member.header')
     </div>
     <div class="card-body">
             <nav aria-label="breadcrumb">

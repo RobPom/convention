@@ -141,3 +141,14 @@ html {
     background-color: #212529;
   }
 
+  .avatar-container {
+    height: 60px;
+}
+
+
+.avatar-container  .img-fluid {
+    display: block;
+    width: auto;
+    max-height: 100%;
+    border-radius: 50%;
+}

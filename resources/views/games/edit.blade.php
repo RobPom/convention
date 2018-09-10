@@ -30,14 +30,7 @@
 
 @section('content')
 <div class="card p-2">
-
-        <div class="card-header bg-white">
-            <h5>@if(Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin'))
-                    {{Auth::user()->firstname}} {{Auth::user()->lastname}}
-                @else
-                    {{Auth::user()->username}}
-                @endif</h5>
-            <h5><small>{{Auth::user()->profile->description}}</small></h5>
+        @include('profile.member.header')
         </div>
         
     

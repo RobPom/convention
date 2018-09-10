@@ -159,6 +159,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -211,6 +212,7 @@ return [
 
         'auth.password.tokens' => Illuminate\Auth\Passwords\TokenRepositoryInterface::class,
         'Carbon' => '\Carbon\Carbon',
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

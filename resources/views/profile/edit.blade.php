@@ -4,12 +4,7 @@
 
 <div class="card p-2">
     <div class="card-header bg-white">
-        <h5>@if($member->hasRole('organizer') || $member->hasRole('admin'))
-                {{$member->firstname}} {{$member->lastname}}
-            @else
-                {{$member->username}}
-            @endif</h5>
-        <h5><small>{{$member->profile->description}}</small></h5>
+        @include('profile.member.header')
     </div>
     <div class="card-body">
             <nav aria-label="breadcrumb">
@@ -40,9 +35,26 @@
         @endif
 
 
-        <form method="POST" action="{{action('ProfileController@update', $member->id)}}" >
+        <form method="POST" 
+                action="{{action('ProfileController@update', $member->id)}}" 
+                enctype="multipart/form-data">
+
             @method('put')
             @csrf
+
+            <div class="form-group row">
+                
+                <label class="col-sm-4 col-form-label text-md-right">Update Avatar</label>
+
+                
+                <!-- <label for="avatar" class="ml-3 mt-1 btn btn-sm btn-secondary">Change Image</label> -->
+                <input type="file" name="avatar" id="avatar"">
+                @if ($errors->has('avatar'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('avatar') }}</strong>
+                </span>
+            @endif
+            </div>
 
             <div class="form-group row">
 
@@ -50,7 +62,7 @@
 
                 <div class="col-md-6">
                     <input id="firstname" type="text" class="form-control{{ $errors->has('firstname') ? ' is-invalid' : '' }}" 
-                        name="firstname" value="{{ $member->firstname }}" required autofocus>
+                        name="firstname" value="{{ $member->firstname }}" maxlength="50" required autofocus>
 
                     @if ($errors->has('firstname'))
                         <span class="invalid-feedback">
@@ -66,7 +78,7 @@
 
                 <div class="col-md-6">
                     <input id="lastname" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" 
-                        name="lastname" value="{{ $member->lastname }}" required>
+                        name="lastname" value="{{ $member->lastname }}" required maxlength="50">
 
                     @if ($errors->has('lastname'))
                         <span class="invalid-feedback">
@@ -82,7 +94,7 @@
 
                 <div class="col-md-6">
                     <input id="location" type="text" class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}" 
-                        name="location" value="{{ $member->profile->location }}" >
+                        name="location" value="{{ $member->profile->location }}" maxlength="50">
 
                     @if ($errors->has('location'))
                         <span class="invalid-feedback">
@@ -99,7 +111,7 @@
                 <div class="col-md-6">
 
                     <textarea id="description"  class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" 
-                        name="description" rows='4' cols="50"
+                        name="description" rows='4' cols="50" maxlength="144"
                         >{{$member->profile->description}}
                     </textarea>
 
@@ -124,6 +136,8 @@
                 <label class="radio-inline mt-2 ml-2"><input type="radio" name="organizer" value="0" {{ $member->hasRole('organizer') ? ''  : 'checked'  }} > No</label>
                 
             </div>
+
+            
             @else
             <input type="hidden" name="verify" value={{ $member->verified ? true  : false  }}>
             @endif

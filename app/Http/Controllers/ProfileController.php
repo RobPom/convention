@@ -9,6 +9,9 @@ use App\Role;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Image;
+use Validator;
+use File;
 
 class ProfileController extends Controller
 {
@@ -171,21 +174,47 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+   
     public function update(Request $request, $id)
     {
         $member = User::find($id);
         $user = Auth::user();
        
         $member->lastname = urldecode($member->lastname);
-        $this->validate($request, [
-            "lastname'  => 'required|max:50|regex:/^[a-z ,.'-]+$/i",
+
+        $validator = Validator::make($request->all(), [
+        
+            "firstname'  => 'required|max:50|regex:/^[a-z ,.'-]+$/i",
             "lastname'  => 'required|max:50|regex:/^[a-z ,.'-]+$/i",
             "location'  => max:50|regex:/^[a-z ,.'-]+$/i",
             'description'  => 'max:144',
+            'avatar' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
+
+        if($validator->fails()){
+            return back()
+            ->withErrors($validator)
+            ->withInput();
+        } 
        
         $member->firstname = $request->input('firstname');
         $member->lastname = $request->input('lastname');
+
+        if($request->hasFile('avatar')){
+            
+             
+            $oldfile = public_path('/uploads/avatars/'. $member->avatar);
+            File::delete($oldfile);
+           
+
+             $avatar = $request->file('avatar');
+             $filename = time() . '.' . $avatar->getClientOriginalExtension();
+             Image::make($avatar)->save(public_path('/uploads/avatars/'. $filename));
+             $member->avatar = $filename;
+            
+         }
+       
 
         if($request->input('verify')){
             $member->verified = true;
