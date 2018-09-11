@@ -6,12 +6,15 @@ use App\User;
 use App\Profile;
 use App\Convention;
 use App\Role;
+use App\BlogPost;
+use App\BlogCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Image;
 use Validator;
 use File;
+use DB;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -46,11 +49,27 @@ class ProfileController extends Controller
     {   
         $convention = Convention::where('status' , 'active')->first();
         $member = User::find($id);
-        $user = Auth::user();
+        $posts = BlogPost::orderByDesc('posted_on')->where('user_id' , $id)->whereNotNull('posted_on')->paginate(6);
+        $categories = BlogCategory::orderBy('title')->get();
         return view('profile.member.posts')
-        ->with('convention' , $convention)
-            ->with('user', $user)
-            ->with('member', $member);
+            ->with('member', $member)
+            ->with('posts' , $posts)
+            ->with('categories' , $categories)
+            ->with('pagename' , 'Published Posts');
+    }
+
+    public function unpublished($id)
+    {   
+        $convention = Convention::where('status' , 'active')->first();
+        $member = User::find($id);
+        $posts =  BlogPost::where('user_id' , $member->id)->whereNull('posted_on')->paginate(6);
+       
+        $categories = BlogCategory::orderBy('title')->get();
+        return view('profile.member.posts')
+            ->with('member', $member)
+            ->with('posts' , $posts)
+            ->with('categories' , $categories)
+            ->with('pagename' , 'Unpublished Posts');
     }
 
     public function games($id)

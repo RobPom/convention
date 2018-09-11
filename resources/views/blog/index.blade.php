@@ -7,15 +7,16 @@
         <h3>{{$pagetitle}}</h3>
         
         <hr class="my-4">
-        @if(Request::segment(2) == 'user')
-            @php
-                $member = $posts->first()->user;
-            @endphp
-            
-            <div class="my-4">@include('profile.member.header')</div>
-        @endif
+       
         <div class="row">
-            <div class="col-md-8">        
+            <div class="col-md-8"> 
+                @if(Request::segment(2) == 'user')
+                    @php
+                        $member = $posts->first()->user;
+                    @endphp
+                    
+                    <div class="mb-4">@include('profile.member.header')</div>
+                @endif      
                 @foreach($posts as $post)
                     <span class="small text-muted">
                         {{$post->datePosted()}}

@@ -12,12 +12,31 @@
     <div class="card-body ">
         <div class='row'>
             <div class="col">
-                <h6><small>{{$lead->category()->title}}</small></h6>
+                <h6><small>
+                    <a href="/posts/category/{{$lead->category()->id}}">
+                        {{$lead->category()->title}}
+                    </a>
+                </small></h6>
                 <h3>{{$lead->title}}</h3>
-                <h6><small>posted by 
-                    <a href='/profile/show/{{$lead->user->id}}'>{{$lead->user->firstname}} {{$lead->user->lastname}} </a>
-                    on 
-                    {{ $lead->datePosted() }}
+                <h6><small>
+
+                    @if($lead->user->avatar == 'default.jpg')
+                        <img class="img-fluid align-self-centerb-1 mb-1" 
+                            style="height:20px ; border-radius: 50%;"
+                            src='/img/avatar/default.jpg'
+                            alt="Avatar Placeholder">
+                    @else
+                        <img class="img-fluid align-self-center mb-1" 
+                            style="height:20px ; border-radius: 50%;"
+                            src="/storage/uploads/avatars/{{$lead->user->avatar}}"
+                            alt="Avatar Placeholder">
+                    @endif
+
+                     
+                    
+                     <a href='/profile/show/{{$lead->user->id}}'>{{$lead->user->firstname}} {{$lead->user->lastname}} </a>
+                     on 
+                     {{ $lead->datePosted() }}
                     </small>
                 </h6>
                 <hr>
@@ -36,9 +55,23 @@
         <div class="col-sm-6 pl-0 pr-1 mb-2">
             <div class="card border-0">
                 <div class="card-body">
-                    <h6><small>{{$featured->category()->title}}</small></h6>
+                    <h6><small>
+                        <a href="/posts/category/{{$featured->category()->id}}">{{$featured->category()->title}}</a>
+                    </small></h6>
                     <h5 class="card-title">{{$featured->title}}</h5>
-                    <h6><small>posted by <a href='/profile/show/{{$featured->user->id}}'>{{$featured->user->firstname}} {{$featured->user->lastname}} </a>
+                    <h6><small>
+                        @if($featured->user->avatar == 'default.jpg')
+                            <img class="img-fluid align-self-center mb-1" 
+                                style="height:20px ; border-radius: 50%;"
+                                src='/img/avatar/default.jpg'
+                                alt="Avatar Placeholder">
+                        @else
+                            <img class="img-fluid align-self-center mb-1" 
+                                style="height:20px ; border-radius: 50%;"
+                                src="/storage/uploads/avatars/{{$featured->user->avatar}}"
+                                alt="Avatar Placeholder">
+                        @endif
+                        <a href='/profile/show/{{$featured->user->id}}'>{{$featured->user->firstname}} {{$featured->user->lastname}} </a>
                         on 
                         {{ $featured->datePosted() }}
                     </small></h6>

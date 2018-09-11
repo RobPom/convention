@@ -55,14 +55,14 @@
                     <strong>Posts</strong>
                 </div>
                 @if($member->blogPosts()->whereNotNull('posted_on')->count())
-                    <a href="/profile/{{$member->id}}/posts">
+                    <a href="/profile/{{$member->id}}/posts"">
                     {{$member->blogPosts()->whereNotNull('posted_on')->count()}} Published</a><br>
                 @endif
 
                 @auth
                     @if(Auth::user()->hasRole('organizer') && Auth::user()->id == $member->id)
                         @if($unpublished->count())    
-                        <a href="/profile/{{$member->id}}/posts">
+                        <a href="/profile/{{$member->id}}/unpublished">
                             {{$unpublished->count()}} Unpublished</a><br>
                         @endif
                         <a href="/posts/new">Create a new post</a> <br>

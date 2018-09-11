@@ -12,24 +12,53 @@
                     <li class="breadcrumb-item">
                         <a href="/profile/show/{{$member->id}}">Profile</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Posts</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{$pagename}}</li>
                 </ol>
             </nav>
         <div class="card">
             <div class="card-header">
-                <strong>{{$member->username}}'s Posts </strong>
+                <strong>{{$pagename}}</strong>
             </div>
             <div class="card-body">
+                    @foreach($posts as $post)
+                    <span class="small text-muted">
+                        {{$post->datePosted()}}
+                    </span>
 
-            @auth
-                @if ($user->id == $member->id)
-                    @include('layouts.include.post-list', array('showUnpublished' => true, 'edit' => true,  'posts' => $member->blogPosts, 'archive' => true))
-                @else
-                    @include('layouts.include.post-list', array('showUnpublished' => false, 'edit' => false,'posts' => $member->blogPosts, 'archive' => true))
-                @endif
-            @else
-                @include('layouts.include.post-list', array('showUnpublished' => false, 'edit' => false,'posts' => $member->blogPosts, 'archive' => true))
-            @endauth
+                    <h5> {{$post->title}} </h5>
+                    
+                    <h5 class="small mt-2">
+                        @if(Request::segment(2) != 'user')
+                            <span class="mr-4">
+                                <strong>Author: </strong>
+                                <a href="/posts/user/{{$post->user->id}}" >
+                                    {{$post->user->firstname}} {{$post->user->lastname}}
+                                </a>
+                            </span>
+                        @endif
+
+                        @if(Request::segment(2) != 'category') 
+                            <strong>Category: </strong>
+                            <a href="/posts/category/{{$post->category}}">
+                                {{$categories->find($post->category)->title}}
+                            </a>
+                        @endif
+
+                        
+                    </h5>
+
+                    <p class='mt-3'>{{$post->lead}}</p>
+
+                    <div class="row">
+                        <div class="col-12 text-right">
+                            <a href="/post/{{$post->id}}" class="btn btn-sm btn-primary">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <hr class="m-4">
+                    
+                @endforeach
+                {{ $posts->links() }}
             @auth
                 @if($member->hasAnyRole(['organizer' , 'admin']))
                 <div class="text-right">

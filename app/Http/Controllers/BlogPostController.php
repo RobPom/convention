@@ -119,6 +119,15 @@ class BlogPostController extends Controller
     public function show( $post_id )
     {
         $post = BlogPost::find($post_id);
+        if($post->posted_on  === null ){
+            if(Auth::guest()) {
+                abort(403, 'This action is unauthorized.');
+            } else {
+                if(Auth::user()->id != $post->user->id){
+                    abort(403, 'This action is unauthorized.');
+                }
+            }
+        }
         $category = BlogCategory::find($post->category);
         $categories = BlogCategory::orderBy('title')->get();
         $frontpage = Page::where('title' , 'Front Page')->first();

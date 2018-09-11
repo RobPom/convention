@@ -23,6 +23,7 @@ Route::put('/profile/{id}', 'ProfileController@update');
 
 Route::get('/profile/{id}/games', 'ProfileController@games');
 Route::get('/profile/{id}/posts', 'ProfileController@posts');
+Route::get('/profile/{id}/unpublished', 'ProfileController@unpublished');
 
 Route::get('/profiles/all', 'ProfileController@index');
 Route::get('/users/add', 'ContactController@add');
