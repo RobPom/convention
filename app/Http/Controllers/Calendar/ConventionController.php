@@ -13,6 +13,7 @@ use Redirect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ConventionController extends Controller
 {
@@ -231,6 +232,7 @@ class ConventionController extends Controller
             'max' => 'required|gte:min|max:12',
             'lead'  => 'required|max:350',
             'description'  => 'required|max:2000',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1999',
         ]);
 
         if($validator->fails()){
@@ -240,6 +242,23 @@ class ConventionController extends Controller
         } 
 
         $game = Game::find($id);
+        //if the user selected an image to upload
+        if($request->hasFile('image')){
+            //see if they are using the default profile image, if not delete the old image
+            if($game->image != 'default.jpg'){
+                Storage::delete('public/uploads/game_images/' . $game->image);
+            }          
+            //set up the file extention, construct the path, then save the image to disk
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $path = $request->file('image')->storeAs('public/uploads/game_images', $fileNameToStore);
+            //add the new image name to the user model
+            $game->image = $fileNameToStore;
+         }
+
+        
         $game->title = $request->title;
         $game->tagline = $request->tagline;
         $game->system = $request->system;

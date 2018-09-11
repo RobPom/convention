@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="card p-2">
+<div class="card p-2 border-0">
     <div class="card-header bg-white">
             @include('profile.member.header')
     </div>
@@ -58,15 +58,15 @@
                     <hr class="m-4">
                     
                 @endforeach
-                {{ $posts->links() }}
+                
             @auth
-                @if($member->hasAnyRole(['organizer' , 'admin']))
+                @if(Auth::user()->id == $post->user->id)
                 <div class="text-right">
                     <a href="/posts/new" class="mt-2 btn btn-sm btn-secondary">New</a>
                 </div>
                 @endif
             @endauth
-
+            {{ $posts->links() }}
         </div>
     </div>
 </div> 

@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                        <form method="POST" action="{{ action('Calendar\ConventionController@updateGame' , $game->id) }}">
+                        <form method="POST" action="{{ action('Calendar\ConventionController@updateGame' , $game->id) }}" enctype="multipart/form-data">
                                 @method('PATCH')
                                 @csrf
     
@@ -133,7 +133,14 @@
                                             
                                     </div>
                                 </div>
-                                
+                                <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <hr>
+                                                <label>Select image to upload: </label>
+                                                <input type="file" name="image" id="file">
+                                            <hr>
+                                        </div>
+                                    </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="lead">Lead Text</label>

@@ -40,10 +40,10 @@
 </div>
 @endif
 
-<div class="card p-2">
+<div class="card p-2 border-0">
     <div class="card-header bg-white">
-        <h5>{{Auth::user()->firstname}} {{Auth::user()->lastname}}</h5>
-        <h5><small>{{Auth::user()->profile->description}}</small></h5>
+        @php $member = Auth::user() @endphp
+            @include('profile.member.header')
     </div>
     <div class="card-body">
         <nav aria-label="breadcrumb">
@@ -51,10 +51,8 @@
                 <li class="breadcrumb-item">
                     <a href="/profile/show/{{Auth::user()->id}}">Profile</a>
                 </li>
-                <li class="breadcrumb-item">
-                    <a href="/profile/{{Auth::user()->id}}/posts">Posts</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">New</li>
+                
+                <li class="breadcrumb-item active" aria-current="page">New Post</li>
             </ol>
         </nav>
         <div class="card">

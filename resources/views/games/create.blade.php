@@ -30,7 +30,7 @@
 
 @section('content')
 
-<div class="card p-2">
+<div class="card p-2 border-0">
 
     <div class="card-header bg-white">
             @include('profile.member.header')
@@ -106,7 +106,6 @@
                                         <strong>{{ $errors->first('advisory') }}</strong>
                                     </span>
                                @endif
-
                             </div>
                         </div>
             
@@ -144,10 +143,16 @@
                                     
                             </div>
                         </div>
-                        <hr>
-                            <label>Select image to upload: </label>
-                            <input type="file" name="image" id="file">
-                        <hr>
+                        
+                        <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <hr>
+                                        <label>Select image to upload: </label>
+                                        <input type="file" name="image" id="file">
+                                    <hr>
+                                </div>
+                            </div>
+
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="lead">Lead Text</label>

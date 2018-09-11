@@ -219,7 +219,7 @@ class BlogPostController extends Controller
 
         if( Auth::user()->id == $blogPost->user->id ||  Auth::user()->hasRole('admin') ){
             $blogPost->delete();
-            return redirect('/profile/'. $blogPost->user->id. '/posts')->with('status', 'Post Deleted');
+            return redirect('/profile/show/'. $blogPost->user->id)->with('status', 'Post Deleted');
         }
         
             abort(403, 'This action is unauthorized.');

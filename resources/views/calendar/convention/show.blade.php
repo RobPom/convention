@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="card p-2">
+<div class="card p-2 border-0">
     <div class="card-header bg-white">
         <div class="row">
             <div class="col-md-8 text-center text-md-left">
@@ -88,15 +88,31 @@
                     <strong>
                         <a href="/calendar/convention/{{$convention->id}}/games">Games</a>
                     </strong>
+                    <div style='max-height: 360px;'>
                     <div id="carouselExampleControls" class="carousel slide mt-3" data-ride="carousel">
-                        <div class="carousel-inner">
+                        <div class="carousel-inner ">
+
+                               
+                            <style>
+                                .card-img-top {
+                                    width: 100%;
+                                    height: 15vw;
+                                    object-fit: cover;
+                                }
+                            </style>
+
 
                             @foreach($convention->games as $game)
                                 @if($loop->first)
-                                    <div class="card carousel-item active border-0" style="height:200px;">
+                                    <div class="card carousel-item active border-0 " style="width:260px">
                                 @else
-                                    <div class="card carousel-item border-0" style="height:200px;">
+                                    <div class="card carousel-item border-0" style="width:260px">
                                 @endif
+                                <img class="card-img-top" 
+                               
+                                src='/img/game_images/default.jpg'
+                                alt="Card image">
+                                        
                                         <div class="card-body">
                                             <h5 class="card-title">{{$game->title}}</h5>
                                             <h6 class="card-subtitle mb-2 text-muted">{{$game->tagline}}</h6>
@@ -123,6 +139,7 @@
                         </div>
                         
                     </div>
+                </div>
                 </div>
             </div>
             @else

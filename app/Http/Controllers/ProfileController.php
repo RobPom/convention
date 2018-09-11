@@ -221,6 +221,12 @@ class ProfileController extends Controller
         $member->firstname = $request->input('firstname');
         $member->lastname = $request->input('lastname');
 
+        if($request->input('organizer')){
+            $member->roles()->attach(Role::where('name', 'organizer')->first());
+        } else {
+            $member->roles()->detach(Role::where('name', 'organizer')->first());
+        }
+        //dd($request->input('organizer'));
         /* handle the image upload */
 
         //if the user selected an image to upload
@@ -244,12 +250,8 @@ class ProfileController extends Controller
         } else {
             $member->verified = false;
         }
+       
         
-        if($request->input('organizer')){
-            $member->roles()->attach(Role::where('name', 'organizer')->first());
-        } else {
-            $member->roles()->detach(Role::where('name', 'organizer')->first());
-        }
         
         $member->save();
 

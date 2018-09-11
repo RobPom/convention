@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card p-2">
+<div class="card p-2 border-0">
 
         <div class="card-header bg-white">
                 @include('profile.member.header')
@@ -26,10 +26,29 @@
                     <small>{{$game->tagline}}</small>
                 </div>
                 <div class="card-body">
-                    <div class="lead mb-3">
-                        {{$game->lead}}
+                    <div class="row">
+                        <div class="col-sm-3 text-center">
+                                @if($game->image == 'default.jpg')
+                                <img class="img-fluid align-self-center pull-left mr-3 mb-2" 
+                                    style="max-height:240px ;"
+                                    src='/img/game_images/default.jpg'
+                                    alt="Avatar Placeholder">
+                            @else
+                                <img class="img-fluid align-self-center mr-3 mb-2" 
+                                    style="max-height:240px ;"
+                                    src="/storage/uploads/game_images/{{$game->image}}"
+                                    alt="Avatar Placeholder">
+                            @endif
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="lead mb-3">
+                                {{$game->lead}}
+                            </div>
+                            {!!$game->description!!}
+                        </div>
                     </div>
-                    {!!$game->description!!}
+                  
+                    
                 </div>
                 <div class="card-footer">
                     <div class="row">

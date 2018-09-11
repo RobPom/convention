@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="card p-2">
+<div class="card p-2 border-0">
     <div class="card-header bg-white">
        <h5>Manage {{$convention->title}}</h5>
     </div>

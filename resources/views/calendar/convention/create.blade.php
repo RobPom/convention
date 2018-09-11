@@ -30,7 +30,7 @@
 
 @section('content')
 
-<div class="card">
+<div class="card border-0">
         <div class="card-body">
             <div class="card-title">
                 <h5>Conventions, Past and Present</h5>

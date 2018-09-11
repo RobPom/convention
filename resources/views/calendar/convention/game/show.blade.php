@@ -51,12 +51,29 @@
                         <h5>{{$game->title}}</h5>
                         <h5><small>{{$game->tagline}}</small></h5>
                     </div>
-                    <div class="my-2 lead">
-                        {{$game->lead}}
+                    <div class="row">
+                        <div class="col-sm-3 text-center">
+                                @if($game->image == 'default.jpg')
+                                <img class="img-fluid align-self-center pull-left mr-3 mb-2" 
+                                    style="max-height:240px ;"
+                                    src='/img/game_images/default.jpg'
+                                    alt="Avatar Placeholder">
+                            @else
+                                <img class="img-fluid align-self-center mr-3 mb-2" 
+                                    style="max-height:240px ;"
+                                    src="/storage/uploads/game_images/{{$game->image}}"
+                                    alt="Avatar Placeholder">
+                            @endif
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="lead my-3">
+                                {{$game->lead}}
+                            </div>
+                            {!!$game->description!!}
+                        </div>
                     </div>
-                    <div class="my-2">
-                        <p>{!! $game->description !!}</p>
-                    </div>
+
+                   
 
 
                     @if($game->timeslots->count())

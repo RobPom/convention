@@ -43,9 +43,25 @@
 @endif
 
 
-<div class='card'>
-    <div class='card-body'>
-        <h3>Edit Post</h3>
+<div class="card p-2 border-0">
+        <div class="card-header bg-white">
+            @php $member = Auth::user() @endphp
+                @include('profile.member.header')
+        </div>
+        <div class="card-body">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-white">
+                    <li class="breadcrumb-item">
+                        <a href="/profile/show/{{Auth::user()->id}}">Profile</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit Post</li>
+                </ol>
+            </nav>
+            <div class="card">
+                <div class="card-header">
+                    <strong> Create a New Post </strong>
+                </div>
+                <div class="card-body">
 
         <form method="POST" action="{{ action('BlogPostController@update' , $blogPost->id) }}">
                 @method('PATCH')

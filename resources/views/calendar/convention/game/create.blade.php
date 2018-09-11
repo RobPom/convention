@@ -48,7 +48,7 @@
                             <div class="lead">{{$member->firstname}} {{$member->lastname}}</div>
                         </div>
 
-                        <form method="POST" action="{{ action('GameController@storeAttendeeGame') }}">
+                        <form method="POST" action="{{ action('GameController@storeAttendeeGame') }}"  enctype="multipart/form-data">
 
                                 @csrf
             
@@ -140,7 +140,14 @@
                                                 
                                         </div>
                                     </div>
-                                    
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <hr>
+                                                <label>Select image to upload: </label>
+                                                <input type="file" name="image" id="file">
+                                            <hr>
+                                        </div>
+                                    </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label for="lead">Lead Text</label>

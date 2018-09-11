@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Validator;
 use Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
 {
@@ -43,7 +44,8 @@ class GameController extends Controller
      */
     public function create()
     {
-        return view('games.create');
+        $member = Auth::user();
+        return view('games.create')->with('member' , $member);
     }
 
     public function createAttendeeGame($convention_id, $user_id)
@@ -66,13 +68,34 @@ class GameController extends Controller
             'max' => 'required|gte:min|max:12',
             'lead'  => 'required|max:350',
             'description'  => 'required|max:2000',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1999',
         ]);
 
         if($validator->fails()){
             return back()
             ->withErrors($validator)
             ->withInput();
-        } 
+        }
+
+        if($request->hasFile('image')){
+                   
+            //set up the file extention, construct the path, then save the image to disk
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $usergameFilename = $filename . '_' . time() . '.' . $extension;
+            $path = $request->file('image')->storeAs('public/uploads/game_images', $usergameFilename);
+            $conventiongameFilename = $filename . '_' . time() . '.' . $extension;
+            $path = $request->file('image')->storeAs('public/uploads/game_images', $conventiongameFilename);
+            //add the new image name to the user model
+
+            
+         } else {
+            $conventiongameFilename = 'default.jpg';
+            $usergameFilename = 'default.jpg';
+            
+
+         }
 
         $usergame = new Game();
         $usergame->title = $request->title;
@@ -83,6 +106,7 @@ class GameController extends Controller
         $usergame->max = $request->max;
         $usergame->lead = $request->lead;
         $usergame->description = $request->description;
+        $usergame->image = $usergameFilename;
         $usergame->active  = true ;
         $usergame->user_id = $request->user;
         $usergame->save();
@@ -97,6 +121,7 @@ class GameController extends Controller
         $conventiongame->lead = $request->lead;
         $conventiongame->description = $request->description;
         $conventiongame->active  = true ;
+        $conventiongame->image = $conventiongameFilename;
         $conventiongame->user_id = $request->user;
         $conventiongame->event_id = $request->convention;
         $conventiongame->parent_id = $usergame->id;
@@ -122,6 +147,7 @@ class GameController extends Controller
             'max' => 'required|gte:min|max:12',
             'lead'  => 'required|max:350',
             'description'  => 'required|max:2000',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1999',
         ]);
 
         if($validator->fails()){
@@ -130,10 +156,25 @@ class GameController extends Controller
             ->withInput();
         } 
 
-     
-
-
         $game = new Game();
+       
+          /* handle the image upload */
+
+        //if the user selected an image to upload
+        if($request->hasFile('image')){
+                   
+            //set up the file extention, construct the path, then save the image to disk
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $path = $request->file('image')->storeAs('public/uploads/game_images', $fileNameToStore);
+            //add the new image name to the user model
+            $game->image = $fileNameToStore;
+         } else {
+             $game->image = 'default.jpg';
+         }
+         
         $game->title = $request->title;
         $game->tagline = $request->tagline;
         $game->system = $request->system;
@@ -171,8 +212,9 @@ class GameController extends Controller
      */
     public function edit($id)
     {
+        $member = Auth::user();
         $game = Game::find($id);
-        return view('games.edit')->with('game' , $game);
+        return view('games.edit')->with('game' , $game)->with('member' , $member);
     }
 
     public function editAttendeeGame($id)
@@ -199,6 +241,7 @@ class GameController extends Controller
             'max' => 'required|gte:min|max:12',
             'lead'  => 'required|max:350',
             'description'  => 'required|max:2000',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1999',
         ]);
 
         if($validator->fails()){
@@ -208,6 +251,26 @@ class GameController extends Controller
         } 
 
         $game = Game::find($id);
+
+         /* handle the image upload */
+
+        //if the user selected an image to upload
+        if($request->hasFile('image')){
+            //see if they are using the default profile image, if not delete the old image
+            if($game->image != 'default.jpg'){
+                Storage::delete('public/uploads/game_images/' . $game->image);
+            }          
+            //set up the file extention, construct the path, then save the image to disk
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $path = $request->file('image')->storeAs('public/uploads/game_images', $fileNameToStore);
+            //add the new image name to the user model
+            $game->image = $fileNameToStore;
+         }
+
+        
         $game->title = $request->title;
         $game->tagline = $request->tagline;
         $game->system = $request->system;
@@ -238,6 +301,9 @@ class GameController extends Controller
             foreach($submissions as $submission){
                 $submission->delete();
             }
+            if($game->image != 'default.jpg'){
+                Storage::delete('public/uploads/game_images/' . $game->image);
+            }   
             $game->delete();
             return redirect('profile?tab=games')->with('status', 'Game Deleted');
         }

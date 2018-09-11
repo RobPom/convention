@@ -140,7 +140,11 @@
             
             @else
             <input type="hidden" name="verify" value={{ $member->verified ? true  : false  }}>
+                @if ($member->hasRole('organizer'))
+                    <input type="hidden" name="organizer" value='1'>
+                @endif
             @endif
+            
 
             <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">

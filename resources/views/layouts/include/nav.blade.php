@@ -20,7 +20,7 @@
                     </a>
 
                     <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/posts">Lastest</a>
+                        <a class="dropdown-item" href="/posts">Latest</a>
                    
                         @auth
                             @if(Auth::user()->hasAnyRole(['organizer' , 'admin']))
@@ -64,7 +64,18 @@
                         <a id="navbarDropdown" class="nav-link dropdown-toggle  " href="#" role="button" 
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
-                            <img class="mr-2 mb-1" style="height:25px ; border-radius: 50%;" src="/storage/uploads/avatars/{{Auth::user()->avatar}}" alt="Generic placeholder image">
+                            @if(Auth::user()->avatar == 'default.jpg')
+                                <img class="img-fluid align-self-center mr-2 mb-1" 
+                                    style="height:25px ; border-radius: 50%;"
+                                    src='/img/avatar/default.jpg'
+                                    alt="Avatar Placeholder">
+                            @else
+                                <img class="img-fluid align-self-center mr-2 mb-1" 
+                                    style="height:25px ; border-radius: 50%;"
+                                    src="/storage/uploads/avatars/{{Auth::user()->avatar}}"
+                                    alt="Avatar Placeholder">
+                            @endif
+                            
                             {{ Auth::user()->username }} <span class="caret"></span>
                         </a>
 

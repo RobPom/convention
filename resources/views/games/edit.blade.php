@@ -29,10 +29,10 @@
 @endsection
 
 @section('content')
-<div class="card p-2">
-        @include('profile.member.header')
+<div class="card p-2 border-0">
+        <div class="card-header bg-white">
+            @include('profile.member.header')
         </div>
-        
     
         <div class="card-body">
             <nav aria-label="breadcrumb">
@@ -49,7 +49,7 @@
             <div class="card ">
                 <div class="card-header">Edit {{$game->title}}</div>
             <div class="card-body">
-                <form method="POST" action="{{ action('GameController@update' , $game->id) }}">
+                <form method="POST" action="{{ action('GameController@update' , $game->id) }}"  enctype="multipart/form-data">
                             @method('PATCH')
                             @csrf
 
@@ -141,6 +141,21 @@
                                         </span>
                                     @endif
                                     
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <hr>
+                                @if ($errors->has('image'))
+                                
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('image') }}</strong>
+                                    </span>
+                                @endif
+                                    <label>Select image to upload: </label>
+                                    <input type="file" name="image" id="file">
+                                <hr>
                             </div>
                         </div>
                         

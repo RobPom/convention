@@ -23,7 +23,7 @@ class CreateGamesTable extends Migration
             $table->string('advisory')->nullable();
             $table->integer('min');
             $table->integer('max');
-            $table->string('image')->nullable();
+            $table->string('image')->default('default.jpg');
             $table->integer('user_id');
             $table->integer('event_id')->default(0);
             $table->integer('parent_id')->default(0);
