@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="card p-2">
+<div class="card p-2 border-0">
     <div class="card-header bg-white">
         <div class="row">
             <div class="col-md-8 text-center text-md-left">
@@ -53,7 +53,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-3 text-center">
-                                @if($game->image == 'default.jpg')
+                            @if($game->image == 'default.jpg')
                                 <img class="img-fluid align-self-center pull-left mr-3 mb-2" 
                                     style="max-height:240px ;"
                                     src='/img/game_images/default.jpg'
@@ -82,24 +82,29 @@
                                 Convention Schedule
                             </div>
                             <div class="card-body">
-                                @foreach($game->timeslots as $timeslot)
-                                    <li class='list-group-item'>
-                                        <div class="row">        
-                                            <div class="col">
-                                                <strong>{{$timeslot->title}}</strong>
+                                <div class="row">
+                                    @foreach($game->timeslots as $timeslot)
+                                    <div class="col-lg-6 col-xl-4">
+                                        <a href="/calendar/convention/session/{{$timeslot->gamesession($game)->id}}" class='list-group-item list-group-item-active'>
+                                            <div class="row">        
+                                                <div class="col-sm-12 ">
+                                                    <strong>{{$timeslot->title}}</strong>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <small class="text-muted">
+                                                    {{$timeslot->pretty_times()}}
+                                                </small>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <small>
+                                                        <strong>Players: </strong> {{$timeslot->gamesession($game)->attendees->count()}} / {{$game->max}} 
+                                                    </small>
+                                                </div>
                                             </div>
-                                            <div class="col">
-                                                {{$timeslot->pretty_times()}}
-                                            </div>
-                                            <div class="col">
-                                                # Players
-                                            </div>
-                                        </div>
-                                        
-
-
-                                    </li>
-                                @endforeach
+                                        </a>
+                                    </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     @endif

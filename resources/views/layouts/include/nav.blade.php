@@ -42,9 +42,9 @@
                                 <br>Registration Open! </a>
 
                             
-                            <div class="dropdown-divider"></div>   
+                           <!--  <div class="dropdown-divider"></div>    -->
                         @endif
-                            <a class="dropdown-item" href="/calendar/conventions">Past Conventions</a>
+                            <!-- <a class="dropdown-item" href="/calendar/conventions">Past Conventions</a> -->
                   
                     </div>
                     

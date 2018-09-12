@@ -56,20 +56,18 @@
                                     @if($day->isSameDay($timeslot->start_time()))
                                     <a href="/calendar/convention/timeslot/{{$timeslot->id}}" class="list-group-item list-group-item-action">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <strong>{{$timeslot->title}} </strong>
-                                                <small class="text-muted ml-1">
+                                            <div class="col-md-3 text-center">
+                                                <div class="strong">
+                                                    {{$timeslot->title}}
+                                                </div>
+                                                <div class="small text-muted">
                                                     {{$timeslot->only_times()}}
-                                                </small>
+                                                </div>
+                                                <strong> </strong> <br>
+                                               
                                             </div>
                                             @if($timeslot->accept_games == true)
-                                                @php  
-                                                $max_players = 0;
-                                            
-                                                foreach($timeslot->games as $game){
-                                                    $max_players += $game->max;
-                                                }
-                                                @endphp
+                                             
                                         
                                                 <div class="col-md-6">
                                                     <div class="row mt-1">
@@ -78,7 +76,7 @@
                                                         </div>
                     
                                                         <div class="col small">
-                                                            Players: ## / {{$max_players}}
+                                                            Players: {{$timeslot->players()}} / {{$timeslot->max_players()}}
                                                         </div>
                                                     </div>
                                                 </div>

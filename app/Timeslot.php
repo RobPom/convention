@@ -13,6 +13,25 @@ class Timeslot extends Model
         return $this->belongsToMany('App\Game')->using('App\GameSession');
     }
 
+    public function players(){
+        $counter = 0;
+        foreach($this->games as $game){
+            $gamesession = $this->gamesession($game);
+            $counter += $gamesession->attendees->count();
+        }
+        return $counter;
+    }
+
+    public function max_players(){
+        $counter = 0;
+        foreach($this->games as $game){
+            
+            $counter += $game->max;
+        }
+        return $counter;
+    }
+
+
     public function gamesessions()
     {
         return $this->hasMany('App\GameSession');

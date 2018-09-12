@@ -116,6 +116,11 @@ Route::get('calendar/convention/attendee/timeslot/{id}', 'Calendar\AttendeeContr
 Route::post('calendar/convention/attendee/gamesession/{id}', 'Calendar\AttendeeController@attendGamesession');
 Route::post('calendar/convention/attendee/gamesession/{id}/leave', 'Calendar\AttendeeController@leaveGamesession');
 
+//user leave or attend from game session view
+Route::post('/gamesession/{id}/attend', 'Calendar\GameSessionController@attend');
+Route::post('/gamesession/{id}/leave', 'Calendar\GameSessionController@leave');
+Route::post('/gamesession/{id}/replace', 'Calendar\GameSessionController@replace');
+
 /* Convention Games*/
 Route::get('calendar/convention/{convention_id}/attendee/{user_id}/game/new', 'GameController@createAttendeeGame');
 Route::post('calendar/convention/attendee/game/store', 'GameController@storeAttendeeGame');

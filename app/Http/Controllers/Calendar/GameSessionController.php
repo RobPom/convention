@@ -38,11 +38,31 @@ class GameSessionController extends Controller
         } else {
                 abort(404, 'This Game Session does not exist.');
         }
-
-       
+ 
     }
 
-    public function home(){
-        return view('home');
+
+    public function attend($id){
+        $gamesession = GameSession::find($id);
+        //dd($gamesession->timeslot->convention);
+        $gamesession->attendees()->attach(Auth::user());
+        return redirect('/calendar/convention/session/' . $gamesession->id)
+            ->with('convention' , $gamesession->timeslot->convention);
+    }
+
+    public function leave($id){
+        $gamesession = GameSession::find($id);
+        $gamesession->attendees()->detach(Auth::user());
+        return redirect('/calendar/convention/session/' . $gamesession->id)
+            ->with('convention' , $gamesession->timeslot->convention);
+    }
+
+    public function replace($id){
+        $newgamesession = GameSession::find($id);
+        $oldgamesession = Auth::user()->gamesessions->where('timeslot_id', $newgamesession->timeslot->id)->first();
+        $oldgamesession->attendees()->detach(Auth::user());
+        $newgamesession->attendees()->attach(Auth::user());
+        return redirect('/calendar/convention/session/' . $newgamesession->id)
+            ->with('convention' , $newgamesession->timeslot->convention);
     }
 }

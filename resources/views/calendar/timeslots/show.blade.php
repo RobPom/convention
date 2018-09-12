@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="card p-2">
+<div class="card p-2 border-0">
     <div class="card-header bg-white">
         <div class="row">
             <div class="col-md-8 text-center text-md-left">
@@ -52,29 +52,48 @@
                         <small class="text-muted">{{$timeslot->only_times()}}</small>
                         @if($timeslot->accept_games == true)
                             <br><br>
-                            <small class='text-muted'>
-                                Players : ## <br>
-                                GMs : {{$timeslot->games->count()}}
-                            </small>
+                            @auth
+                                @if(Auth::user()->hasRole('organizer'))
+                                    <small class='text-muted'>
+                                        Players : {{$timeslot->players()}} <br>
+                                        GMs : {{$timeslot->games->count()}} <br>
+                                        Total: {!! $timeslot->players() + $timeslot->games->count() !!}
+                                    </small>
+                                @endif
+                            @endauth
                         @endif
                     </div>
                     <div class="col-md-8">
                         @if($timeslot->accept_games)
                         <ul class="list-group">
                             @if($timeslot->games->count())
+                            <div class="row">
                                 @foreach($timeslot->games as $game)
-                                
+                                <div class="col-sm-6 col-md-12 col-lg-6 mt-1">
                                     <a href='/calendar/convention/session/{{$timeslot->gamesession($game)->id}}' class="list-group-item list-group-item-action">
                                         <div class="row">
-                                            <div class="col">
-                                                <div class=''>{{$game->title}}</div>
+                                            <div class="col-4 text-center" >
+                                                @if($game->image == 'default.jpg')
+                                                    <img class="img-responsive" 
+                                                        style="max-height:80px; max-width: 50px;"
+                                                        src='/img/game_images/default.jpg'
+                                                        alt="Avatar Placeholder">
+                                                @else
+                                                    <img class=img-responsive" 
+                                                        style="max-height:80px ;max-width: 50px;"
+                                                        src="/storage/uploads/game_images/{{$game->image}}"
+                                                        alt="Avatar Placeholder">
+                                                @endif
                                             </div>
-                                            <div class="col text-right">
-                                                <small>Seats: ## / {{$game->max}}</small>
+                                            <div class="col-8 text-right">
+                                                <small style="display:block;"> <strong>{{$game->title}}</strong></small> 
+                                                <small>Players: {{$timeslot->gamesession($game)->attendees->count()}} / {{$game->max}}</small>
                                             </div>
                                         </div>
                                     </a>
+                                </div>
                                 @endforeach
+                            </div>
                             @else
                                 <p>No Games Scheduled</p>
                             @endif

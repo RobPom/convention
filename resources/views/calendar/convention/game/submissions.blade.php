@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card p-2">
+<div class="card p-2 border-0">
         <div class="card-header bg-white">
                 <h5><a href="/calendar/convention/{{$convention->id}}/manage">Manage {{$convention->title}}</h5></a>
         </div>

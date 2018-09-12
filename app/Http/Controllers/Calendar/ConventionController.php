@@ -174,6 +174,7 @@ class ConventionController extends Controller
     }
 
 
+
      /**
      * Remove the specified resource from storage.
      *
@@ -196,7 +197,7 @@ class ConventionController extends Controller
 
     public function allGames($id){
         $convention = Convention::find($id);
-        $games = Game::where('event_id' , $id)->get();
+        $games = Game::where('event_id' , $id)->orderBy('title', 'ASC')->get();
         return view('calendar.convention.game.index')->with('games' , $games)->with('convention', $convention);
         
     }

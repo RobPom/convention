@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="card">
+    <div class="card border-0">
         <div class="card-body">
             <h3>
                 @if($member->hasRole('organizer'))

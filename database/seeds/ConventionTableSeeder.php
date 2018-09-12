@@ -24,7 +24,7 @@ class ConventionTableSeeder extends Seeder
         $convention->end_date = '2018-10-14 00:00:00';
         $convention->status = 'active';
         $convention->save();
-
+/* 
         $convention = new Convention();
         $convention->title = 'IntrigueCon Spring 2018';
         $convention->tagline = 'The Fellowship of the Spring';
@@ -53,6 +53,6 @@ class ConventionTableSeeder extends Seeder
         $convention->start_date = '2015-10-16 00:00:00';
         $convention->end_date = '2015-10-18 00:00:00';
         $convention->status = 'archived';
-        $convention->save();
+        $convention->save(); */
     }
 }

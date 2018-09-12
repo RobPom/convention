@@ -35,163 +35,132 @@
         <p class='mt-3'>{!!$convention->description!!}</p>
         <hr class="my-3">
 
+        
         <div class="row">
-            <div class="col-lg-10 offset-lg-1 ">
-                <div class="m-2 p-1 text-center">
-                    <strong> <a href="/calendar/convention/{{$convention->id}}/schedule">Schedule</a></strong>
-                </div>
-                <div class="p-1 mt-3">
-                    <div class="row">
-                        @foreach($convention->days() as $day)
-                            @if( (count($convention->days()) % 2) == 0)
-                                <div class="col-md-6">
-                            @else
-                                <div class="col-md-8 offset-md-2 col-lg-4 offset-lg-0">
-
-                            @endif
+            <div class="col-md-6">
+                    <h5 class="mb-3"> <a href="/calendar/convention/{{$convention->id}}/schedule">Schedule</a></h5>
+                @foreach($convention->days() as $day)
+                    <div class="card">
+                        <div class="card-header">
+                            {{$day->format('l')}} <small>{{$day->format('M jS')}}</small>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                @foreach($convention->timeslots()->orderBy('start_time', 'asc')->get() as $timeslot)
+                                    @if($day->isSameDay($timeslot->start_time()))
+                                        <a href="/calendar/convention/timeslot/{{$timeslot->id}}" class="list-group-item list-group-item-action">
+                                            <div class="row">
+                                                <div class="col text-left">
+                                                   <div>{{$timeslot->title}}</div>
+                                                <small>{{$timeslot->only_times()}}</small>
+                                                </div>
+                                                <div class="col text-right">
+                                                    @if($timeslot->accept_games == true)
+                                                    <small>
+                                                        Players: {{$timeslot->players()}} / {{$timeslot->max_players()}}
+                                                    </small>
+                                                    @endif
+                                                </div>
+                                            </div> 
+                                        </a>      
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                        <div class="col-md-12">
+                                <h5>Attendance</h5>
+                                <br><br><br>
+                          </div> 
+                    <div class="col-md-12">
+                        <h5>Location</h5>
+                        @isset($convention->location) 
+                            <div class="m-2 p-1 text-center">
+                                    <strong>Location</strong>
+                                <div class="card mt-3 border-0">    
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{$convention->location->name}}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{$convention->location->address1}} <br> {{$convention->location->address2}}</h6>
                         
-                            <div class="card">
-                                <div class="card-header">
-                                    {{$day->format('l')}} <small>{{$day->format('M jS')}}</small>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="list-group">
-                                        @foreach($convention->timeslots()->orderBy('start_time', 'asc')->get() as $timeslot)
-                                            @if($day->isSameDay($timeslot->start_time()))
-                                                <a href="/calendar/convention/timeslot/{{$timeslot->id}}" class="list-group-item list-group-item-action">
-                                                    <div class="row">
-                                                        <div class="col text-left">
-                                                           <small>{{$timeslot->only_times()}}</small>
-                                                        </div>
-                                                        <div class="col text-right">
-                                                            {{$timeslot->title}}
-                                                        </div>
-                                                    </div> 
-                                                </a>      
-                                            @endif
-                                        @endforeach
-                                    </ul>
+                                        <a href="{{$convention->location->link}}" class=" m-2 card-link btn btn-sm btn-primary">Google Maps</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>    
-                        @endforeach
+                        @else
+                            <div class="m-2 p-1 text-center">
+                                <div class="card mt-3 border-0" style="height:100px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">No Location</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">(yet)</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        @endisset
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            @if($convention->games->count())
-            <div class="col-md-6">
-                <hr class="my-3">
-                <div class="m-2 p-1 text-center">
-                    <strong>
-                        <a href="/calendar/convention/{{$convention->id}}/games">Games</a>
-                    </strong>
-                    <div style='max-height: 360px;'>
-                    <div id="carouselExampleControls" class="carousel slide mt-3" data-ride="carousel">
-                        <div class="carousel-inner ">
-
+                    <div class="col-md-12">
+                        @if($convention->games->count())
+                            @php $game = $convention->games->shuffle()->first(); @endphp
+                            <h5>Games</h5>
+                            <div class="p-3">
+                                
+                                <div class="m-1">
+                                    {{$convention->games->count()}} Games<a href="/calendar/convention/{{$convention->id}}/games"> <em>see all</em></a>
+                                </div>
                                
-                            <style>
-                                .card-img-top {
-                                    width: 100%;
-                                    height: 15vw;
-                                    object-fit: cover;
-                                }
-                            </style>
-
-
-                            @foreach($convention->games as $game)
-                                @if($loop->first)
-                                    <div class="card carousel-item active border-0 " style="width:260px">
-                                @else
-                                    <div class="card carousel-item border-0" style="width:260px">
-                                @endif
-                                <img class="card-img-top" 
-                               
-                                src='/img/game_images/default.jpg'
-                                alt="Card image">
-                                        
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{$game->title}}</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">{{$game->tagline}}</h6>
-                                            <p class="card-text">{{ str_limit($game->lead, 240) }}</p>
-                                            <a href="#" class="card-link">More Info</a>
+                                <small class="text-muted"> <em> Like this one at random</em></small>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                @if($game->image == 'default.jpg')
+                                                    <img class="img-fluid align-self-center pull-left mr-3 mb-2" 
+                                                        style="max-height:100px ;"
+                                                        src='/img/game_images/default.jpg'
+                                                        alt="Avatar Placeholder">
+                                                @else
+                                                    <img class="img-fluid align-self-center mr-3 mb-2" 
+                                                        style="max-height:100px ;"
+                                                        src="/storage/uploads/game_images/{{$game->image}}"
+                                                        alt="Avatar Placeholder">
+                                                @endif
+                                            </div>
+                                            <div class="col-9">
+                                                <h5 class="card-title">{{$game->title}}</h5>
+                                                <h6 class="card-subtitle mb-2 text-muted">{{$game->tagline}}</h6>
+                                                <a href="/calendar/convention/{{$convention->id}}/game/{{$game->id}}" class="text-right">More Info</a>
+                                            </div>
                                         </div>
                                     </div>
-
-                            @endforeach
-
-                        </div>
-
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-
-                        <div class="m-3 text-right">
-                            <a href="#" class='btn btn-sm btn-secondary'>all games</a>
-                        </div>
-                        
+                                </div>
+                            </div> 
+                        @else
+                            <hr class="my-3">
+                            <div class="m-2 p-1 text-center">
+                                <div class="card mt-3 border-0" style="height:100px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">No Games</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">(yet)</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
+                    
                 </div>
-                </div>
-            </div>
-            @else
-            <div class="col-md-6">
-                <hr class="my-3">
-                <div class="m-2 p-1 text-center">
-                    <div class="card mt-3 border-0" style="height:100px;">
-                        <div class="card-body">
-                            <h5 class="card-title">No Games</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">(yet)</h6>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-               
-            </div>
+            </div> 
+        </div>
+          
 
-            @endif
+       
+            
 
             
-        @isset($convention->location)
-        <div class="col-md-6">
-                <hr class="my-3">
-            <div class="m-2 p-1 text-center">
-                    <strong>Location</strong>
-                <div class="card mt-3 border-0">    
-                    <div class="card-body">
-                        <h5 class="card-title">{{$convention->location->name}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{$convention->location->address1}} <br> {{$convention->location->address2}}</h6>
         
-                        <a href="{{$convention->location->link}}" class=" m-2 card-link btn btn-sm btn-primary">Google Maps</a>
-                    </div>
-                </div>
-            </div>
-        </div>  
-        @else
-            <div class="col-md-6">
-                <hr class="my-3">
-                <div class="m-2 p-1 text-center">
-                    <div class="card mt-3 border-0" style="height:100px;">
-                        <div class="card-body">
-                            <h5 class="card-title">No Location</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">(yet)</h6>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        @endisset
-                        
-        </div> 
+      
     </div>
     <div class="card-footer bg-white">
         <div class="row">

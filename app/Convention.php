@@ -24,6 +24,10 @@ class Convention extends Model
         return $this->belongsToMany('App\User');
     }
 
+    public function hasAttendee($user) {
+        return $this->attendees->where('id' , $user)->count();
+    }
+
     public function location(){
         return $this->belongsTo('App\Location');
     }

@@ -54,7 +54,7 @@
                                             {{$game->title}}
                                         </div>
                                         <div class="col-3">
-                                            #/# Players
+                                                Players: {{$timeslot->gamesession($game)->attendees->count()}} / {{$game->max}}
                                         </div>
                                         @if($user->gamesessions->where('timeslot_id' , $timeslot->id)->count())
                                             @if($user->gamesessions->where('timeslot_id' , $timeslot->id)->first()->game->id == $game->id)
@@ -67,21 +67,26 @@
                                                     </form> 
                                                 </div>
                                             @else
-                                            <div class="col-3 text-right">
-                                                
-                                            </div>
+                                            
                                         
                                             @endif
 
                                         @else
-                                            <div class="col-3 text-right">
-                                                <form 
-                                                    action="{{ action('Calendar\AttendeeController@attendGamesession' , $timeslot->gamesession($game)) }}" 
-                                                    method="post">
-                                                    @csrf
-                                                    <button class="m-1 btn btn-sm btn-primary btn-block" type="submit">Play!</button>
-                                                </form> 
-                                            </div>
+
+                                            @if( $timeslot->gamesession($game)->attendees->count() >= $game->max)
+                                            <div class="col-3 text-center">
+                                                    <strong>Full</strong>
+                                                </div>
+                                            @else
+                                                <div class="col-3 text-right">
+                                                    <form 
+                                                        action="{{ action('Calendar\AttendeeController@attendGamesession' , $timeslot->gamesession($game)) }}" 
+                                                        method="post">
+                                                        @csrf
+                                                        <button class="m-1 btn btn-sm btn-primary btn-block" type="submit">Play!</button>
+                                                    </form> 
+                                                </div>
+                                            @endif
                                         @endif
                                     </div>
                                 </li>

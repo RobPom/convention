@@ -24,13 +24,11 @@ class BlogPostsTableSeeder extends Seeder
         ) ->get();
 
         $faker = Faker::create();
-    	foreach (range(1,10) as $index) {
+    	foreach (range(1,2) as $index) {
             $created = Carbon::instance($faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now'));
-            if(mt_rand(0,2) ){
-                $posted = $created->addHours(mt_rand(1, 32))->toDateTimeString();
-            } else {
-                $posted = null;
-            }
+            
+            $posted = $created->addHours(mt_rand(1, 32))->toDateTimeString();
+           
 
             $categories = BlogCategory::all();
             
