@@ -68,7 +68,7 @@ class GameController extends Controller
             'max' => 'required|gte:min|max:12',
             'lead'  => 'required|max:350',
             'description'  => 'required|max:2000',
-            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1999',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1000',
         ]);
 
         if($validator->fails()){
@@ -147,7 +147,7 @@ class GameController extends Controller
             'max' => 'required|gte:min|max:12',
             'lead'  => 'required|max:350',
             'description'  => 'required|max:2000',
-            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1999',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1000',
         ]);
 
         if($validator->fails()){
@@ -241,7 +241,7 @@ class GameController extends Controller
             'max' => 'required|gte:min|max:12',
             'lead'  => 'required|max:350',
             'description'  => 'required|max:2000',
-            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1999',
+            'image' => 'image|mimes:jpg,png,jpeg,gif|max:1000',
         ]);
 
         if($validator->fails()){
@@ -279,10 +279,10 @@ class GameController extends Controller
         $game->max = $request->max;
         $game->lead = $request->lead;
         $game->description = $request->description;
-        $request->active ?  $game->active = true : $game->active = false ;
+        $request->active ?  $game->active = false : $game->active = true ;
         $game->save();
 
-        return redirect('/profile?tab=games')->with('status', 'Changes Saved');
+        return redirect('/profile/' . Auth::user()->id .'/games')->with('status', 'Changes Saved');
     }
 
     /**

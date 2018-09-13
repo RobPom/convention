@@ -396,7 +396,7 @@ class ConventionController extends Controller
             $convention = $submission->convention;
             $submission->delete();
 
-            return view('calendar.conventions.games.submissions')->with('convention', $convention)->with('status' , 'Game removed ');
+            return view('calendar.convention.game.submissions')->with('convention', $convention)->with('status' , 'Game removed ');
         }
         abort(403, 'This action is unauthorized.');
     }
