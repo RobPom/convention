@@ -408,7 +408,7 @@ class ConventionController extends Controller
 
     public function registered($id){
         $convention = Convention::find($id);
-        if( substr(Input::get('k', 'default') , 0 , 8) == '2eavfg7'){
+       // if( substr(Input::get('k', 'default') , 0 , 8) == '2eavfg7'){
             if($user = Auth::user())
             {
                 if( ! $convention->attendees()->where('user_id' , Auth::user()->id)->count()){
@@ -416,9 +416,9 @@ class ConventionController extends Controller
                 }
             }
             return view('calendar.convention.registered');
-        } else {
+       /*  } else {
             return view('calendar.convention.registration-error')->with('convention' , $convention);
-        };
+        }; */
     }
 
     public function registrationError($id){
