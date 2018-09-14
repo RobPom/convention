@@ -408,6 +408,7 @@ class ConventionController extends Controller
 
     public function registered($id){
         $convention = Convention::find($id);
+        //dd($convention);
        // if( substr(Input::get('k', 'default') , 0 , 8) == '2eavfg7'){
             if($user = Auth::user())
             {
@@ -415,19 +416,14 @@ class ConventionController extends Controller
                     $convention->attendees()->attach($user);
                 }
             }
-            return view('calendar.convention.registered');
+            return view('calendar.convention.registered')->with('convention' , $convention);
        /*  } else {
-            return view('calendar.convention.registration-error')->with('convention' , $convention);
+            return view('calendar.convention.registration-error');
         }; */
     }
 
-    public function registrationError($id){
-        $convention = Convention::find($id);
-        return view('calendar.convention.registration-error')->with('convention' , $convention);
-    }
-
     public function cancelled($id){
-
-        return view('calendar.convention.cancelled');
+        $convention = Convention::find($id);
+        return view('calendar.convention.cancelled')->with('convention' , $convention);;
     }
 }

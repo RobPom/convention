@@ -73,94 +73,102 @@
             <div class="col-md-6">
                 <div class="row">
                         <div class="col-md-12">
-                                <h5>Attendance</h5>
-                                <br><br><br>
-                          </div> 
-                    <div class="col-md-12">
-                        <h5>Location</h5>
-                        @isset($convention->location) 
-                            <div class="m-2 p-1 text-center">
-                                    <strong>Location</strong>
-                                <div class="card mt-3 border-0">    
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{$convention->location->name}}</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">{{$convention->location->address1}} <br> {{$convention->location->address2}}</h6>
-                        
-                                        <a href="{{$convention->location->link}}" class=" m-2 card-link btn btn-sm btn-primary">Google Maps</a>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        <h5>Attendance</h5>
                                     </div>
+                                    @auth
+                                        @if($convention->attendees()->where('user_id', Auth::user()->id)->count())
+                                            <p>You are signed up and ready to go.</p>
+                                            <a href="/calendar/convention/{{$convention->id}}/attendee/schedule">Your Convention Calendar</a>
+                                        @else
+                                            here's a registration link
+                                        @endif
+                                    @endauth
+
+                                    @guest
+
+                                    @endguest
                                 </div>
                             </div>
-                        @else
-                            <div class="m-2 p-1 text-center">
-                                <div class="card mt-3 border-0" style="height:100px;">
-                                    <div class="card-body">
+                                
+                               
+                          </div> 
+                    <div class="col-md-12 mt-3">
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h5>Location</h5>
+                                </div>
+                                @isset($convention->location) 
+                                    <h5>{{$convention->location->name}}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{$convention->location->address1}} <br> {{$convention->location->address2}}</h6>
+                                    <a href="{{$convention->location->link}}" class=" m-2 card-link btn btn-sm btn-primary">Google Maps</a>
+                                @else
+                                    <div class="text-center">
                                         <h5 class="card-title">No Location</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">(yet)</h6>
                                     </div>
-                                </div>
+                                @endisset
                             </div>
-                        @endisset
+                        </div>
+                        
+                       
                     </div>
-                    <div class="col-md-12">
-                        @if($convention->games->count())
-                            @php $game = $convention->games->shuffle()->first(); @endphp
-                            <h5>Games</h5>
-                            <div class="p-3">
-                                
-                                <div class="m-1">
-                                    {{$convention->games->count()}} Games<a href="/calendar/convention/{{$convention->id}}/games"> <em>see all</em></a>
-                                </div>
-                               
-                                <small class="text-muted"> <em> Like this one at random</em></small>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                @if($game->image == 'default.jpg')
-                                                    <img class="img-fluid align-self-center pull-left mr-3 mb-2" 
-                                                        style="max-height:100px ;"
-                                                        src='/img/game_images/default.jpg'
-                                                        alt="Avatar Placeholder">
-                                                @else
-                                                    <img class="img-fluid align-self-center mr-3 mb-2" 
-                                                        style="max-height:100px ;"
-                                                        src="/storage/uploads/game_images/{{$game->image}}"
-                                                        alt="Avatar Placeholder">
-                                                @endif
-                                            </div>
-                                            <div class="col-9">
-                                                <h5 class="card-title">{{$game->title}}</h5>
-                                                <h6 class="card-subtitle mb-2 text-muted">{{$game->tagline}}</h6>
-                                                <a href="/calendar/convention/{{$convention->id}}/game/{{$game->id}}" class="text-right">More Info</a>
-                                            </div>
+                    <div class="col-md-12 mt-3">
+                        <div class="card">
+                            <div class="card-body">
+                                @if($convention->games->count())
+                                    @php $game = $convention->games->shuffle()->first(); @endphp
+                                        <div class="card-title">
+                                            <h5>Games</h5>  
                                         </div>
-                                    </div>
-                                </div>
-                            </div> 
-                        @else
-                            <hr class="my-3">
-                            <div class="m-2 p-1 text-center">
-                                <div class="card mt-3 border-0" style="height:100px;">
-                                    <div class="card-body">
+                                        <div class="p-3">
+                                            
+                                            <div class="m-1">
+                                                {{$convention->games->count()}} Games<a href="/calendar/convention/{{$convention->id}}/games"> <em>see all</em></a>
+                                            </div>
+                                        
+                                            <small class="text-muted"> <em> Like this one at random</em></small>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            @if($game->image == 'default.jpg')
+                                                                <img class="img-fluid align-self-center pull-left mr-3 mb-2" 
+                                                                    style="max-height:100px ;"
+                                                                    src='/img/game_images/default.jpg'
+                                                                    alt="Avatar Placeholder">
+                                                            @else
+                                                                <img class="img-fluid align-self-center mr-3 mb-2" 
+                                                                    style="max-height:100px ;"
+                                                                    src="/storage/uploads/game_images/{{$game->image}}"
+                                                                    alt="Avatar Placeholder">
+                                                            @endif
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <h5 class="card-title">{{$game->title}}</h5>
+                                                            <h6 class="card-subtitle mb-2 text-muted">{{$game->tagline}}</h6>
+                                                            <a href="/calendar/convention/{{$convention->id}}/game/{{$game->id}}" class="text-right">More Info</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                @else
+                                    <div class="text-center">       
                                         <h5 class="card-title">No Games</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">(yet)</h6>
-                                    </div>
-                                </div>
+                                    </div> 
+                                @endif
                             </div>
-                        @endif
+                        </div>
                     </div>
-                    
                 </div>
             </div> 
         </div>
-          
-
-       
-            
-
-            
-        
-      
     </div>
     <div class="card-footer bg-white">
         <div class="row">
