@@ -411,4 +411,10 @@ class ConventionController extends Controller
         dd(Input::get('k', 'default'));
         return view('calendar.convention.registered');
     }
+
+    public function cancelled($id){
+        //Input::get('k', 'default');
+        dd(Input::get('k', 'default'));
+        return view('calendar.convention.registered');
+    }
 }
