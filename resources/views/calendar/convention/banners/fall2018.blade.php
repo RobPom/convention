@@ -67,7 +67,7 @@
             <div class="date text-center">
                 Oct 12 - 14, 2018
             </div>
-            <a href="/calendar/convention" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Registration Open!</a>
+            <a href="/calendar/convention" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Find out More</a>
         </div>
     </div>
     <br>

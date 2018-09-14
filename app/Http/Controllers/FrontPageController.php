@@ -85,7 +85,11 @@ class FrontPageController extends Controller
     }
 
     public function landing(){
-        return view('landing');
+        $frontpage = ''; $lead = null ; $featured = null;
+        if($frontpage = Page::where('title' , 'Front Page')->first()) {
+            $lead = BlogPost::find($frontpage->lead_article);   
+        }
+        return view('landing')->with('lead', $lead);
     }
 
     public function home(){
