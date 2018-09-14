@@ -7,12 +7,15 @@
         
 @guest
 
-You are a guest.
+<div class="lead mb-3 text-center">Welcome to {{$convention->title}}!</div>
+    <p class='text-center mb-4'>You’ve just entered a pretty exclusive club:  {{$convention->title}} attendee!</p> 
+
+    <p>Take a look at the convention information. One of us will be touch to find out what you want to play. We're looking forward to seeing you.</p>
 @endguest
 
     @auth
     <div class="lead mb-3 text-center">Welcome to {{$convention->title}}, {{Auth::user()->firstname}}!</div>
-    <p class='text-center mb-4'>You’ve just entered a pretty exclusive club: IntrigueCon 2018 attendee!</p> 
+    <p class='text-center mb-4'>You’ve just entered a pretty exclusive club:  {{$convention->title}}attendee!</p> 
 
     <p>Take a quick look over the particulars below and with a couple of clicks, you’ll be all signed up and ready for the con.
         Give yourself a pat on the back. You did good!</p>

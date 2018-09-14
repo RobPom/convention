@@ -78,10 +78,10 @@
                         <span class="text-muted"></span>
                     </div>
                     <div class="col-sm-6 ">
-                        <a href="" class="text-secondary">Our Twitter</a> <br>
-                        <a href="" class="text-secondary">Our Facebook Page</a> <br>
-                        <a href="" class="text-secondary">About Us</a> <br>
-                        <a href="" class="text-secondary">Code of Conduct</a>
+                        <a href="https://twitter.com/intriguecon" class="text-secondary">Our Twitter</a> <br>
+                        <a href="https://www.facebook.com/groups/663587420414716/" class="text-secondary">Our Facebook Page</a> <br>
+                        <a href="/about" class="text-secondary">About Us</a> <br>
+                        <a href="/codeofconduct" class="text-secondary">Code of Conduct</a>
                     </div>
                 </div>
               

@@ -91,5 +91,13 @@ class FrontPageController extends Controller
     public function home(){
         return $this->checkCookie();
     }
+
+    public function about(){
+        return view('about');
+    }
+
+    public function codeofconduct(){
+        return view('codeofconduct');
+    }
     
 }

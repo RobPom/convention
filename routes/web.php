@@ -12,6 +12,10 @@ Auth::routes();
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 Route::get('/profile/', 'ProfileController@dashboard');
 
+/* static page routes */
+Route::get('/codeofconduct/' , 'FrontPageController@codeofconduct');
+Route::get('/about/' , 'FrontPageController@about');
+
 Route::get('/admin/', 'ProfileController@admin');
 Route::get('/admin/users', 'ProfileController@adminUsers');
 Route::get('/admin/organizers', 'ProfileController@adminOrganizers');

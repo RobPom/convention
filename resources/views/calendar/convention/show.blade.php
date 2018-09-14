@@ -72,7 +72,7 @@
             </div>
             <div class="col-md-6">
                 <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 mt-3">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card-title">
@@ -83,12 +83,12 @@
                                             <p>You are signed up and ready to go.</p>
                                             <a href="/calendar/convention/{{$convention->id}}/attendee/schedule">Your Convention Calendar</a>
                                         @else
-                                            here's a registration link
+                                            <p> <em>Open Registration Coming Soon!</em> </p>
                                         @endif
                                     @endauth
 
                                     @guest
-
+                                        <p> <em>Open Registration Coming Soon!</em> </p>
                                     @endguest
                                 </div>
                             </div>
