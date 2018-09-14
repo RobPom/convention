@@ -10,7 +10,7 @@ use App\Timeslot;
 use Carbon\Carbon;
 use Validator;
 use Redirect;
-use Input;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,7 +23,7 @@ class ConventionController extends Controller
     public function __construct()
     {
         $this->active_convention = Convention::where('status' , 'active')->first();
-        $this->middleware('auth')->except('show' , 'index' , 'showActive', 'schedule', 'showGame' , 'allGames');
+        $this->middleware('auth')->except('show' , 'index' , 'showActive', 'schedule', 'showGame' , 'allGames' , 'register' , 'registered', 'cancelled');
     }
 
     public function index() {
@@ -407,14 +407,27 @@ class ConventionController extends Controller
     }
 
     public function registered($id){
-        //Input::get('k', 'default');
-        dd(Input::get('k', 'default'));
-        return view('calendar.convention.registered');
+        $convention = Convention::find($id);
+        if( substr(Input::get('k', 'default') , 0 , 8) == '2eavfg7'){
+            if($user = Auth::user())
+            {
+                if( ! $convention->attendees()->where('user_id' , Auth::user()->id)->count()){
+                    $convention->attendees()->attach($user);
+                }
+            }
+            return view('calendar.convention.registered');
+        } else {
+            return view('calendar.convention.registration-error')->with('convention' , $convention);
+        };
+    }
+
+    public function registrationError($id){
+        $convention = Convention::find($id);
+        return view('calendar.convention.registration-error')->with('convention' , $convention);
     }
 
     public function cancelled($id){
-        //Input::get('k', 'default');
-        dd(Input::get('k', 'default'));
-        return view('calendar.convention.registered');
+
+        return view('calendar.convention.cancelled');
     }
 }
