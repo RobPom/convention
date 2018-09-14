@@ -15,7 +15,7 @@
         <p>Great! Make sure you're logged in then click the paypal button. 
             Once you’re done with Paypal you can use that sweet, sweet, account to sign up for games. </p>
 
-         <p>If you didn’t, it’s okay! You can follow <a href="/register">this link to make an account</a>. </p>
+         <p>If you didn’t, it’s okay! You can follow <a href="{{ url('/register') }}">this link to make an account</a>. </p>
          
          <p>If you really, really don't want to make an account, that's okay too. You can still attend without one.
              We'll add you to the calendar manually (we'll be in contact).
