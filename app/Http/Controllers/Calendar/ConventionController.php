@@ -10,6 +10,7 @@ use App\Timeslot;
 use Carbon\Carbon;
 use Validator;
 use Redirect;
+use Input;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -106,7 +107,7 @@ class ConventionController extends Controller
             'start_date'=> 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'lead'  => 'required|max:350',
-            'description'  => 'required|max:2000',
+            'description'  => 'required|max:8000',
         ]);
 
         if($validator->fails()){
@@ -151,7 +152,7 @@ class ConventionController extends Controller
             'start_date'=> 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'lead'  => 'required|max:350',
-            'description'  => 'required|max:2000',
+            'description'  => 'required|max:8000',
         ]);
 
         if($validator->fails()){
@@ -232,8 +233,8 @@ class ConventionController extends Controller
             'min'=> 'required',
             'max' => 'required|gte:min|max:12',
             'lead'  => 'required|max:350',
-            'description'  => 'required|max:2000',
-            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1999',
+            'description'  => 'required|max:4000',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1000',
         ]);
 
         if($validator->fails()){
@@ -399,5 +400,15 @@ class ConventionController extends Controller
             return view('calendar.convention.game.submissions')->with('convention', $convention)->with('status' , 'Game removed ');
         }
         abort(403, 'This action is unauthorized.');
+    }
+
+    public function register($id){
+        return view('calendar.convention.register');
+    }
+
+    public function registered($id){
+        //Input::get('k', 'default');
+        dd(Input::get('k', 'default'));
+        return view('calendar.convention.registered');
     }
 }

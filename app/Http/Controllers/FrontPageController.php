@@ -35,8 +35,7 @@ class FrontPageController extends Controller
 
     public function checkCookie()
     {
-        if (Cookie::get('visited') !== null){
-            $frontpage = ''; $lead = null ; $featured = null;
+        $frontpage = ''; $lead = null ; $featured = null;
             if($frontpage = Page::where('title' , 'Front Page')->first()) {
                 $lead = BlogPost::find($frontpage->lead_article);
                 $featured = BlogPost::find($frontpage->featured_article);
@@ -48,13 +47,18 @@ class FrontPageController extends Controller
             $posts = $posts->reject(function($posts) {
                 return $posts->posted_on == null;
             });
-
+        
+        if (Cookie::get('visited') !== null){
             return view('home')
                 ->with('posts' , $posts)
                 ->with('lead' , $lead)
                 ->with('featured' , $featured); 
+        } else {
+            return redirect('welcome')->cookie('visited','true' , 280060);           
         }
-        return redirect('welcome')->cookie('visited','true' , 280060);
+
+        
+
     }
 
     public function update(Request $request)

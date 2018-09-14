@@ -88,6 +88,8 @@ Route::get('/calendar/convention/event/{id}/edit' , 'Calendar\TimeslotController
 Route::post('/calendar/convention/event/store' , 'Calendar\TimeslotController@storeEvent');
 
 /* Convention Attendees*/
+Route::get('/calendar/convention/{id}/register' , 'Calendar\ConventionController@register');
+
 Route::get('/calendar/convention/{id}/attendees' , 'Calendar\ConventionController@attendees');
 Route::post('/calendar/convention/attendees' , 'Calendar\ConventionController@storeAttendees');
 

@@ -76,7 +76,7 @@
                         {{ $featured->datePosted() }}
                     </small></h6>
                     <br>
-                    <p class="lead">{{substr($featured->lead , 1 , 120) }} ...</p>
+                    <p class="lead">{{substr($featured->lead , 0 , 120) }} ...</p>
                     <a class='float-right' href='post/{{$featured->id}}'>Read More...</a>
                 </div>
             </div>

@@ -53,10 +53,10 @@
 </style>
 <div class="banner fall p-4">
     <div class='row'>   
-        <div class="logo text-center">
-            Intrigue<span class='con'>Con</span>
+        <div class="logo text-center col-12">
+            Intrigue<span class='con'>Con</span> 5
         </div>
-        <div class="date text-center">
+        <div class="date text-center col-12">
             Oct 12 - 14, 2018
         </div>
 

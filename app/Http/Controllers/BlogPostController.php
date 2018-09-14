@@ -89,6 +89,7 @@ class BlogPostController extends Controller
         $validator = Validator::make($request->all(), [
             'title'  => 'required|max:255',
             'lead'  => 'max:255',
+            'body'  => 'required|max:8000',
         ]);
 
         if($validator->fails()){
@@ -178,6 +179,7 @@ class BlogPostController extends Controller
         $validator = Validator::make($request->all(), [
             'title'  => 'required|max:255',
             'lead'  => 'max:255',
+            'body'  => 'required|max:8000',
         ]);
 
         if($validator->fails()){

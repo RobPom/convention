@@ -67,7 +67,7 @@ class GameController extends Controller
             'min'=> 'required',
             'max' => 'required|gte:min|max:12',
             'lead'  => 'required|max:350',
-            'description'  => 'required|max:2000',
+            'description'  => 'required|max:4000',
             'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1000',
         ]);
 
@@ -146,7 +146,7 @@ class GameController extends Controller
             'min'=> 'required',
             'max' => 'required|gte:min|max:12',
             'lead'  => 'required|max:350',
-            'description'  => 'required|max:2000',
+            'description'  => 'required|max:4000',
             'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1000',
         ]);
 
@@ -240,7 +240,7 @@ class GameController extends Controller
             'min'=> 'required',
             'max' => 'required|gte:min|max:12',
             'lead'  => 'required|max:350',
-            'description'  => 'required|max:2000',
+            'description'  => 'required|max:4000',
             'image' => 'image|mimes:jpg,png,jpeg,gif|max:1000',
         ]);
 
