@@ -23,16 +23,26 @@
             
          <hr>
          <div class="row">
-             <div class="col-sm-6 text-center text-sm-right">
-                 <strong>$30 for a weekend pass</strong>
+             <div class="col-sm-3 offset-sm-3 text-center text-sm-right mb-2">
+                <small><em>After payment is complete, click 'Return to Merchant' to come back to this site, and start picking games!</em></small>
              </div>
              <div class="col-sm-6 text-center text-sm-left">
+               
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="K6KG2ZGJQYBDN">
-                    <input type="image" src="/img/paypal.jpg" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <input type="hidden" name="hosted_button_id" value="UQUE4TAZLFLFE">
+                    <table>
+                    <tr><td><input type="hidden" name="on0" value="Number of Attendees">Number of Attendees</td></tr><tr><td><select name="os0">
+                        <option value="One person">One person $30.00 CAD</option>
+                        <option value="Two people">Two people $60.00 CAD</option>
+                        <option value="Three people">Three people $90.00 CAD</option>
+                    </select> </td></tr>
+                    </table>
+                    <input type="hidden" name="currency_code" value="CAD">
+                    <input class='mt-2' type="image" src="/img/paypal.jpg" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
                     <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-                </form>
+                    </form>
+
              </div>
          </div>
          

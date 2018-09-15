@@ -50,6 +50,7 @@
                                     @if($day->isSameDay($timeslot->start_time()))
                                         <a href="/calendar/convention/timeslot/{{$timeslot->id}}" class="list-group-item list-group-item-action">
                                             <div class="row">
+                                                
                                                 <div class="col text-left">
                                                    <div>{{$timeslot->title}}</div>
                                                 <small>{{$timeslot->only_times()}}</small>
@@ -61,6 +62,7 @@
                                                     </small>
                                                     @endif
                                                 </div>
+
                                             </div> 
                                         </a>      
                                     @endif
@@ -83,12 +85,16 @@
                                             <p>You are signed up and ready to go.</p>
                                             <a href="/calendar/convention/{{$convention->id}}/attendee/schedule">Your Convention Calendar</a>
                                         @else
-                                            <p> <em>Open Registration Coming Soon!</em> </p>
+                                        <div class="text-center">
+                                                <a href="/calendar/convention/{{$convention->id}}/register" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Register Now!</a>
+                                            </div>
                                         @endif
                                     @endauth
 
                                     @guest
-                                        <p> <em>Open Registration Coming Soon!</em> </p>
+                                        <div class="text-center">
+                                            <a href="/calendar/convention/{{$convention->id}}/register" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Register Now!</a>
+                                        </div>
                                     @endguest
                                 </div>
                             </div>
