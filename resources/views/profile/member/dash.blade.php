@@ -33,9 +33,11 @@
                     @auth
                         @if( $user->id == $member->id ||$user->hasRole('organizer') ||  $user->hasRole('admin') )
                             <strong>Full Name:</strong> {{$member->firstname}} {{$member->lastname}}<br>
+                            <strong>Email: </strong>{{$member->email}} <br>
+                            <strong>Location: </strong> {{$member->profile->location}} <br>
                         @endif
-                        <strong>Email: </strong>{{$member->email}} <br>
-                        <strong>Location: </strong> {{$member->profile->location}} <br>
+                        
+                        
                         <strong>Joined: </strong>  {{ (new \Carbon\Carbon($member->created_at))->toFormattedDateString() }} <br>
                     @endauth
                 </p>    
