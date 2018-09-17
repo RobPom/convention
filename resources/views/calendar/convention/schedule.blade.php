@@ -40,7 +40,7 @@
             </ol>
         </nav>
         
-        <div class="card">
+        <div class="card" style="max-width: 600px;">
             <div class="card-header">
                 <strong>Convention Schedule</strong>
             </div>
@@ -56,31 +56,46 @@
                                     @if($day->isSameDay($timeslot->start_time()))
                                     <a href="/calendar/convention/timeslot/{{$timeslot->id}}" class="list-group-item list-group-item-action">
                                         <div class="row">
-                                            <div class="col-md-3 text-center">
-                                                <div class="strong">
-                                                    {{$timeslot->title}}
-                                                </div>
-                                                <div class="small text-muted">
-                                                    {{$timeslot->only_times()}}
-                                                </div>
-                                                <strong> </strong> <br>
-                                               
-                                            </div>
+                                            
                                             @if($timeslot->accept_games == true)
-                                             
+                                                <div class="col-md-3 ">
+                                                    <div class="small text-muted">
+                                                        {{$timeslot->only_times()}}
+                                                        
+                                                    </div>
+                                                    <div class="strong">
+                                                            {{$timeslot->title}}
+                                                    </div>
+                                                   
+                                                
+                                                </div>
                                         
-                                                <div class="col-md-6">
-                                                    <div class="row mt-1">
-                                                        <div class="col small">
+                                                <div class="col-md-9">
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-6  text-center small">  
                                                             Games: {{$timeslot->games->count()}}
                                                         </div>
                     
-                                                        <div class="col small">
+                                                        <div class="col-sm-12 col-md-6 text-center small">
                                                             Players: {{$timeslot->players()}} / {{$timeslot->max_players()}}
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @endif
+
+                                            @else
+                                                <div class="col-md-3">
+                                                    <div class="small text-muted">
+                                                        {{$timeslot->only_times()}}
+                                                    
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9 text-center">
+                                                    
+                                                    {{$timeslot->title}}
+                                                
+                                                </div>
+                                                
+                                            @endif
                                         </div>   
                                         
 

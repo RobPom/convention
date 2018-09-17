@@ -44,11 +44,13 @@
 
             <div class="form-group row">
                 
-                <label class="col-sm-4 col-form-label text-md-right">Update Avatar</label>
-
+                <label class="col-sm-4 col-form-label text-md-right">Update Avatar <br>
+                    <div class="small em text-muted">For best results make sure your profile pic is square!</div>
+                </label>
+                
                 
                 <!-- <label for="avatar" class="ml-3 mt-1 btn btn-sm btn-secondary">Change Image</label> -->
-                <input type="file" name="avatar" id="avatar"">
+                <input type="file" name="avatar" id="avatar""> 
                 @if ($errors->has('avatar'))
                 <span class="invalid-feedback">
                     <strong>{{ $errors->first('avatar') }}</strong>

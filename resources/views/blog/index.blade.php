@@ -16,8 +16,11 @@
                     @endphp
                     
                     <div class="mb-4">@include('profile.member.header')</div>
-                @endif      
+                    <br>
+                @endif
+                <hr> 
                 @foreach($posts as $post)
+                
                     <span class="small text-muted">
                         {{$post->datePosted()}}
                     </span>

@@ -51,7 +51,9 @@
                                 <li class="list-group-item">
                                     <div class="row">
                                         <div class="col-6">
+                                            <a href="/calendar/convention/session/{!!$timeslot->gamesession($game)->id!!}">
                                             {{$game->title}}
+                                        </a>
                                         </div>
                                         <div class="col-3">
                                                 Players: {{$timeslot->gamesession($game)->attendees->count()}} / {{$game->max}}

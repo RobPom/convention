@@ -3,10 +3,12 @@
 @section('content')
 
 <div class="card p-2 border-0">
-    <div class="card-header bg-white">
+    <div class="card-header bg-white border-0">
         @include('profile.member.header')
     </div>
+
     <div class="card-body">
+        <hr>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-white">
                     <li class="breadcrumb-item">

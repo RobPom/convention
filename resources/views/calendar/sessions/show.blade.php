@@ -129,6 +129,12 @@
                             {{$gamesession->game->advisory}}
                         </div>
                     @endisset
+                    @isset($gamesession->game->system)
+                        <div class="col text-center">
+                            {{$gamesession->game->system}}
+                        </div>
+                    @endisset
+                </div>
                 </div>
             </div>
         </div>

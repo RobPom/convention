@@ -66,12 +66,12 @@
 
                             @if(Auth::user()->avatar == 'default.jpg')
                                 <img class="img-fluid align-self-center mr-2 mb-1" 
-                                    style="height:25px ; border-radius: 50%;"
+                                    style="height:25px ; max-width: 25px; border-radius: 50%;"
                                     src='/img/avatar/default.jpg'
                                     alt="Avatar Placeholder">
                             @else
                                 <img class="img-fluid align-self-center mr-2 mb-1" 
-                                    style="height:25px ; border-radius: 50%;"
+                                    style="height:25px ; max-width: 25px; border-radius: 50%;"
                                     src="/storage/uploads/avatars/{{Auth::user()->avatar}}"
                                     alt="Avatar Placeholder">
                             @endif

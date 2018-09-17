@@ -50,19 +50,20 @@
                                     @if($day->isSameDay($timeslot->start_time()))
                                         <a href="/calendar/convention/timeslot/{{$timeslot->id}}" class="list-group-item list-group-item-action">
                                             <div class="row">
-                                                
-                                                <div class="col text-left">
-                                                   <div>{{$timeslot->title}}</div>
-                                                <small>{{$timeslot->only_times()}}</small>
-                                                </div>
-                                                <div class="col text-right">
-                                                    @if($timeslot->accept_games == true)
-                                                    <small>
-                                                        Players: {{$timeslot->players()}} / {{$timeslot->max_players()}}
-                                                    </small>
-                                                    @endif
-                                                </div>
-
+                                                @if($timeslot->accept_games == true)
+                                                    <div class="col text-left">
+                                                        <div>{{$timeslot->title}}</div>
+                                                        <small>{{$timeslot->only_times()}}</small>
+                                                    </div>
+                                                    <div class="col text-right">
+                                                        <small>Players: {{$timeslot->players()}} / {{$timeslot->max_players()}}</small>
+                                                    </div>
+                                                @else
+                                                    <div class="col text-center">
+                                                        <div>{{$timeslot->title}}</div>
+                                                        <small>{{$timeslot->only_times()}}</small>
+                                                    </div>
+                                                @endif
                                             </div> 
                                         </a>      
                                     @endif
@@ -83,7 +84,9 @@
                                     @auth
                                         @if($convention->attendees()->where('user_id', Auth::user()->id)->count())
                                             <p>You are signed up and ready to go.</p>
-                                            <a href="/calendar/convention/{{$convention->id}}/attendee/schedule">Your Convention Calendar</a>
+                                            <div class="text-center">
+                                                <a href="/calendar/convention/{{$convention->id}}/attendee/schedule" class="btn btn-info btn-primary btn-sm mt-2">Your Convention Schedule</a>
+                                            </div>
                                         @else
                                         <div class="text-center">
                                                 <a href="/calendar/convention/{{$convention->id}}/register" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Register Now!</a>
@@ -157,7 +160,7 @@
                                                         <div class="col-9">
                                                             <h5 class="card-title">{{$game->title}}</h5>
                                                             <h6 class="card-subtitle mb-2 text-muted">{{$game->tagline}}</h6>
-                                                            <a href="/calendar/convention/{{$convention->id}}/game/{{$game->id}}" class="text-right">More Info</a>
+                                                            <a href="/calendar/convention/{{$convention->id}}/game/{{$game->id}}" class="text-right btn btn-sm btn-primary">More Info</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -174,6 +177,35 @@
                     </div>
                 </div>
             </div> 
+        </div>
+
+        <div class="row">
+            <div class="col-12 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h5>{{$convention->title}} Sponsors</h5>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="card border-0 mx-4" style="width: 10rem;">
+                                <a href="https://www.pawn-pint.com/">
+                                    <img src="/img/sponsors/P&P-logo-square.png" 
+                                    style="max-width: 100%; "
+                                    alt="www.pawn-pint.com">
+                                </a> 
+                            </div>
+
+                            <div class="card border-0 mx-4" style="width: 10rem;">
+                                <a href="https://www.apttogame.com/">
+                                    <img src="/img/sponsors/apttogame_500w.png" 
+                                    style="max-width: 100%; "
+                                    alt="apttogame.com">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="card-footer bg-white">

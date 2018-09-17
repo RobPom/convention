@@ -22,12 +22,12 @@
 
                     @if($lead->user->avatar == 'default.jpg')
                         <img class="img-fluid align-self-centerb-1 mb-1" 
-                            style="height:20px ; border-radius: 50%;"
+                            style="height:20px ; max-width: 20px; border-radius: 50%;"
                             src='/img/avatar/default.jpg'
                             alt="Avatar Placeholder">
                     @else
                         <img class="img-fluid align-self-center mb-1" 
-                            style="height:20px ; border-radius: 50%;"
+                            style="height:20px ; max-width: 20px; border-radius: 50%;"
                             src="/storage/uploads/avatars/{{$lead->user->avatar}}"
                             alt="Avatar Placeholder">
                     @endif
@@ -62,12 +62,12 @@
                     <h6><small>
                         @if($featured->user->avatar == 'default.jpg')
                             <img class="img-fluid align-self-center mb-1" 
-                                style="height:20px ; border-radius: 50%;"
+                                style="height:20px ; max-width: 20px; border-radius: 50%;"
                                 src='/img/avatar/default.jpg'
                                 alt="Avatar Placeholder">
                         @else
                             <img class="img-fluid align-self-center mb-1" 
-                                style="height:20px ; border-radius: 50%;"
+                                style="height:20px ;max-width: 20px;  border-radius: 50%;"
                                 src="/storage/uploads/avatars/{{$featured->user->avatar}}"
                                 alt="Avatar Placeholder">
                         @endif
