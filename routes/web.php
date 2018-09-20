@@ -178,3 +178,10 @@ Route::post('/calendar/convention/game/submit' , 'Calendar\ConventionController@
 Route::get('/calendar/convention/submissions/{id}' , 'Calendar\ConventionController@submissions');
 Route::delete('/calendar/convention/submission/{id}', 'Calendar\ConventionController@rejectSubmission');
 Route::post('/calendar/convention/submission', 'Calendar\ConventionController@acceptSubmission');
+
+
+// DEV ONLY //
+
+Route::get('/testmenu', function () {
+    return view('blog.menu');
+});

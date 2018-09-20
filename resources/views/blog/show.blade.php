@@ -88,31 +88,7 @@
             </div>
             <div class="col-md-4">
 
-                <div class="card">
-                    <div class="card-header">
-                        Categories
-                    </div>
-                    <div class="card-body">
-                        @if(Request::segment(2) == null)
-                            <a href="/posts" >
-                                <div class="mb-2 btn disabled text-muted p-0">Latest</div>
-                            </a> <br>
-                        @else
-                            <a href="/posts" >
-                                <div class="mb-2">Latest</div>
-                            </a>
-                        @endif
-                        @foreach($categories as $category)                          
-                            
-                            @if(App\BlogPost::where('category' , $category->id)->where('posted_on', '!=', NULL)->count()) 
-                                <a href="/posts/category/{{$category->id}}">
-                                    {{$category->title}}
-                                </a> <br>
-                            @endif
-                           
-                        @endforeach
-                    </div>
-                </div>
+                @include('blog.menu')
 
                 @auth
                     @if(Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin'))

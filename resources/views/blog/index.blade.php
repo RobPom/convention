@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <div class='card border-0'>
     <div class='card-body'>
         <h3>{{$pagetitle}}</h3>
@@ -10,7 +11,7 @@
         <hr class="my-3">
         <div class="row">
             <div class="col-md-8">
-                    @if(Request::segment(2) == 'user')
+                @if(Request::segment(2) == 'user')
                     @php
                         $member = $posts->first()->user;
                     @endphp
@@ -21,7 +22,7 @@
                     <br>
                 @endif 
 
-                @if($posts->count()) 
+                @if($posts->where('posted_on', '!=', NULL)->count()) 
                     @foreach($posts as $post)
                     
                         <span class="small text-muted">
@@ -67,35 +68,7 @@
                 {{ $posts->links() }}
             </div>
             <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        Categories
-                    </div>
-                    <div class="card-body">
-                        @if(Request::segment(2) == null)
-                            <a href="/posts" >
-                                <div class="mb-2 btn disabled text-muted p-0">Latest</div>
-                            </a> <br>
-                        @else
-                            <a href="/posts" >
-                                <div class="mb-2">Latest</div>
-                            </a>
-                        @endif
-                        @foreach($categories as $category)                          
-                            @if(Request::segment(2) == 'category' && Request::segment(3) == $category->id)
-                                <a href="/posts/category/{{$category->id}}"  class="btn disabled text-muted p-0">
-                                    {{$category->title}}
-                                </a> <br>
-                            @else
-                                @if(App\BlogPost::where('category' , $category->id)->where('posted_on', '!=', NULL)->count()) 
-                                    <a href="/posts/category/{{$category->id}}">
-                                        {{$category->title}}
-                                    </a> <br>
-                                @endif
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
+                @include('blog.menu')
             </div>
         </div>
 
