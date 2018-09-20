@@ -1,5 +1,5 @@
 @php
-$categories = App\BlogCategory::all();
+$categories = App\BlogCategory::all()->sortBy('title');
 @endphp
 
 <div class="card">
