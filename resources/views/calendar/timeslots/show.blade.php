@@ -70,7 +70,7 @@
                             <div class="row">
                                 @foreach($timeslot->games as $game)
                                 <div class="col-sm-6 col-md-12 col-lg-6 mt-1">
-                                    <a href='/calendar/convention/session/{{$timeslot->gamesession($game)->id}}' class="list-group-item list-group-item-action">
+                                    <a href='/calendar/convention/session/{{$timeslot->gamesession($game)->id}}' class="list-group-item list-group-item-action" style="min-height: 96px;">
                                         <div class="row">
                                             <div class="col-4 text-center" >
                                                 @if($game->image == 'default.jpg')

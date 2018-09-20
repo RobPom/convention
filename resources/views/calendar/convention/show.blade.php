@@ -52,7 +52,7 @@
                                             <div class="row">
                                                 @if($timeslot->accept_games == true)
                                                     <div class="col text-left">
-                                                        <div>{{$timeslot->title}}</div>
+                                                        <div><strong>{{$timeslot->title}}</strong></div>
                                                         <small>{{$timeslot->only_times()}}</small>
                                                     </div>
                                                     <div class="col text-right">
@@ -60,7 +60,7 @@
                                                     </div>
                                                 @else
                                                     <div class="col text-center">
-                                                        <div>{{$timeslot->title}}</div>
+                                                        <div> <strong>  {{$timeslot->title}}</strong></div>
                                                         <small>{{$timeslot->only_times()}}</small>
                                                     </div>
                                                 @endif
@@ -73,7 +73,7 @@
                     </div>
                 @endforeach
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 mt-3 pt-1">
                 <div class="row">
                         <div class="col-md-12 mt-3">
                             <div class="card">

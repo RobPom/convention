@@ -10,7 +10,7 @@
         <p>You should totally click that button because IntrigueCon is awesome and, 
                 by proxy, attending will make you awesome too! It’s also a great way to show your support for a dedicated roleplaying convention 
                         in Edmonton and keep it going for years to come.</p>
-        <p>Here’s a question. Did you make already make an account on the WS? </p>
+        <p>Here’s a question. Did you make already make an account on the website? </p>
 
         <p>Great! Make sure you're logged in then click the paypal button. 
             Once you’re done with Paypal you can use that sweet, sweet, account to sign up for games. </p>

@@ -181,7 +181,7 @@ Route::post('/calendar/convention/submission', 'Calendar\ConventionController@ac
 
 
 // DEV ONLY //
-
+/* 
 Route::get('/testmenu', function () {
     return view('blog.menu');
-});
+}); */
