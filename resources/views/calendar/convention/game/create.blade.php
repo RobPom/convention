@@ -15,6 +15,9 @@
         selector: '#description',
         height: 500,
         menubar: false,
+        relative_urls : false,
+        remove_script_host : true,
+        document_base_url : "http://www.intriguecon.com",
         plugins: [
             'advlist autolink lists link image charmap print preview anchor textcolor',
             'searchreplace visualblocks code fullscreen',
