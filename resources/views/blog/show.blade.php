@@ -5,7 +5,7 @@
 <div class='card border-0'>
     <div class='card-body'>
         <h3>{{$post->title}}</h3>
-        <hr class="my-4">
+        <hr class="my-3">
         <div class="row">
             <div class="col-md-8">        
               
@@ -103,17 +103,13 @@
                             </a>
                         @endif
                         @foreach($categories as $category)                          
-                            @if(Request::segment(2) == 'category' && Request::segment(3) == $category->id && $category->title != 'Uncategorized')
-                                <a href="/posts/category/{{$category->id}}"  class="btn disabled text-muted p-0">
+                            
+                            @if(App\BlogPost::where('category' , $category->id)->where('posted_on', '!=', NULL)->count() && $category->title != 'Uncategorized') 
+                                <a href="/posts/category/{{$category->id}}">
                                     {{$category->title}}
                                 </a> <br>
-                            @else
-                                @if(App\BlogPost::where('category' , $category->id)->where('posted_on', '!=', NULL)->count() && $category->title != 'Uncategorized') 
-                                    <a href="/posts/category/{{$category->id}}">
-                                        {{$category->title}}
-                                    </a> <br>
-                                @endif
                             @endif
+                           
                         @endforeach
                     </div>
                 </div>

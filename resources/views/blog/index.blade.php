@@ -6,19 +6,21 @@
     <div class='card-body'>
         <h3>{{$pagetitle}}</h3>
         
-
-       
+        
+        <hr class="my-3">
         <div class="row">
-            <div class="col-md-8"> 
-                @if(Request::segment(2) == 'user')
+            <div class="col-md-8">
+                    @if(Request::segment(2) == 'user')
                     @php
                         $member = $posts->first()->user;
                     @endphp
+                    
+                    <div class="mt-3 mb-4">@include('profile.member.header')</div>
+
                     <hr class="my-3">
-                    <div class="mb-4">@include('profile.member.header')</div>
                     <br>
-                @endif
-                <hr>
+                @endif 
+
                 @if($posts->count()) 
                     @foreach($posts as $post)
                     
