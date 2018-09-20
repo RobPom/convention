@@ -102,18 +102,18 @@
                                 <div class="mb-2">Latest</div>
                             </a>
                         @endif
-                        @foreach($categories as $category)
-                           
-                            @if(Request::segment(2) == 'category' && Request::segment(3) == $category->id) 
-                            <a href="/posts/category/{{$category->id}}"  class="btn disabled text-muted p-0">
-                                {{$category->title}}
-                            </a> <br>
+                        @foreach($categories as $category)                          
+                            @if(Request::segment(2) == 'category' && Request::segment(3) == $category->id && $category->title != 'Uncategorized')
+                                <a href="/posts/category/{{$category->id}}"  class="btn disabled text-muted p-0">
+                                    {{$category->title}}
+                                </a> <br>
                             @else
-                            <a href="/posts/category/{{$category->id}}">
-                                {{$category->title}}
-                            </a> <br>
+                                @if(App\BlogPost::where('category' , $category->id)->where('posted_on', '!=', NULL)->count() && $category->title != 'Uncategorized') 
+                                    <a href="/posts/category/{{$category->id}}">
+                                        {{$category->title}}
+                                    </a> <br>
+                                @endif
                             @endif
-                            
                         @endforeach
                     </div>
                 </div>
