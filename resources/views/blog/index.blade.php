@@ -82,12 +82,12 @@
                             </a>
                         @endif
                         @foreach($categories as $category)                          
-                            @if(Request::segment(2) == 'category' && Request::segment(3) == $category->id && $category->title != 'Uncategorized')
+                            @if(Request::segment(2) == 'category' && Request::segment(3) == $category->id)
                                 <a href="/posts/category/{{$category->id}}"  class="btn disabled text-muted p-0">
                                     {{$category->title}}
                                 </a> <br>
                             @else
-                                @if($posts->where('category' , $category->id)->where('posted_on', '!=', NULL)->count() && $category->title != 'Uncategorized') 
+                                @if(App\BlogPost::where('category' , $category->id)->where('posted_on', '!=', NULL)->count()) 
                                     <a href="/posts/category/{{$category->id}}">
                                         {{$category->title}}
                                     </a> <br>

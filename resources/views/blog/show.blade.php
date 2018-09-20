@@ -104,7 +104,7 @@
                         @endif
                         @foreach($categories as $category)                          
                             
-                            @if(App\BlogPost::where('category' , $category->id)->where('posted_on', '!=', NULL)->count() && $category->title != 'Uncategorized') 
+                            @if(App\BlogPost::where('category' , $category->id)->where('posted_on', '!=', NULL)->count()) 
                                 <a href="/posts/category/{{$category->id}}">
                                     {{$category->title}}
                                 </a> <br>
