@@ -25,8 +25,8 @@ class Game extends Model
         return false;   
     }
 
-    public function conventions(){
-        return $this->belongsToMany('App\Convention');
+    public function convention(){
+        return $this->belongsTo('App\Convention' , 'event_id');
     }
     
     public function user()

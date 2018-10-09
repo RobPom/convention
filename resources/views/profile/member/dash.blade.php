@@ -12,9 +12,9 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-white">
                     <li class="breadcrumb-item">
-                        <!-- <a href="/calendar/convention/{{$convention->id}}">Convention</a> -->
+                       
                     </li>
-                    <!-- <li class="breadcrumb-item active" aria-current="page">Schedule</li> -->
+                   
                 </ol>
             </nav>
         <div class="card">
@@ -77,20 +77,44 @@
             
             <hr>
                 <div class="card-title">
-                    <strong>Games</strong>
+                    <strong>Game Library</strong>
                 </div>
-            @if($member->games->count())
+            @if($member->games->where('event_id' , 0 )->count())
             <a href="/profile/{{$member->id}}/games">
-                {{$member->games->count()}} Games </a><br>
+                {{$member->games->where('parent_id' , 0 )->count()}} Games </a><br>
             @endif
 
             @auth
                 @if($member->id == Auth::user()->id)
-                    <a href="/games/new" >Create a new Game</a>
+                    <a href="/games/new" >Add a Game</a>
                 @endif
             @endauth
 
-            
+            @if( $member->games->where('event_id','!=', 0)->count() )
+                <hr>
+                <div class="card-title">
+                    <strong>Game Sessions</strong>
+                </div>
+
+                @foreach($member->games->where('event_id','!=', 0)->unique('event_id') as $con)
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <strong>{{App\Convention::find($con)->first()->title}}</strong>
+                        </div>
+                        
+                        @foreach($member->games->where('event_id', $con->event_id) as $game)
+                            <a href="/calendar/convention/{{$game->event_id}}/game/{{$game->id}}">{{$game->title}}</a>
+                            <br>
+                        @endforeach
+                    </div>
+                </div>
+                    
+
+                @endforeach
+                
+                
+            @endif
 
             
     

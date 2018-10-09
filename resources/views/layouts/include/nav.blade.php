@@ -29,25 +29,25 @@
                         @endauth
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" 
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        Conventions <span class="caret"></span>
-                    </a>
-                    <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                        @if ( App\Convention::where('status' , 'active')->count() )
-                            <a class="dropdown-item" href="/calendar/convention">
+                @if ( App\Convention::where('status' , 'active')->count() )
+                    <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" 
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            Conventions <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                        
+                                <a class="dropdown-item" href="/calendar/convention">
 
-                                <small class="text-muted"> {{ App\Convention::where('status' , 'active')->first()->title }} </small>
-                                <br>Registration Open! </a>
+                                    <small class="text-muted"> {{ App\Convention::where('status' , 'active')->first()->title }} </small>
+                                    <br>Registration Open! </a>
 
-                            
-                           <!--  <div class="dropdown-divider"></div>    -->
-                        @endif
-                            <!-- <a class="dropdown-item" href="/calendar/conventions">Past Conventions</a> -->
-                  
-                    </div>
+                            <!--  <div class="dropdown-divider"></div>    -->
+                                <!-- <a class="dropdown-item" href="/calendar/conventions">Past Conventions</a> -->
                     
+                        </div>
+                    </li>
+                @endif
 
             </ul>
 

@@ -5,9 +5,14 @@
 <div class="card">
     <div class="card-body">
         <div class="lead mb-3">
-            This is the page where you can register for the con. 
+            <!-- This is the page where you can register for the con.  -->
+            Registration is closed, sort of...
         </div>
-        <p>You should totally click that button because IntrigueCon is awesome and, 
+        <p>If you're prepared to run at least one game then we'll make an exception, just for you! 
+            Once you submit a game you're prepared to run to <a href="mailto:intrigueregistrar@gmail.com?Subject=IntrigueCon%20Registration" target="_new">intrigueregistrar@gmail.com</a>, 
+            we'll schedule it, and then we'll send you a link  where you can buy your registration for the con. </p>
+
+        <!-- <p>You should totally click that button because IntrigueCon is awesome and, 
                 by proxy, attending will make you awesome too! It’s also a great way to show your support for a dedicated roleplaying convention 
                         in Edmonton and keep it going for years to come.</p>
         <p>Here’s a question. Did you make already make an account on the website? </p>
@@ -43,7 +48,7 @@
                     <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
                     </form>
 
-             </div>
+             </div> -->
          </div>
          
         
