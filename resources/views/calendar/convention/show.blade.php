@@ -89,14 +89,16 @@
                                             </div>
                                         @else
                                         <div class="text-center">
-                                                <a href="/calendar/convention/{{$convention->id}}/register" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Register Now!</a>
+                                                <div><strong>Sold Out!</strong></div>
+                                                <!-- <a href="/calendar/convention/{{$convention->id}}/register" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Register Now!</a> -->
                                             </div>
                                         @endif
                                     @endauth
 
                                     @guest
                                         <div class="text-center">
-                                            <a href="/calendar/convention/{{$convention->id}}/register" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Register Now!</a>
+                                                <div><strong>Sold Out!</strong></div>
+                                            <!-- <a href="/calendar/convention/{{$convention->id}}/register" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Register Now!</a> -->
                                         </div>
                                     @endguest
                                 </div>

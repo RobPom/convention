@@ -57,7 +57,6 @@
         <div class='col-md-5 offset-md-1'>
             <div class="quote-font text-center" >
                 ... for when you gaze long into the abyss. The abyss gazes also into you.  
-
             </div>
         </div>
         <div class='col-md-3 offset-md-3 text-center '>
@@ -67,8 +66,10 @@
             <div class="date text-center">
                 Oct 12 - 14, 2018
             </div>
+            <div><strong>Sold Out!</strong></div>
+            <br>
             <a href="/calendar/convention" class="btn btn-info btn-sm mt-2" >Find out More</a>
-            <a href="/calendar/convention/1/register" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Register Now!</a>
+            <!-- <a href="/calendar/convention/1/register" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Register Now!</a> -->
         </div>
     </div>
     <br>
