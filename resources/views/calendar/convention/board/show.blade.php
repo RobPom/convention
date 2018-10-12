@@ -51,12 +51,21 @@
                                 alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">{{$gamesession->game->title}}</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <p class="card-text">{{$gamesession->game->lead}}</p>
                                 
                             </div>
                             <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                                </div>
+                                <small class="text-muted">
+                                    @if($gamesession->attendees->count() == $gamesession->game->max)
+                                        Full
+                                    @elseif($gamesession->game->max - $gamesession->attendees->count() == 1)
+                                        Only 1 seat left
+                                    @else
+                                        Players: {{$gamesession->attendees->count()}} / {{$gamesession->game->max}}
+                                    @endif
+                                        
+                                </small>
+                            </div>
                         </div>
                     </div> 
                     @endforeach
