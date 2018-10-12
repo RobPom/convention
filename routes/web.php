@@ -179,6 +179,9 @@ Route::get('/calendar/convention/submissions/{id}' , 'Calendar\ConventionControl
 Route::delete('/calendar/convention/submission/{id}', 'Calendar\ConventionController@rejectSubmission');
 Route::post('/calendar/convention/submission', 'Calendar\ConventionController@acceptSubmission');
 
+/* Convention Billboard */
+Route::get('calendar/convention/{id}/board', 'Calendar\BoardController@index');
+Route::get('calendar/convention/{id}/board/{timeslot}', 'Calendar\BoardController@show');
 
 // DEV ONLY //
 /* 
