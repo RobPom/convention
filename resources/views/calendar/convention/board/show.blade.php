@@ -37,7 +37,8 @@
 
     <style>
         body {
-            background: linear-gradient(to bottom right, #0f2027, #2c5364);
+            background: url(/img/board-background.jpg) center center no-repeat ;
+            background-size: cover;
             margin-bottom: 0px;
         }   
 
@@ -61,19 +62,23 @@
             color: rgb(252, 252, 141);
             font-weight: 500;
         }
+
+        .container-fluid {
+           
+        }
     </style>
 
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col mt-2">
+    <div class="row" >
+        <div class="col mt-2" style="text-shadow: 3px 3px 8px #0f2027; ">
             <h1 class='white'>Intrigue<span class="yellow">Con</span> 5</h1> 
         </div>
        
     </div>
     <div class="row">
         <div class="col text-center">
-            <h2 class='white'>{{$timeslot->title}} <br>
+            <h2 class='white display-6' style="text-shadow: 3px 3px 8px #0f2027; ">{{$timeslot->title}} <br>
                 <small class="muted-yellow">{{$timeslot->only_times()}}</small>
             </h2>
         </div>
