@@ -44,14 +44,14 @@
             <div class="card-deck">
                 <div class="row">
                     @foreach($timeslot->gamesessions as $gamesession)
-                    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                        <div class="card" >      
+                    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" >
+                        <div class="card" style="height: 340px;">      
                             <img class="card-img-top" src="/storage/uploads/game_images/{{$gamesession->game->image}}" 
                                 style="max-height:120px; object-fit: cover;"
                                 alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">{{$gamesession->game->title}}</h5>
-                                <p class="card-text">{{$gamesession->game->lead}}</p>
+                                <p class="card-text">{{$gamesession->game->tagline}}</p>
                                 
                             </div>
                             <div class="card-footer">
