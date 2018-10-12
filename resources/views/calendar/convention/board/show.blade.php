@@ -37,15 +37,27 @@
 
 
 <div class="container-fluid">
-    <h2>{{$convention->title}}</h2>
+    <div class="row">
+        <div class="col mt-2">
+                <h1>{{$convention->title}}</h1> 
+        </div>
+       
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h2>{{$timeslot->title}} <br>
+                <small class="text-muted">{{$timeslot->only_times()}}</small>
+            </h2>
+        </div>
+    </div>
 
-    <h4>{{$timeslot->title}}</h4>
+    
         @if($timeslot->gamesessions->count())
             <div class="card-deck">
                 <div class="row">
                     @foreach($timeslot->gamesessions as $gamesession)
                     <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" >
-                        <div class="card" style="height: 340px;">      
+                        <div class="card  mt-4">      
                             <img class="card-img-top" src="/storage/uploads/game_images/{{$gamesession->game->image}}" 
                                 style="max-height:120px; object-fit: cover;"
                                 alt="Card image cap">
@@ -57,9 +69,9 @@
                             <div class="card-footer">
                                 <small class="text-muted">
                                     @if($gamesession->attendees->count() == $gamesession->game->max)
-                                        Full
+                                       <strong>Full</strong>
                                     @elseif($gamesession->game->max - $gamesession->attendees->count() == 1)
-                                        Only 1 seat left
+                                        <strong>Only 1 seat left!</strong>
                                     @else
                                         Players: {{$gamesession->attendees->count()}} / {{$gamesession->game->max}}
                                     @endif
