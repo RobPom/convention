@@ -33,7 +33,7 @@
 
 
 </head>
-<body>
+<body style="margin-bottom: 0px;">
 
 <div class="container-fluid">
     <h2>{{$convention->title}}</h2>
@@ -42,26 +42,26 @@
         @if($timeslot->gamesessions->count())
         <a href="/calendar/convention/{{$convention->id}}/board/{{$timeslot->id}}">
             <h4>{{$timeslot->title}}</h4></a>
-            <div class="card-deck">
+            <div class="card-group">
                 <div class="row">
-            @foreach($timeslot->gamesessions as $gamesession)
-            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                <div class="card" >      
-                    <img class="card-img-top" src="/storage/uploads/game_images/{{$gamesession->game->image}}" 
-                        style="max-height:120px; object-fit: cover;"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{$gamesession->game->title}}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
+                    @foreach($timeslot->gamesessions as $gamesession)
+                    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                        <div class="card" >      
+                            <img class="card-img-top" src="/storage/uploads/game_images/{{$gamesession->game->image}}" 
+                                style="max-height:120px; object-fit: cover;"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{$gamesession->game->title}}</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                                </div>
                         </div>
+                    </div> 
+                    @endforeach
                 </div>
-            </div> 
-            @endforeach
-        </div>
             </div>
         @endif
     @endforeach

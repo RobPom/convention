@@ -35,29 +35,57 @@
 </head>
 <body>
 
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #0f2027, #2c5364);
+            margin-bottom: 0px;
+        }   
+
+        .board-card {
+            background: #dadddf;
+            box-shadow: 3px 3px 40px 2px #0f2027; 
+        }
+
+        .white {
+            color: white;
+            font-weight: 300;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .yellow {
+            color: yellow;
+            font-weight: 500;
+        }
+
+        .muted-yellow {
+            color: rgb(252, 252, 141);
+            font-weight: 500;
+        }
+    </style>
+
 
 <div class="container-fluid">
     <div class="row">
         <div class="col mt-2">
-                <h1>{{$convention->title}}</h1> 
+            <h1 class='white'>Intrigue<span class="yellow">Con</span> 5</h1> 
         </div>
        
     </div>
     <div class="row">
         <div class="col text-center">
-            <h2>{{$timeslot->title}} <br>
-                <small class="text-muted">{{$timeslot->only_times()}}</small>
+            <h2 class='white'>{{$timeslot->title}} <br>
+                <small class="muted-yellow">{{$timeslot->only_times()}}</small>
             </h2>
         </div>
     </div>
 
     
         @if($timeslot->gamesessions->count())
-            <div class="card-deck">
+            <div class="card-group">
                 <div class="row">
                     @foreach($timeslot->gamesessions as $gamesession)
                     <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" >
-                        <div class="card  mt-4">      
+                        <div class="card board-card mt-4">      
                             <img class="card-img-top" src="/storage/uploads/game_images/{{$gamesession->game->image}}" 
                                 style="max-height:120px; object-fit: cover;"
                                 alt="Card image cap">
