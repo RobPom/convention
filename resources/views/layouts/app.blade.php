@@ -24,6 +24,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
 
+
+    <!-- Dev Fonts, Trim after Spring 2019 Banner is complete-->
+    <link href="https://fonts.googleapis.com/css?family=BenchNine|Cuprum|Julius+Sans+One|Lato|Oswald|Questrial|Staatliches" rel="stylesheet">
+
     <!-- Styles -->
     
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">

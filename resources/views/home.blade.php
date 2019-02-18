@@ -3,8 +3,7 @@
 @section('content')
 
 @if ( App\Convention::where('status' , 'active')->count() )
-
-    @include('calendar.convention.banners.fall2018')
+    @include('calendar.convention.banners.spring2019')
 @endif
 
 @isset($lead)
@@ -32,8 +31,6 @@
                             alt="Avatar Placeholder">
                     @endif
 
-                     
-                    
                      <a href='/profile/show/{{$lead->user->id}}'>{{$lead->user->firstname}} {{$lead->user->lastname}} </a>
                      on 
                      {{ $lead->datePosted() }}

@@ -89,16 +89,16 @@
                                             </div>
                                         @else
                                         <div class="text-center">
-                                                <div><strong>Sold Out!</strong></div>
-                                                <!-- <a href="/calendar/convention/{{$convention->id}}/register" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Register Now!</a> -->
+                                                
+                                                <a href="/calendar/convention/{{$convention->id}}/register" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Register Now!</a>
                                             </div>
                                         @endif
                                     @endauth
 
                                     @guest
                                         <div class="text-center">
-                                                <div><strong>Sold Out!</strong></div>
-                                            <!-- <a href="/calendar/convention/{{$convention->id}}/register" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Register Now!</a> -->
+                                                
+                                            <a href="/calendar/convention/{{$convention->id}}/register" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Register Now!</a>
                                         </div>
                                     @endguest
                                 </div>
@@ -181,7 +181,7 @@
             </div> 
         </div>
 
-        <div class="row">
+<!--         <div class="row">
             <div class="col-12 mt-3">
                 <div class="card">
                     <div class="card-body">
@@ -208,7 +208,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="card-footer bg-white">
         <div class="row">
