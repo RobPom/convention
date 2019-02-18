@@ -29,7 +29,7 @@
                                 <strong>Submissions</strong> 
                             </div>
                             <ul class="list-group list-group-flush">
-                                @foreach($member->games as $game)
+                                @foreach($member->games->where('event_id' , 0 ) as $game)
                                 <li class="list-group-item">
 
                                     <!-- game is already submitted-->
