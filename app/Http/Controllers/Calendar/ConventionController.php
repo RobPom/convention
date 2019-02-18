@@ -61,7 +61,7 @@ class ConventionController extends Controller
     public function attendees($id)
     {
         if(Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin')){
-            $convention = Convention::find(1);
+            $convention = Convention::find($id);
             return view('calendar.convention.attendee.index')
                 ->with('convention' , $convention );
         } 
