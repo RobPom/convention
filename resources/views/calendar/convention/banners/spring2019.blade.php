@@ -13,7 +13,7 @@
   }
 
   .quote-font{
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     color: #ffffff;
     text-shadow: rgb(230, 107, 107) 0.1em 0.1em 1.4em;
     opacity: 1;
