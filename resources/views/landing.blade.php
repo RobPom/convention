@@ -16,7 +16,7 @@
 
         <div class="row mt-3">
             <div class="col-12">
-                @include('calendar.convention.banners.fall2018narrow')
+                @include('calendar.convention.banners.spring2019narrow')
             </div>
             <div class="col-12">
                 <div class="card mt-2">

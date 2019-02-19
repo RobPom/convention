@@ -42,8 +42,8 @@
 </style>
 
 <div class="banner p-4">
-    <div class='row h-100'>
-        <div class='col-md-8'>
+    <div class='row'>
+        <div class='col-12'>
             <div class="logo text-center mt-3">
               Intrigue<span class='con'>Con</span> Spring 2019
             </div>
@@ -56,8 +56,6 @@
             <div class="text-center mt-3 mb-2">
               <a href="/calendar/convention" class="btn btn-sm btn-dark">Find Out More</a>
             </div>
-        </div>
-        <div class='col-md-4'>
         </div>
     </div>
 </div>
