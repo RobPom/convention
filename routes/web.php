@@ -92,9 +92,9 @@ Route::get('/calendar/convention/event/{id}/edit' , 'Calendar\TimeslotController
 Route::post('/calendar/convention/event/store' , 'Calendar\TimeslotController@storeEvent');
 
 /* Convention Attendees*/
-Route::get('/calendar/convention/{id}/register' , 'Calendar\ConventionController@register');
-Route::get('/calendar/convention/{id}/registered' , 'Calendar\ConventionController@registered');
-Route::get('/calendar/convention/{id}/cancelled' , 'Calendar\ConventionController@cancelled');
+// Route::get('/calendar/convention/{id}/register' , 'Calendar\ConventionController@register');
+// Route::get('/calendar/convention/{id}/registered' , 'Calendar\ConventionController@registered');
+// Route::get('/calendar/convention/{id}/cancelled' , 'Calendar\ConventionController@cancelled');
 
 Route::get('/calendar/convention/{id}/attendees' , 'Calendar\ConventionController@attendees');
 Route::post('/calendar/convention/attendees' , 'Calendar\ConventionController@storeAttendees');
@@ -102,7 +102,7 @@ Route::post('/calendar/convention/attendees' , 'Calendar\ConventionController@st
 //new user and add to convention
 Route::get('/calendar/convention/{id}/attendee/new' , 'Calendar\AttendeeController@new');
 Route::post('/calendar/convention/attendee/new', 'Calendar\AttendeeController@store');
-//select from exisiting users to add to convention
+//select from existing users to add to convention
 Route::get('/calendar/convention/{id}/attendee/add' , 'Calendar\AttendeeController@add');
 Route::post('/calendar/convention/attendee/add', 'Calendar\AttendeeController@addAttendee');
 

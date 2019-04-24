@@ -39,8 +39,7 @@
 </head>
 <body>
     <header>
-            @include('layouts.include.nav')
-
+        @include('layouts.include.nav')
     </header>
 
         

@@ -89,16 +89,14 @@
                                             </div>
                                         @else
                                         <div class="text-center">
-                                                
-                                                <a href="/calendar/convention/{{$convention->id}}/register" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Register Now!</a>
-                                            </div>
+                                           <em>We are sold out. Thank you for your support.</em> 
+                                        </div>
                                         @endif
                                     @endauth
 
                                     @guest
                                         <div class="text-center">
-                                                
-                                            <a href="/calendar/convention/{{$convention->id}}/register" class="btn btn-info btn-sm mt-2" style="background-color: #2c6459 ; border-color: #642c37">Register Now!</a>
+                                           <em>We are sold out. Thank you for your support.</em> 
                                         </div>
                                     @endguest
                                 </div>

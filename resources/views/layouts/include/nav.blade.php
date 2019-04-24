@@ -38,9 +38,8 @@
                         <div class="dropdown-menu " aria-labelledby="navbarDropdown">
                         
                                 <a class="dropdown-item" href="/calendar/convention">
-
-                                    <small class="text-muted"> {{ App\Convention::where('status' , 'active')->first()->title }} </small>
-                                    <br>Registration Open! </a>
+                                    {{ App\Convention::where('status' , 'active')->first()->title }} 
+                                </a>
 
                             <!--  <div class="dropdown-divider"></div>    -->
                                 <!-- <a class="dropdown-item" href="/calendar/conventions">Past Conventions</a> -->
