@@ -29,6 +29,8 @@
                         @endauth
                     </div>
                 </li>
+
+                {{-- 
                 @if ( App\Convention::where('status' , 'active')->count() )
                     <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" 
@@ -36,18 +38,14 @@
                             Conventions <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                        
-                                <a class="dropdown-item" href="/calendar/convention">
-                                    {{ App\Convention::where('status' , 'active')->first()->title }} 
-                                </a>
-
-                            <!--  <div class="dropdown-divider"></div>    -->
-                                <!-- <a class="dropdown-item" href="/calendar/conventions">Past Conventions</a> -->
-                    
+                            <a class="dropdown-item" href="/calendar/convention">
+                                {{ App\Convention::where('status' , 'active')->first()->title }} 
+                            </a>
+                            <div class="dropdown-divider"></div>    
                         </div>
                     </li>
                 @endif
-
+                --}}
             </ul>
 
             <!-- Right Side Of Navbar -->

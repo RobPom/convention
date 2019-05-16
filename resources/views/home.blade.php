@@ -2,9 +2,12 @@
 
 @section('content')
 
+
+{{-- 
 @if ( App\Convention::where('status' , 'active')->count() )
     @include('calendar.convention.banners.spring2019')
 @endif
+--}}
 
 @isset($lead)
 <div class="card my-2 border-0">
