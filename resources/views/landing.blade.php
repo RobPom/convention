@@ -15,9 +15,20 @@
     <div class="col-md-4">
 
         <div class="row mt-3">
-            <div class="col-12">
-                @include('calendar.convention.banners.spring2019narrow')
-            </div>
+
+                @if ( App\Convention::where('status' , 'active')->count() )
+                <div class="col-12">
+              
+                        <div class="d-none d-xl-block">
+                                @include('calendar.convention.banners.fall2019sm')
+                        </div>
+                        <div class="d-xs-block d-md-block d-xl-none">
+                                @include('calendar.convention.banners.fall2019xs')
+                        </div>
+                    
+                 
+                </div>
+            @endif
             <div class="col-12">
                 <div class="card mt-2">
                    

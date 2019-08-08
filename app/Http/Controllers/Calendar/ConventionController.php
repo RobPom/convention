@@ -149,6 +149,7 @@ class ConventionController extends Controller
         $validator = Validator::make($request->all(), [
             'title'  => 'required|max:140',
             'tagline'  => 'required|max:140',
+            'status'  => 'max:10',
             'start_date'=> 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'lead'  => 'required|max:350',
@@ -164,6 +165,7 @@ class ConventionController extends Controller
         $convention = Convention::find($id);
         $convention->title = $request->title;
         $convention->tagline = $request->tagline;
+        $convention->status = $request->status;
         $convention->start_date = date( 'Y-m-d', strtotime( $request->start_date ) );
         $convention->end_date = date( 'Y-m-d', strtotime( $request->end_date ) );
         $convention->lead = $request->lead;

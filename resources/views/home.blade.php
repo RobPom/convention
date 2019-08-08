@@ -3,11 +3,24 @@
 @section('content')
 
 
-{{-- 
+
 @if ( App\Convention::where('status' , 'active')->count() )
-    @include('calendar.convention.banners.spring2019')
+
+    <div class="d-none d-lg-block">
+            @include('calendar.convention.banners.fall2019')
+    </div>
+    <div class="d-none d-md-block d-lg-none">
+            @include('calendar.convention.banners.fall2019md')
+    </div>
+    <div class="d-none d-sm-block d-md-none">
+            @include('calendar.convention.banners.fall2019sm')
+    </div>
+    <div class="d-xs-block d-sm-none">
+            @include('calendar.convention.banners.fall2019xs')
+    </div>
+   
 @endif
---}}
+
 
 @isset($lead)
 <div class="card my-2 border-0">

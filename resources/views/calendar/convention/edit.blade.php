@@ -76,6 +76,20 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-12">
+                                <label for="status">Status</label>
+                                <input id="status" type="text" 
+                                    class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}" 
+                                    name="status" value="{{ $convention->status }}" required > 
+                                    @if ($errors->has('tagline'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('status') }}</strong>
+                                        </span>
+                                    @endif
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
                                 <label for="dates">Dates</label>
                                 <div class="row">
                                     <div class="col-md-5 m-1">
