@@ -27,7 +27,7 @@ class ConventionController extends Controller
     }
 
     public function index() {
-        $conventions = Convention::all()->sortBy('start_date');
+        $conventions = Convention::all()->sortByDesc('start_date');
         return view('calendar.convention.index')->with('conventions' , $conventions);
 
     }
