@@ -89,7 +89,8 @@
                                             </div>
                                         @else
                                         <div class="text-center">
-                                           <em>We are sold out. Thank you for your support.</em> 
+                                            <p>Registration Open!</p>
+                                           <a href="http://www.intriguecon.com/calendar/convention/7/register">Register</a>
                                         </div>
                                         @endif
                                     @endauth
