@@ -96,8 +96,9 @@
                                     @endauth
 
                                     @guest
-                                        <div class="text-center">
-                                           <em>We are sold out. Thank you for your support.</em> 
+                                    <div class="text-center">
+                                            <p>Registration Open!</p>
+                                           <a href="http://www.intriguecon.com/calendar/convention/7/register">Register</a>
                                         </div>
                                     @endguest
                                 </div>
