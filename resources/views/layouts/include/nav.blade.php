@@ -29,7 +29,6 @@
                         @endauth
                     </div>
                 </li>
-
               
                 @if ( App\Convention::where('status' , 'active')->count() )
                     <li class="nav-item dropdown">
