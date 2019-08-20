@@ -126,7 +126,7 @@ html {
   }
   body {
     /* Margin bottom by footer height */
-    margin-bottom: 60px !important;
+    margin-bottom: 70px !important;
     background-color: white !important;
   }
   .footer {
@@ -135,7 +135,7 @@ html {
     bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
-    height: 60px;
+    height: 70px;
     line-height: 2em; 
     background-color: #212529;
   }

@@ -74,28 +74,20 @@
         </div>
     </main> 
         
-    <footer class="footer font-small text-white">
-            <div class="container">
-                <div class="row">
-                     <div class="col-12 text-center">
-                        <a href="/about" class="text-white ">About Us </a> <span class="mx-2">|</span> <a href="/codeofconduct" class="text-white">Code of Conduct</a>
-                        
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <a href="https://twitter.com/intriguecon" class="text-secondary">Our Twitter</a> <span class="mx-2"></span>
-                        <a href="https://www.facebook.com/groups/663587420414716/" class="text-secondary">Our Facebook Group</a><span class="mx-2"></span>
-                        <a href="https://discord.gg/c3ndFnN" class="text-secondary">Our Discord</a>
-                    </div>
+    <footer class="footer font-small text-white text-center">
 
-                </div>
-                         
-                    </div>
-                </div>
-              
-            </div>
-        </footer>
-   {{-- @include('layouts.include.footer') --}}
+        <div>
+            <a href="/about" class="text-white ">About Us </a> 
+            <span class="mx-2">|</span> 
+            <a href="/codeofconduct" class="text-white">Code of Conduct</a>
+        </div>
+        <div>
+            <a href="https://twitter.com/intriguecon" class="text-secondary">Our Twitter</a> <span class="mx-2"></span>
+            <a href="https://www.facebook.com/groups/663587420414716/" class="text-secondary">Our Facebook Group</a><span class="mx-2"></span>
+            <a href="https://discord.gg/c3ndFnN" class="text-secondary">Our Discord</a>
+        </div>            
+        
+    </footer>
+
 </body>
 </html>
