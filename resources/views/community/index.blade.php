@@ -52,7 +52,7 @@
                         <a href="https://www.facebook.com/groups/2411365928"><strong>Dungeons & Dragons Edmonton Chapter</strong></a>
                     </li>
                     <li class="m-2 px-2 px-sm-0">
-                        <a href="https://www.facebook.com/groups/edmontonTTRPG"><strong>Edmonton Tabletop Roleplaying</strong></a>
+                        <a href="https://www.facebook.com/groups/edmontonTTRPG"><strong>Edmonton Tabletop Roleplaying Games Community</strong></a>
                     </li>
                     <li class="m-2 px-2 px-sm-0">
                         <a href="https://www.facebook.com/groups/196099607889546"><strong>LGBTQ D&D Edmonton Chapter</strong></a>
