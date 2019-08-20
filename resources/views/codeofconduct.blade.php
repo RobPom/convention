@@ -58,7 +58,7 @@
                 right to ask that player leave the game. GMs are expected to use this power only as a last resort. 
                 If the GM doesn’t feel comfortable ejecting a player, please immediately find an IntrigueCon staff member,
                  who will do so.</p>
-            <p>Anyone who has questions about how these policies are applied may email intrigue@hazardgaming.com 
+            <p>Anyone who has questions about how these policies are applied may email  intrigue@gmail.com 
                 before the convention, or any staff member during the convention. In all cases, our primary intent is to
                  facilitate a game-playing experience that is positive for all participants, and our decisions on applying 
                  policy will be made with that intent foremost.</p>

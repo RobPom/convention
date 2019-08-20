@@ -90,7 +90,7 @@
                                         @else
                                         <div class="text-center">
                                             <p>Registration Open!</p>
-                                           <a href="http://www.intriguecon.com/calendar/convention/7/register">Register</a>
+                                            <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/7/register">Register</a>
                                         </div>
                                         @endif
                                     @endauth
@@ -98,7 +98,7 @@
                                     @guest
                                     <div class="text-center">
                                             <p>Registration Open!</p>
-                                           <a href="http://www.intriguecon.com/calendar/convention/7/register">Register</a>
+                                           <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/7/register">Register</a>
                                         </div>
                                     @endguest
                                 </div>
@@ -181,9 +181,9 @@
             </div> 
         </div>
 
-<!--         <div class="row">
+        <!-- <div class="row">
             <div class="col-12 mt-3">
-                <div class="card">
+                <div class="card border-0">
                     <div class="card-body">
                         <div class="card-title">
                             <h5>{{$convention->title}} Sponsors</h5>
@@ -209,6 +209,7 @@
                 </div>
             </div>
         </div> -->
+
     </div>
     <div class="card-footer bg-white">
         <div class="row">

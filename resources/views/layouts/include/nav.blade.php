@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark  bg-dark ">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark ">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             Intrigue<span style='color: yellow;'>Con</span>
@@ -16,7 +16,7 @@
                 <li class="nav-item dropdown ">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" 
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        Blog <span class="caret"></span>
+                        News <span class="caret"></span>
                     </a>
 
                     <div class="dropdown-menu " aria-labelledby="navbarDropdown">
@@ -34,7 +34,7 @@
                     <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" 
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Conventions <span class="caret"></span>
+                            Convention <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu " aria-labelledby="navbarDropdown">
                             
@@ -46,7 +46,7 @@
                         </div>
                     </li>
                 @endif
-
+                <li><a class="nav-link" href="/community">Community</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->

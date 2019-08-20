@@ -2,12 +2,12 @@
 
 @section('content')
 
-<div class="card">
+<div class="card border-0">
     <div class="card-body">
-        <div class="lead mb-3">
-            This is the page where you can register for the con. 
+        <h4 class="mb-4">
+            This is the page where you can register for the con 
             <!-- Registration is closed, sort of... -->
-        </div>
+        </h4>
         <!-- <p>If you're prepared to run at least one game then we'll make an exception, just for you! 
             Once you submit a game you're prepared to run to <a href="mailto:intrigueregistrar@gmail.com?Subject=IntrigueCon%20Registration" target="_new">intrigueregistrar@gmail.com</a>, 
             we'll schedule it, and then we'll send you a link  where you can buy your registration for the con. </p> -->
@@ -26,7 +26,7 @@
              We'll add you to the calendar manually (we'll be in contact).
          </p>
             
-         <hr>
+         <hr class="p-2 mt-4">
          <div class="row">
              <div class="col-sm-3 offset-sm-3 text-center text-sm-right mb-2">
                 <small><em>After payment is complete, click 'Return to Merchant' to come back to this site, and start picking games!</em></small>
@@ -37,7 +37,7 @@
                     <input type="hidden" name="cmd" value="_s-xclick">
                     <input type="hidden" name="hosted_button_id" value="7RHJQJYA5SCV6"
                     <table>
-                    <tr><td><input type="hidden" name="on0" value="Number of Attendees">Number of Attendees</td></tr><tr><td><select name="os0">
+                    <tr><td><input type="hidden" name="on0" value="Number of Attendees">Number of Attendees </td></tr><tr><td><select name="os0">
                         <option value="One person">One person $36.00 CAD</option>
                         <option value="Two people">Two people $72.00 CAD</option>
                         <option value="Three people">Three people $108.00 CAD</option>
@@ -50,8 +50,40 @@
 
              </div>
          </div>
+         <hr class="p-2 mt-4">
+         <h4 class="mb-4">Still not sold?</h4>
+         <div class="lead mb-3">See what <s>nice</s> things roleplaying game designers and publishers are saying about IntrigueCon</div>
          
-        
+         <div class="card border-0">
+                <div class="card-body ">
+                    <blockquote class="blockquote text-center">
+                        <p class="mb-0">"I regret not having the time to attend more conventions, but at least it means I don't have to go to IntrigueCon.</p>
+                        <footer class="blockquote-footer">Epidiah Ravachol | <a href="https://dig1000holes.wordpress.com">dig1000holes.wordpress.com</a> 
+                            </footer>
+                    </blockquote>
+                </div>
+            </div>
+         
+         <div class="card border-0">
+            <div class="card-body ">
+                <blockquote class="blockquote text-center">
+                    <p class="mb-0">“You’ll never drag me to Edmonton for IntrigueCon.”</p>
+                    <footer class="blockquote-footer">Luke Crane | <a href="https://www.burningwheel.com">www.burningwheel.com</a> 
+                        </footer>
+                </blockquote>
+            </div>
+        </div>
+
+        <div class="card border-0"">
+            <div class="card-body ">
+                <blockquote class="blockquote text-center">
+                    <p class="mb-0">“I will not be attending IntrigueCon because Canada frightens me.”</p>
+                    <footer class="blockquote-footer">Jason Morningstar | <a href="https://bullypulpitgames.com">bullypulpitgames.com</a> 
+                        </footer>
+                </blockquote>
+            </div>
+        </div>
+
     </div>
     
     

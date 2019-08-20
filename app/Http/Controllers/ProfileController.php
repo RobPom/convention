@@ -208,7 +208,7 @@ class ProfileController extends Controller
             "firstname'  => 'required|max:50|regex:/^[a-z ,.'-]+$/i",
             "lastname'  => 'required|max:50|regex:/^[a-z ,.'-]+$/i",
             "location'  => max:50|regex:/^[a-z ,.'-]+$/i",
-            'description'  => 'max:144',
+            'description'  => 'max:240',
             'avatar' => 'image|mimes:jpg,png,jpeg,gif,svg|max:1999',
         ]);
 

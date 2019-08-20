@@ -23,7 +23,7 @@
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
-
+    
 
     <!-- Dev Fonts, Trim after Spring 2019 Banner is complete-->
     <link href="https://fonts.googleapis.com/css?family=BenchNine|Cuprum|Julius+Sans+One|Lato|Oswald|Questrial|Staatliches" rel="stylesheet">
@@ -44,7 +44,7 @@
 
         
     <main role='main' class="container mt-3">
-        <div class="container">
+        <div class="container p-0">
 
             @if (session('status'))
 
@@ -66,8 +66,8 @@
             @endif
 
         
-            <div class="row justify-content-center">
-                <div class="col-md-12">
+            <div class="row justify-content-center ">
+                <div class="col-md-12 p-0">
                     @yield('content')
                 </div>
             </div>
@@ -77,14 +77,20 @@
     <footer class="footer font-small text-white">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <span class="text-muted"></span>
+                     <div class="col-12 text-center">
+                        <a href="/about" class="text-white ">About Us </a> <span class="mx-2">|</span> <a href="/codeofconduct" class="text-white">Code of Conduct</a>
+                        
                     </div>
-                    <div class="col-sm-6 ">
-                        <a href="https://twitter.com/intriguecon" class="text-secondary">Our Twitter</a> <br>
-                        <a href="https://www.facebook.com/groups/663587420414716/" class="text-secondary">Our Facebook Page</a> <br>
-                        <a href="/about" class="text-secondary">About Us</a> <br>
-                        <a href="/codeofconduct" class="text-secondary">Code of Conduct</a>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <a href="https://twitter.com/intriguecon" class="text-secondary">Our Twitter</a> <span class="mx-2"></span>
+                        <a href="https://www.facebook.com/groups/663587420414716/" class="text-secondary">Our Facebook Group</a><span class="mx-2"></span>
+                        <a href="https://discord.gg/c3ndFnN" class="text-secondary">Our Discord</a>
+                    </div>
+
+                </div>
+                         
                     </div>
                 </div>
               

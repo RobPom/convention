@@ -63,7 +63,9 @@ Route::delete('/profile/game/{id}', 'GameController@destroy');
 Route::patch('/profile/game/{id}' , 'GameController@update');
 
 
+/*Community*/
 
+Route::get('/community' , 'CommunityController@index');
 /* Convention */
 Route::get('/calendar/convention/' , 'Calendar\ConventionController@showActive');
 Route::get('/calendar/convention/new' , 'Calendar\ConventionController@create');
