@@ -190,22 +190,22 @@
                         </div>
                         <div class="row mt-4">
                             <div class="card border-0 mx-4" style="width: 10rem;">
-                                <a href="https://www.pawn-pint.com/">
+                                <a href="https://www.evilhat.com/home/">
                                     <img src="https://www.evilhat.com/home/wp-content/uploads/2007/09/EHP-Logo-Square.png" 
                                     style="max-width: 100%; "
-                                    alt="www.pawn-pint.com">
+                                    alt="www.evilhat.com">
                                 </a> 
                             </div>
 
                             <div class="card border-0 mx-4" style="width: 10rem;">
-                                <a href="https://www.apttogame.com/">
+                                <a href="https://goodman-games.com/xcrawl/">
                                     <img src="https://goodman-games.com/wp-content/uploads/2015/12/GG_logo-2.png" 
                                     style="max-width: 100%; "
-                                    alt="apttogame.com">
+                                    alt="goodman-games.com/xcrawl/">
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
