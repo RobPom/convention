@@ -181,7 +181,7 @@
             </div> 
         </div>
 
-        <!-- <div class="row">
+        <div class="row">
             <div class="col-12 mt-3">
                 <div class="card border-0">
                     <div class="card-body">
@@ -191,7 +191,7 @@
                         <div class="row mt-4">
                             <div class="card border-0 mx-4" style="width: 10rem;">
                                 <a href="https://www.pawn-pint.com/">
-                                    <img src="/img/sponsors/P&P-logo-square.png" 
+                                    <img src="https://www.evilhat.com/home/wp-content/uploads/2007/09/EHP-Logo-Square.png" 
                                     style="max-width: 100%; "
                                     alt="www.pawn-pint.com">
                                 </a> 
@@ -199,7 +199,7 @@
 
                             <div class="card border-0 mx-4" style="width: 10rem;">
                                 <a href="https://www.apttogame.com/">
-                                    <img src="/img/sponsors/apttogame_500w.png" 
+                                    <img src="https://goodman-games.com/wp-content/uploads/2015/12/GG_logo-2.png" 
                                     style="max-width: 100%; "
                                     alt="apttogame.com">
                                 </a>
@@ -208,7 +208,7 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
 
     </div>
     <div class="card-footer bg-white">

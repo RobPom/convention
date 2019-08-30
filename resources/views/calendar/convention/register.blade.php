@@ -84,12 +84,31 @@
             </div>
         </div>
 
-    </div>
+        <div class="card border-0"">
+            <div class="card-body ">
+                <blockquote class="blockquote text-center">
+                    <p class="mb-0">“Outside of GenCon, IntrigueCon is the best convention you can visit. Inside of GenCon, we all secretly pledge to never, ever attend this mess.”</p>
+                    <footer class="blockquote-footer">Brendan LaSalle | <a href="https://goodman-games.com/xcrawl/">goodman-games.com/xcrawl</a> 
+                        </footer>
+                </blockquote>
+            </div>
+        </div>
+
+        <div class="card border-0"">
+            <div class="card-body ">
+                <blockquote class="blockquote text-center">
+                    <p class="mb-0">“IntrigueCon? Why the hell would I go to Canada? I'm too busy soaking up all the swamp-like heat and gun-related terror I can handle at home. There's no way I'm leaving my house!”</p>
+                    <footer class="blockquote-footer">Fred Hicks | <a href="https://www.evilhat.com/home/">www.evilhat.com</a> 
+                        </footer>
+                </blockquote>
+            </div>
+        </div>
+</div>
     
     
 
     
-    
+
     
    
     
