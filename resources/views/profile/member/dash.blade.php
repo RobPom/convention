@@ -100,7 +100,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">
-                            <strong>{{App\Convention::find($con->event_id)->first()->title}}</strong>
+                            <strong>{{$con->convention()->title}}</strong>
                         </div>
                         
                         @foreach($member->games->where('event_id', $con->event_id) as $game)
