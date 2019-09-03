@@ -22,8 +22,6 @@
             </div>
             <div class="card-body">
 
-
-
         @if( $member->games->where('active' , true )->first() )
             <div class="card border-0">
                 <div class="card-body">

@@ -113,9 +113,7 @@
                 <div class="col-md-6">
 
                     <textarea id="description"  class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" 
-                        name="description" rows='4' cols="50" maxlength="144"
-                        >{{$member->profile->description}}
-                    </textarea>
+                        name="description" rows='4' cols="50" maxlength="240">{{$member->profile->description}}</textarea>
 
                     @if ($errors->has('about'))
                         <span class="invalid-feedback">

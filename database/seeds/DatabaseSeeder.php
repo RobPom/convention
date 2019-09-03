@@ -27,10 +27,10 @@ class DatabaseSeeder extends Seeder
         //seed a couple of conventions
         $this->call(ConventionTableSeeder::class);
 
-       /*  // Game seeder will use the above users when creating games
+       // Game seeder will use the above users when creating games
         $this->call(GameTableSeeder::class);
- */
+
          //seed timeslots with session 1 to 5
-         //$this->call(TimeslotTableSeeder::class);
+         $this->call(TimeslotTableSeeder::class);
     }
 }
