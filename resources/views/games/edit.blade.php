@@ -10,11 +10,13 @@
         menubar: false
     });
 
+
     tinymce.init({
         selector: '#description',
         height: 500,
         menubar: false,
         relative_urls : false,
+        link_assume_external_targets: true,
         remove_script_host : true,
         document_base_url : "http://www.intriguecon.com",
         plugins: [

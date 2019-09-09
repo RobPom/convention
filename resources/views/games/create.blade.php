@@ -16,6 +16,7 @@
         menubar: false,
         relative_urls : false,
         remove_script_host : true,
+        link_assume_external_targets: true,
         document_base_url : "http://www.intriguecon.com",
         plugins: [
             'advlist autolink lists link image charmap print preview anchor textcolor',
