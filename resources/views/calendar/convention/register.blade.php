@@ -6,11 +6,11 @@
     <div class="card-body">
         <h4 class="mb-4">
             This is the page where you can register for the con 
-            <!-- Registration is closed, sort of... -->
+            If registration wasn't close, sorry we're all sold out.
         </h4>
         <!-- <p>If you're prepared to run at least one game then we'll make an exception, just for you! 
             Once you submit a game you're prepared to run to <a href="mailto:intrigueregistrar@gmail.com?Subject=IntrigueCon%20Registration" target="_new">intrigueregistrar@gmail.com</a>, 
-            we'll schedule it, and then we'll send you a link  where you can buy your registration for the con. </p> -->
+            we'll schedule it, and then we'll send you a link  where you can buy your registration for the con. </p> 
 
         <p>You should totally click that button because IntrigueCon is awesome and, 
                 by proxy, attending will make you awesome too! It’s also a great way to show your support for a dedicated roleplaying convention 
@@ -50,8 +50,10 @@
 
              </div>
          </div>
+         -->
+
          <hr class="p-2 mt-4">
-         <h4 class="mb-4">Still not sold?</h4>
+         <!-- <h4 class="mb-4">Still not sold?</h4> -->
          <div class="lead mb-3">See what <s>nice</s> things roleplaying game designers and publishers are saying about IntrigueCon</div>
          
          <div class="card border-0">

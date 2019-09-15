@@ -97,8 +97,8 @@
 
                                     @guest
                                     <div class="text-center">
-                                            <p>Registration Open!</p>
-                                           <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/7/register">Register</a>
+                                            <p>Sold Out</p>
+                                           <!-- <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/7/register">Register</a> -->
                                         </div>
                                     @endguest
                                 </div>
@@ -189,7 +189,7 @@
                             <h5>{{$convention->title}} Sponsors</h5>
                         </div>
                         <div class="row mt-4">
-                            <div class="card border-0 mx-4" style="width: 10rem;">
+                            <div class="card border-0 m-4 " style="width: 10rem;">
                                 <a href="https://www.evilhat.com/home/">
                                     <img src="https://www.evilhat.com/home/wp-content/uploads/2007/09/EHP-Logo-Square.png" 
                                     style="max-width: 100%; "
@@ -197,13 +197,22 @@
                                 </a> 
                             </div>
 
-                            <div class="card border-0 mx-4" style="width: 10rem;">
-                                <a href="https://goodman-games.com/xcrawl/">
+                            <div class="card border-0 m-4" style="width: 10rem;">
+                                <a href="http://www.goodman-games.com">
                                     <img src="https://goodman-games.com/wp-content/uploads/2015/12/GG_logo-2.png" 
                                     style="max-width: 100%; "
-                                    alt="goodman-games.com/xcrawl/">
+                                    alt="goodman-games.com">
                                 </a>
                             </div>
+
+                            <div class="card border-0 m-4" style="width: 20rem;">
+                                <a href="https://www.meetup.com/Dragons-in-Dungeons-Meetup-Group/">
+                                    <img src="/img/community/dragonsindungeons.png" 
+                                    style="max-width: 100%; "
+                                    alt="Dragons in Dungeons Logo">
+                                </a>
+                            </div>
+
                         </div>
                     </div> 
                 </div>
