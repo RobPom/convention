@@ -185,6 +185,21 @@ Route::post('/calendar/convention/submission', 'Calendar\ConventionController@ac
 Route::get('calendar/convention/{id}/board', 'Calendar\BoardController@index');
 Route::get('calendar/convention/{id}/board/{timeslot}', 'Calendar\BoardController@show');
 
+/*TShirts*/
+
+Route::get('/tshirts', function(){
+    return view('tshirts.index');
+});
+
+Route::get('/tshirts/complete', function(){
+    return view('tshirts.complete');
+});
+
+Route::get('/tshirts/cancelled', function(){
+    return view('tshirts.cancelled');
+});
+
+
 // DEV ONLY //
 /* 
 Route::get('/testmenu', function () {

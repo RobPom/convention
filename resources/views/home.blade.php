@@ -96,10 +96,26 @@
         </div>
         <div class="col-sm-6 pl-0 pr-0 ">
         <div class="card">
+            <div class="card-header mt-1">
+                    <h4>T-Shirts</h4>
+            </div>
             <div class="card-body">
-                <h5>The Con</h5>
-                <p>All about IntrigueCon, convention archive, photos</p>
-                <a class='float-right' href='post/{{$lead->id}}'>More...</a>
+                
+                
+                <div class="row">
+                    <div class="col">
+                        <img class="img-fluid align-self-center mb-1" 
+                        src="/img/generic_shirt_w.png"
+                        alt="Avatar Placeholder">
+                    </div>
+                    <div class="col">
+                        <p class="lead">IntrigueCon shirts are now available to order!</p>
+                        <div class="text-center">
+                        <a class='btn btn-small btn-primary' href='tshirts'>View Shirts</a>
+                    </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
