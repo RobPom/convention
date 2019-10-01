@@ -105,8 +105,8 @@
                 <div class="row">
                     <div class="col">
                         <img class="img-fluid align-self-center mb-1" 
-                        src="/img/generic_shirt_w.png"
-                        alt="Avatar Placeholder">
+                        src="/img/tshirt-fitted.jpg"
+                        alt="Fitted TShirt">
                     </div>
                     <div class="col">
                         <p class="lead">IntrigueCon shirts are now available to order!</p>
