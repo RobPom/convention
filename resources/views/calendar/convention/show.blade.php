@@ -213,6 +213,14 @@
                                 </a>
                             </div>
 
+                            <div class="card border-0 m-4" style="width: 10rem;">
+                                <a href="http://www.gamersden.ca/">
+                                    <img src="http://www.gamersden.ca/wp-content/uploads/2018/11/logo-divided-header-150x150-1.png" 
+                                    style="max-width: 100%; "
+                                    alt="goodman-games.com">
+                                </a>
+                            </div>
+
                         </div>
                     </div> 
                 </div>

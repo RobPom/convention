@@ -187,7 +187,7 @@ Route::get('calendar/convention/{id}/board/{timeslot}', 'Calendar\BoardControlle
 
 /*TShirts*/
 
-Route::get('/tshirts', function(){
+/* Route::get('/tshirts', function(){
     return view('tshirts.index');
 });
 
@@ -197,7 +197,7 @@ Route::get('/tshirts/complete', function(){
 
 Route::get('/tshirts/cancelled', function(){
     return view('tshirts.cancelled');
-});
+}); */
 
 
 // DEV ONLY //

@@ -97,21 +97,17 @@
         <div class="col-sm-6 pl-0 pr-0 ">
         <div class="card">
             <div class="card-header mt-1">
-                    <h4>T-Shirts</h4>
+                    <h4>Community</h4>
             </div>
             <div class="card-body">
                 
                 
                 <div class="row">
+            
                     <div class="col">
-                        <img class="img-fluid align-self-center mb-1" 
-                        src="/img/tshirt-fitted.jpg"
-                        alt="Fitted TShirt">
-                    </div>
-                    <div class="col">
-                        <p class="lead">IntrigueCon shirts are now available to order!</p>
+                        <p class="lead">Our collections of links to Edmonton based RPG community and Facebook Groups.</p>
                         <div class="text-center">
-                        <a class='btn btn-small btn-primary' href='tshirts'>View Shirts</a>
+                        <a class='btn btn-small btn-primary' href='community'>See All</a>
                     </div>
                     </div>
                 </div>
