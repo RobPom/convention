@@ -21,7 +21,7 @@ class Convention extends Model
     }
     
     public function attendees(){
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\User')->orderBy('firstname');
     }
 
     public function hasAttendee($user) {

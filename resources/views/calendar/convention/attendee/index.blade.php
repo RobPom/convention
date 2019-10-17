@@ -18,6 +18,7 @@
                         <div class="mb-3">
                             <a href="/calendar/convention/{{$convention->id}}/attendee/new">Add New</a> <br>
                             <a href="/calendar/convention/{{$convention->id}}/attendee/add">Add from Users</a> <br>
+                            <a href="/calendar/convention/{{$convention->id}}/attendees/print">Print View</a>
                         </div>
                             
 
@@ -26,31 +27,25 @@
                                 <table class="table table-sm sortable">  
                                         <thead>
                                             <tr>
-                                                <th scope="col">User</th>
-                                       
-                                                <th scope="col" class="d-none d-sm-table-cell">email</th>
-                                             
-                                             
-                                                <th scope="col"></th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col" class="d-none d-sm-table-cell">Email</th><th scope="col"></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                               
-                                            @foreach($convention->attendees as $member)
-                                             
-                                                <tr>
-                                                    <th scope="row">
-                                                        <a href='/profile/show/{{$member->id}}'>{{$member->username}}</a>
-                                                    </th>
-                                                    <td class="d-none d-sm-table-cell">{{$member->email}}</td>
-                                     
-                                                    <td>
-                                                        <a class="btn btn-sm btn-primary mb-1" 
-                                                            href="/calendar/convention/{{$convention->id}}/attendee/{{$member->id}}">View Info
-                                                        </a>
-                                                       
-                                                    </td>
-                                                </tr>
+                                        <tbody>       
+                                            @foreach($convention->attendees as $member)                                  
+                                            <tr>
+                                                <th scope="row">{{$member->firstname}}</th>
+                                                <th scope="row">{{$member->lastname}}</th>
+                                                <td class="d-none d-sm-table-cell">{{$member->email}}</td>
+                                    
+                                                <td>
+                                                    <a class="btn btn-sm btn-primary mb-1" 
+                                                        href="/calendar/convention/{{$convention->id}}/attendee/{{$member->id}}">View Info
+                                                    </a>
+                                                    
+                                                </td>
+                                            </tr>
                                             @endforeach
                                         </tbody>
                                 </table>

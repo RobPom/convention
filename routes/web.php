@@ -99,6 +99,7 @@ Route::get('/calendar/convention/{id}/registered' , 'Calendar\ConventionControll
 Route::get('/calendar/convention/{id}/cancelled' , 'Calendar\ConventionController@cancelled');
 
 Route::get('/calendar/convention/{id}/attendees' , 'Calendar\ConventionController@attendees');
+Route::get('/calendar/convention/{id}/attendees/print' , 'Calendar\ConventionController@printAttendees');
 Route::post('/calendar/convention/attendees' , 'Calendar\ConventionController@storeAttendees');
 
 //new user and add to convention

@@ -68,6 +68,17 @@ class ConventionController extends Controller
             abort(403, 'Not Authorized.');    
     }
 
+    public function printAttendees($id)
+    {
+        if(Auth::user()->hasRole('organizer') || Auth::user()->hasRole('admin')){
+            $convention = Convention::findOrFail($id);
+            $attendees = $convention->attendees;
+            return view('calendar.convention.attendee.print')
+                ->with('attendees' , $attendees );
+        } 
+            abort(403, 'Not Authorized.');    
+    }
+
 
     public function storeAttendees(Request $request)
     {
