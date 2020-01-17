@@ -35,10 +35,8 @@
         font-weight: bolder;
         text-transform: uppercase;
         line-height: 1.4rem;
- 
         color: yellow;
         text-shadow: rgb(230, 107, 107) 0.1em 0.1em 1.4em;
-  
         opacity: .7;
       }
     
@@ -46,17 +44,17 @@
         font-family: 'Lato', sans-serif;
         padding-left: 60px;
         padding-right: 60px;
-        padding-bottom: 10px;
+        padding-bottom: 20px;
         font-size: 1rem; 
         line-height: 1.4rem;
         color: #e2e1da;
       }
 
       .links{
-
         padding-right: 60px;
-        padding-bottom: 60px;
+        padding-bottom: 40px;
       }
+
       .link{
           font-size: .9rem;
           font-weight: bold;
@@ -73,10 +71,9 @@
                         <div class="lead-text ">Twice a year Edmonton’s roleplaying community gathers to share their love of table top games.</div>
                         <div class="copy">From <strong> Dungeons & Dragons </strong>to <strong>The Quiet Year</strong> and everything in between. If you want to try new things with people passionate about roleplaying, there’s no better place to be than IntrigueCon. </div>
                     </div>
-                    <div class='col-8 text-right'>
+                    <div class='col-8 text-center'>
                         <div class="links">
-                            <a class="btn btn-dark" href="https://www.facebook.com/groups/663587420414716/"><i class="fa fa-facebook mr-3"></i> <span class="link">IntrigueCon</span></a>
-
+                            <a class="btn btn-sm btn-dark" href="https://www.facebook.com/groups/663587420414716/"><i class="fa fa-facebook mr-2"></i> <span class="link">IntrigueCon</span></a>
                         </div>
                     </div>
                 </div>
