@@ -181,7 +181,7 @@
             </div> 
         </div>
 
-        <div class="row">
+<!--         <div class="row">
             <div class="col-12 mt-3">
                 <div class="card border-0">
                     <div class="card-body">
@@ -225,7 +225,7 @@
                     </div> 
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </div>
     <div class="card-footer bg-white">
