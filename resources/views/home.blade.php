@@ -2,36 +2,13 @@
 
 @section('content')
 
-
-
 @if ( App\Convention::where('status' , 'active')->count() == 1)
 
-    <div class="d-none d-lg-block">
-            @include('calendar.convention.banners.fall2019')
-    </div>
-    <div class="d-none d-md-block d-lg-none">
-            @include('calendar.convention.banners.fall2019md')
-    </div>
-    <div class="d-none d-sm-block d-md-none">
-            @include('calendar.convention.banners.fall2019sm')
-    </div>
-    <div class="d-xs-block d-sm-none">
-            @include('calendar.convention.banners.fall2019xs')
-    </div>
+      @include('calendar.convention.banners.default')
 
     @else 
-    <div class="d-none d-lg-block">
-        @include('calendar.convention.banners.default')
-    </div>
-    <div class="d-none d-md-block d-lg-none">
-            @include('calendar.convention.banners.md')
-    </div>
-    <div class="d-none d-sm-block d-md-none">
-            @include('calendar.convention.banners.sm')
-    </div>
-    <div class="d-xs-block d-sm-none">
-            @include('calendar.convention.banners.xs')
-    </div>
+    
+      @include('calendar.convention.banners.default')
    
 @endif
 <!-- 
