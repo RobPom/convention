@@ -1,9 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+
+  @if ( App\Convention::where('status' , 'active')->count() == 1)
+
+    @include('calendar.convention.banners.default')
+
+  @else 
+
+    @include('calendar.convention.banners.default')
+
+  @endif
 <div class="row">
     <div class="col-md-8">
-       <div class="lead my-3"> Welcome to the home of IntrigueCon, a tabletop roleplaying game convention based in Edmonton, Alberta, Canada. </div>
+       <div class="lead my-1"> Welcome to the home of IntrigueCon, a tabletop roleplaying game convention based in Edmonton, Alberta, Canada. </div>
 
         <p>Since 2013 Edmonton’s roleplaying community has gathered in October (and now April too) to share their love of games from Dungeons & Dragons to The Quiet Year and everything in between. In fact, at last count, attendees have run almost 100 different game systems. So, it’s fair to say that if trying new things with great people passionate about roleplaying is your thing, there’s no better place to be than IntrigueCon.</p>
         
@@ -16,19 +26,6 @@
 
         <div class="row mt-3">
 
-                @if ( App\Convention::where('status' , 'active')->count() )
-                <div class="col-12">
-              
-                        <div class="d-none d-xl-block">
-                                @include('calendar.convention.banners.fall2019sm')
-                        </div>
-                        <div class="d-xs-block d-md-block d-xl-none">
-                                @include('calendar.convention.banners.fall2019xs')
-                        </div>
-                    
-                 
-                </div>
-            @endif
             <div class="col-12">
                 <div class="card mt-2">
                    
