@@ -32,7 +32,7 @@ class BlogPostController extends Controller
      */
     public function index()
     {
-        $posts = BlogPost::orderByDesc('posted_on')->whereNotNull('posted_on')->paginate(6);
+        $posts = BlogPost::orderByDesc('posted_on')->where('posted_on' , '!=' , NULL)->paginate(6);
         $categories = BlogCategory::orderBy('title')->get();
         return view ('blog.index')
             ->with('posts' , $posts)
@@ -44,7 +44,7 @@ class BlogPostController extends Controller
     {
      
         $category = BlogCategory::find($id); 
-        $posts = BlogPost::where('category' , $category->id)->whereNotNull('posted_on')->orderBy('posted_on', 'DESC')->paginate(6);   
+        $posts = BlogPost::where('category' , $category->id)->where('posted_on' , '!=' , NULL)->orderBy('posted_on', 'DESC')->paginate(6);   
         $categories = BlogCategory::orderBy('title')->get();
        
         return view ('blog.index')
@@ -56,7 +56,7 @@ class BlogPostController extends Controller
 
     public function userPosts($id){
         $member = User::find($id);
-        $posts = BlogPost::orderByDesc('posted_on')->where('user_id' , $id)->whereNotNull('posted_on')->paginate(6);
+        $posts = BlogPost::orderByDesc('posted_on')->where('user_id' , $id)->where('posted_on' , '!=' , NULL)->paginate(6);
         $categories = BlogCategory::orderBy('title')->get();
         return view('blog.index')
             ->with('posts' , $posts)
