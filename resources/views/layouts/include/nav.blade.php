@@ -13,7 +13,7 @@
                 
                <!--  <li><a class="nav-link" href="">About</a></li> -->
 
-                <li class="nav-item dropdown ">
+                <!-- <li class="nav-item dropdown ">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" 
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         News <span class="caret"></span>
@@ -28,10 +28,10 @@
                             @endif
                         @endauth
                     </div>
-                </li>
+                </li> -->
               
                 <!-- added ! to turn off link -->
-                @if ( ! App\Convention::where('status' , 'active')->count() )
+                @if (  App\Convention::where('status' , 'active')->count() )
                     <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" 
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -47,13 +47,13 @@
                         </div>
                     </li>
                 @endif
-                <li><a class="nav-link" href="/community">Community</a></li>
+               
             </ul>
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
-               
+                <li><a class="nav-link" href="/community">Community</a></li>
                 @guest
                     <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                     <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>

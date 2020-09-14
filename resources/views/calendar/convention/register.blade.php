@@ -6,12 +6,11 @@
     <div class="card-body">
         <h4 class="mb-4">
             This is the page where you can register for the con 
-            If registration wasn't close, sorry we're all sold out.
         </h4>
         <!-- <p>If you're prepared to run at least one game then we'll make an exception, just for you! 
             Once you submit a game you're prepared to run to <a href="mailto:intrigueregistrar@gmail.com?Subject=IntrigueCon%20Registration" target="_new">intrigueregistrar@gmail.com</a>, 
             we'll schedule it, and then we'll send you a link  where you can buy your registration for the con. </p> 
-
+          -->
         <p>You should totally click that button because IntrigueCon is awesome and, 
                 by proxy, attending will make you awesome too! It’s also a great way to show your support for a dedicated roleplaying convention 
                         in Edmonton and keep it going for years to come.</p>
@@ -35,12 +34,12 @@
                
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="7RHJQJYA5SCV6"
+                    <input type="hidden" name="hosted_button_id" value="9TU4JJSXHDHNA"
                     <table>
                     <tr><td><input type="hidden" name="on0" value="Number of Attendees">Number of Attendees </td></tr><tr><td><select name="os0">
-                        <option value="One person">One person $36.00 CAD</option>
-                        <option value="Two people">Two people $72.00 CAD</option>
-                        <option value="Three people">Three people $108.00 CAD</option>
+                        <option value="One person">One person $5.00 CAD</option>
+                        <option value="Two people">Two people $10.00 CAD</option>
+                        <option value="Three people">Three people $15.00 CAD</option>
                     </select> </td></tr>
                     </table>
                     <input type="hidden" name="currency_code" value="CAD">
@@ -50,10 +49,10 @@
 
              </div>
          </div>
-         -->
+         
 
          <hr class="p-2 mt-4">
-         <!-- <h4 class="mb-4">Still not sold?</h4> -->
+        <h4 class="mb-4">Still not sold?</h4>
          <div class="lead mb-3">See what <s>nice</s> things roleplaying game designers and publishers are saying about IntrigueCon</div>
          
          <div class="card border-0">
