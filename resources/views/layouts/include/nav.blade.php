@@ -30,8 +30,8 @@
                     </div>
                 </li> -->
               
-                <!-- added ! to turn off link -->
-                @if (  App\Convention::where('status' , 'active')->count() )
+              
+               <!--  @if (  App\Convention::where('status' , 'active')->count() )
                     <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" 
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -46,7 +46,7 @@
               
                         </div>
                     </li>
-                @endif
+                @endif -->
                
             </ul>
 
