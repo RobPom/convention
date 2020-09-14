@@ -90,16 +90,16 @@
                                         @else
                                         <div class="text-center">
                                             <p>Registration Open!</p>
-                                            <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/7/register">Register</a>
+                                            <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/{{$convention->id}}/register">Register</a>
                                         </div>
                                         @endif
                                     @endauth
 
                                     @guest
                                     <div class="text-center">
-                                            <p>Sold Out</p>
-                                           <!-- <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/7/register">Register</a> -->
-                                        </div>
+                                        <p>Registration Open!</p>
+                                        <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/{{$convention->id}}/register">Register</a>
+                                      </div>
                                     @endguest
                                 </div>
                             </div>
@@ -114,10 +114,7 @@
                                   <h5>IntrigueCon Discord Server</h5>
                                 </div>
 
-                                
-                                <h6><a href="https://discord.gg/RMVnfwj">Discord link and invitation</a></h6>
-                                
-
+                                <h6><a href="https://discord.gg/RMVnfwj">Go to Discord</a></h6>
 
                                <!--  @isset($convention->location) 
                                     <h5>{{$convention->location->name}}</h5>

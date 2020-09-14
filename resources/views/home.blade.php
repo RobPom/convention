@@ -27,10 +27,10 @@
 
                     <p>So, in an imperfect world we have an imperfect solution that may allow you to capture just enough of the real thing to carry you through until we can get back around a table together</p>
 
-                    <p>On Saturday, October the 17th we will be hosting an online event so people can get together to play some games, chat with friends, or just lurk in a familiar environment. We’ll be based in and monitoring a discord server to host the games. Of course, as the GM you can choose to facilitate the game any way you want we’re just saying that the IntrigueCon team will only be monitoring the things going on in our <a href="https://discord.gg/DqWAFn">Discord Server</a>. </p>
+                    <p>On Saturday, October the 17th we will be hosting an online event so people can get together to play some games, chat with friends, or just lurk in a familiar environment. We’ll be based in and monitoring a discord server to host the games. Of course, as the GM you can choose to facilitate the game any way you want we’re just saying that the IntrigueCon team will only be monitoring the things going on in the Discord server. </p>
 
                     <p>Registration is $5 and for that you’ll be able to submit and play games, and we’ll be able to maintain the servers, renew the domain, and not have to spend hours preventing the schedule getting filled up with what most people would consider spam e.g. games called Rescue Sexy Singles In Your Area or Help the King Discover Ancient Scrolls of Knowledge About How To Lose a Little Belly Fat Each Day. Oh, and I forgot to mention you’ll also get this year’s button mailed out to you</p>
-                    <a class='float-center' href='message/1'>Sign Up Today!</a>
+                    <a class='float-center' href='calendar/convention'>Sign Up Today!</a>
                 </div>
             </div>
         </div>
