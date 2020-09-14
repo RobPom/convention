@@ -81,11 +81,13 @@
             <a href="/about" class="text-white ">About Us </a> 
             <span class="mx-2">|</span> 
             <a href="/codeofconduct" class="text-white">Code of Conduct</a>
+            <span class="mx-2">|</span> 
+            <a href="/community" class="text-white">Edmonton RPG Community</a>
         </div>
         <div>
-            <a href="https://twitter.com/intriguecon" class="text-secondary">Our Twitter</a> <span class="mx-2"></span>
+            
             <a href="https://www.facebook.com/groups/663587420414716/" class="text-secondary">Our Facebook Group</a><span class="mx-2"></span>
-            <a href="https://discord.gg/c3ndFnN" class="text-secondary">Our Discord</a>
+           
         </div>            
         
     </footer>
