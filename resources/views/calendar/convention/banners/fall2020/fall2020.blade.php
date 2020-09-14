@@ -14,10 +14,10 @@
     font-family: 'Oswald', sans-serif;
     margin-bottom: 20px;
     background: url(/img/fall2020banner_bg.jpg) 75% center no-repeat ;
-    box-shadow: inset 0px 0px 300px rgba(0, 0, 0, 0.50);
+    box-shadow: inset 0px 0px 300px rgba(0, 0, 0, 1);
     background-size: cover;
     position: relative;
-    color: #3d232f; 
+    color: white; 
   }
 
   .logo{
@@ -70,10 +70,10 @@
         <div class="container">
           <div class="row ">
             <div class="col-sm-5 ">
-              <div class="centerish glow">
+              <div class="centerish">
                 <div class="logo ">IntrigueCon 2020</div>
                 <div class="tagline ">This time it's virtual</div>
-                <a href="/calendar/convention" class="btn btn-outline-light btn-sm">Find Out More</a>
+                <a href="/calendar/convention" class="btn btn-light btn-sm">Find Out More</a>
               </div>
             </div>
           </div>
