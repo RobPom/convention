@@ -31,7 +31,7 @@
                 </li> -->
               
               
-               <!--  @if (  App\Convention::where('status' , 'active')->count() )
+                 @if (  App\Convention::where('status' , 'active')->count() )
                     <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" 
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -46,7 +46,7 @@
               
                         </div>
                     </li>
-                @endif -->
+                @endif 
                
             </ul>
 
@@ -82,7 +82,7 @@
                                 <a class="dropdown-item" href="/profile">Profile</a>
                             
                                 <!-- added ! to turn off -->
-                            @if ( ! App\Convention::where('status' , 'active')->count() )
+                            @if ( App\Convention::where('status' , 'active')->count() )
                                 @if ( App\Convention::where('status' , 'active')->first()->attendees->contains( Auth::user() ) )
                                 <a class="dropdown-item" href="/calendar/convention/{{App\Convention::where('status' , 'active')->first()->id}}/attendee/schedule">
                                     <small class="text-muted"> {{ App\Convention::where('status' , 'active')->first()->title }} </small>

@@ -113,7 +113,13 @@
                                 <div class="card-title">
                                     <h5>Location</h5>
                                 </div>
-                                @isset($convention->location) 
+
+                                <h5>IntrigueCon Discord Server</h5>
+                                <h6><a href="https://discord.gg/DqWAFn">https://discord.gg/DqWAFn</a></h6>
+                                
+
+
+                               <!--  @isset($convention->location) 
                                     <h5>{{$convention->location->name}}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">{{$convention->location->address1}} <br> {{$convention->location->address2}}</h6>
                                     <a href="{{$convention->location->link}}" class=" m-2 card-link btn btn-sm btn-primary">Google Maps</a>
@@ -122,7 +128,7 @@
                                         <h5 class="card-title">No Location</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">(yet)</h6>
                                     </div>
-                                @endisset
+                                @endisset -->
                             </div>
                         </div>
                         
