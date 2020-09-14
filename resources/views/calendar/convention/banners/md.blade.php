@@ -13,8 +13,7 @@
 
 
       .banner {
-        margin-top: 25px;
-        margin-bottom: 80px;
+
         background:url(/img/default-banner.jpg) no-repeat center right ;
         background-size: cover;
         -webkit-background-size: cover;

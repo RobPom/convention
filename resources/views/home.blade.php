@@ -4,7 +4,7 @@
 
 @if ( App\Convention::where('status' , 'active')->count() == 1)
 
-      @include('calendar.convention.banners.default')
+      @include('calendar.convention.banners.fall2020.fall2020')
 
     @else 
     
@@ -12,9 +12,9 @@
    
 @endif
 
-<div class="container my-4">
+<div class="container ">
     <div class="row">
-        <div class="col-sm-8 pl-0 pr-1 mb-2">
+        <div class="col-sm-12 pl-0 pr-1 mb-2 ">
             <div class="card border-0">
                 <div class="card-body">
 
@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4 pl-0 pr-0 ">
+        <!-- <div class="col-sm-4 pl-0 pr-0 ">
         <div class="card">
             <div class="card-header">
               <h5>Community</h5>
@@ -50,7 +50,7 @@
                 </div>  
             </div>
         </div>
-    </div>
+        </div> -->
     </div>
 </div>
 

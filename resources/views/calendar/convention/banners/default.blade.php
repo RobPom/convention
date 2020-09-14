@@ -5,8 +5,8 @@
       /* Convention Banner */
 
       .banner {
-        margin-top: 25px;
-        margin-bottom: 80px;
+        margin-top: 20px;
+        margin-bottom: 20px;
         background:url(/img/default-banner.jpg) no-repeat center right ;
         background-size: cover;
         -webkit-background-size: cover;

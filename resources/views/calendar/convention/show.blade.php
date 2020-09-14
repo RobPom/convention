@@ -111,11 +111,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <h5>Location</h5>
+                                  <h5>IntrigueCon Discord Server</h5>
                                 </div>
 
-                                <h5>IntrigueCon Discord Server</h5>
-                                <h6><a href="https://discord.gg/DqWAFn">https://discord.gg/DqWAFn</a></h6>
+                                
+                                <h6><a href="https://discord.gg/RMVnfwj">Discord link and invitation</a></h6>
                                 
 
 
