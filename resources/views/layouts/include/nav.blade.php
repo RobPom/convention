@@ -40,7 +40,7 @@
                         <div class="dropdown-menu " aria-labelledby="navbarDropdown">
                             
                             <a class="dropdown-item" href="/calendar/convention">
-                                <small>Registration Open!</small> <br>
+                                <small>Sold Out!</small> <br>
                                 {{ App\Convention::where('status' , 'active')->first()->title }} 
                             </a>
               

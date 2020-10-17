@@ -89,16 +89,16 @@
                                             </div>
                                         @else
                                         <div class="text-center">
-                                            <p>Registration Open!</p>
-                                            <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/{{$convention->id}}/register">Register</a>
+                                            <p>Sold Out!</p>
+                                            <!-- <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/{{$convention->id}}/register">Register</a> -->
                                         </div>
                                         @endif
                                     @endauth
 
                                     @guest
                                     <div class="text-center">
-                                        <p>Registration Open!</p>
-                                        <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/{{$convention->id}}/register">Register</a>
+                                        <p>Sold Out!</p>
+                                        <!-- <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/{{$convention->id}}/register">Register</a> -->
                                       </div>
                                     @endguest
                                 </div>
