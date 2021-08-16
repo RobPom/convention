@@ -36,8 +36,8 @@
     background:   url(/img/fall2021/fall2021-mysterious-quote.png) no-repeat, 
                   url(/img/fall2021/fall2021-mysterious-logo.png) no-repeat, 
                   url(/img/fall2021/fall2021-mysterious.jpg) no-repeat;
-    background-size: 140px, 100px, cover;
-    background-position: 50% 20%, 50% 80%, 0% 0%;
+    background-size: 140px, 100px, 200%;
+    background-position: 15% 20%, 20% 80%, 35% 20%;
     min-height: 100px;
   }
 
