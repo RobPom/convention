@@ -10,26 +10,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                
-               <!--  <li><a class="nav-link" href="">About</a></li> -->
-
-                <!-- <li class="nav-item dropdown ">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" 
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        News <span class="caret"></span>
-                    </a>
-
-                    <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/posts">Latest</a>
-                   
-                        @auth
-                            @if(Auth::user()->hasAnyRole(['organizer' , 'admin']))
-                            <a class="dropdown-item" href="/posts/new">New Post</a>
-                            @endif
-                        @endauth
-                    </div>
-                </li> -->
-              
               
                  @if (  App\Convention::where('status' , 'active')->count() )
                     <li class="nav-item dropdown">
