@@ -26,7 +26,7 @@
                     <p>But first… thank you for the support and patience you’ve shown over the years.</p>
                     <p>It’s a testament to how you all pitch in that we never even considered not returning. From writing games, juggling players, switching tables, promoting the con in your day-to-day, helping with setup and tear down, and welcoming people of all stripes into our little corner of the world, truly, it’s you guys that make the con.
                       Enough soppy stuff let’s get down to brass tacks:</p>
-                    <p>Everyone, who hasn’t already made a profile for previous years, needs to create an <a href="http://convention.test/register">intriguecon</a> account. You’ll need a profile before you can buy a registration for any con we hold. If you’ve made a profile before you are all set.
+                    <p>Everyone, who hasn’t already made a profile for previous years, needs to create an intriguecon <a href="http://convention.test/register">account</a>. You’ll need a profile before you can buy a registration for any con we hold. If you’ve made a profile before you are all set.
                     </p>
                     <h4>Registration</h4>
                     <p>GM registration and game submissions will open Friday, the 20th of August.</p>
