@@ -422,19 +422,18 @@ class ConventionController extends Controller
     public function registered($id){
         $convention = Convention::find($id);
 
-            if($user = Auth::user())
-            {
-                if( ! $convention->attendees()->where('user_id' , Auth::user()->id)->count()){
-                    $convention->attendees()->attach($user);
-                }
+        if($user = Auth::user())
+        {
+            if( ! $convention->attendees()->where('user_id' , Auth::user()->id)->count()){
+                $convention->attendees()->attach($user);
             }
-            return view('calendar.convention.registered')->with('convention' , $convention);
-
-        };
+        }
+        return view('calendar.convention.registered')->with('convention' , $convention);
     }
+
 
     public function cancelled($id){
         $convention = Convention::find($id);
-        return view('calendar.convention.cancelled')->with('convention' , $convention);;
+        return view('calendar.convention.cancelled')->with('convention' , $convention);
     }
 }
