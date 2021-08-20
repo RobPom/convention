@@ -419,11 +419,9 @@ class ConventionController extends Controller
         return view('calendar.convention.register');
     }
 
-    public function registered(Request $request, $id){
+    public function registered($id){
         $convention = Convention::find($id);
-        //dd($request);
-        
-        if($request('PayerID') ) {
+
             if($user = Auth::user())
             {
                 if( ! $convention->attendees()->where('user_id' , Auth::user()->id)->count()){
@@ -431,8 +429,7 @@ class ConventionController extends Controller
                 }
             }
             return view('calendar.convention.registered')->with('convention' , $convention);
-          } else {
-            return view('calendar.convention.registration-error');
+
         };
     }
 
