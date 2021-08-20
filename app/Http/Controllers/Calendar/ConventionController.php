@@ -423,7 +423,7 @@ class ConventionController extends Controller
         $convention = Convention::find($id);
         //dd($request);
         
-        if($request('custom_id') == 'ICfall2021') {
+        if($request('PayerID') ) {
             if($user = Auth::user())
             {
                 if( ! $convention->attendees()->where('user_id' , Auth::user()->id)->count()){
