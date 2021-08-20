@@ -89,16 +89,16 @@
                                             </div>
                                         @else
                                         <div class="text-center">
-                                            <p>Sold Out!</p>
-                                            <!-- <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/{{$convention->id}}/register">Register</a> -->
+                                            <!--<p>Sold Out!</p> -->
+                                             <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/{{$convention->id}}/register">Register</a>
                                         </div>
                                         @endif
                                     @endauth
 
                                     @guest
                                     <div class="text-center">
-                                        <p>Sold Out!</p>
-                                        <!-- <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/{{$convention->id}}/register">Register</a> -->
+                                        <!-- <p>Sold Out!</p> -->
+                                        <a class="btn btn-sm btn-primary" href="http://www.intriguecon.com/calendar/convention/{{$convention->id}}/register">Register</a>
                                       </div>
                                     @endguest
                                 </div>
@@ -111,12 +111,12 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                  <h5>IntrigueCon Discord Server</h5>
+                                  <h5>Location</h5>
                                 </div>
 
-                                <h6><a href="https://discord.gg/RMVnfwj">Go to Discord</a></h6>
+                                 <!-- <h6><a href="https://discord.gg/RMVnfwj">Go to Discord</a></h6> -->
 
-                               <!--  @isset($convention->location) 
+                               @isset($convention->location) 
                                     <h5>{{$convention->location->name}}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">{{$convention->location->address1}} <br> {{$convention->location->address2}}</h6>
                                     <a href="{{$convention->location->link}}" class=" m-2 card-link btn btn-sm btn-primary">Google Maps</a>
@@ -125,7 +125,7 @@
                                         <h5 class="card-title">No Location</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">(yet)</h6>
                                     </div>
-                                @endisset -->
+                                @endisset
                             </div>
                         </div>
                         

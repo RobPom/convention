@@ -419,10 +419,11 @@ class ConventionController extends Controller
         return view('calendar.convention.register');
     }
 
-    public function registered($id){
+    public function registered(Request $request, $id){
         $convention = Convention::find($id);
-        //dd($convention);
-       // if( substr(Input::get('k', 'default') , 0 , 8) == '2eavfg7'){
+        //dd($request);
+        
+        if($request('custom_id') == 'ICfall2021') {
             if($user = Auth::user())
             {
                 if( ! $convention->attendees()->where('user_id' , Auth::user()->id)->count()){
@@ -430,9 +431,9 @@ class ConventionController extends Controller
                 }
             }
             return view('calendar.convention.registered')->with('convention' , $convention);
-       /*  } else {
+          } else {
             return view('calendar.convention.registration-error');
-        }; */
+        };
     }
 
     public function cancelled($id){
