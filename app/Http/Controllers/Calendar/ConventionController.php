@@ -421,7 +421,6 @@ class ConventionController extends Controller
 
     public function registered($id){
         $convention = Convention::find($id);
-
         if($user = Auth::user())
         {
             if( ! $convention->attendees()->where('user_id' , Auth::user()->id)->count()){
