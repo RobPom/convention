@@ -22,7 +22,7 @@ class AttendeeController extends Controller
     public function add($id)
     {   
         $convention = Convention::find($id);
-        $users = User::all();
+        $users = User::where('verified' , '!=' , false)->get();
 
         return view('calendar.convention.attendee.add')->with('convention' , $convention)->with('users', $users);
        
