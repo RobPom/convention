@@ -30,7 +30,7 @@
 
                     <h3>Registration</h3>
                     <p>Everyone, who hasn’t already made a profile for previous years, needs to create an intriguecon <a href="https://intriguecon.com/register">account</a>. You’ll need a profile before you can buy a registration for any con we hold. If you’ve made a profile before you are all set.</p>
-                    <p>You can register for the convention <a href="https://intriguecon.com/calendar/convention/11/register"></a></p>
+                    <p><a href="https://intriguecon.com/calendar/convention">Register and find out more about the convention </a>.</p>
 
                     <h3>Date and Time</h3>
                     <p>It begins Friday the 6th of May at 7pm, with doors open at 6pm for chatting, reminiscing, and doing some of that helping I was talking about before. Ends Saturday the 7th at midnight-ish. One session on Friday and three on Saturday (exact times to follow but pretty much the same as other years).</p>
