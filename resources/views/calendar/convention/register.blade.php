@@ -25,31 +25,23 @@
              We'll add you to the calendar manually (we'll be in contact).
          </p>
 
-         <hr class="p-2 mt-4">
+         <hr class="p-2">
          <div class="row">
              <div class="col-sm-3 offset-sm-3 text-center text-sm-right mb-2">
-                <small><em>After payment is complete, click 'Return to Merchant' to come back to this site, and start picking games!</em></small>
+                <p><strong>IntrigueCon Spring 2022 registration<strong></p>
              </div>
              <div class="col-sm-6 text-center text-sm-left">
                 <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
                     <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="CVCEWSAFDE73U">
-                    <table>
-                    <tr><td><input type="hidden" name="on0" value="Number of Tickets">Number of Tickets</td></tr><tr><td><select name="os0">
-                    <option value="1 Ticket">1 Ticket $32.00 CAD</option>
-                    <option value="2 Tickets">2 Tickets $64.00 CAD</option>
-                    <option value="3 Tickets">3 Tickets $96.00 CAD</option>
-                    </select> </td></tr>
-                    </table>
-                    <input type="hidden" name="currency_code" value="CAD">
+                    <input type="hidden" name="hosted_button_id" value="Q9BCS7WB2X7VJ">
                     <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
                     <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-                    </form>
+                </form>
              </div>
+
          </div>
+         <hr class="p-2 ">
 
-
-         <hr class="p-2 mt-4">
         <h4 class="mb-4">Still not sold?</h4>
          <div class="lead mb-3">See what <s>nice</s> things roleplaying game designers and publishers are saying about IntrigueCon</div>
 
