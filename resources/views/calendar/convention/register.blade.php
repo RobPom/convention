@@ -31,18 +31,18 @@
                 <small><em>After payment is complete, click 'Return to Merchant' to come back to this site, and start picking games!</em></small>
              </div>
              <div class="col-sm-6 text-center text-sm-left">
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
                     <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="2DBFY644A25Y4">
+                    <input type="hidden" name="hosted_button_id" value="CVCEWSAFDE73U">
                     <table>
-                    <tr><td><input type="hidden" name="on0" value="Number of tickets">Number of tickets</td></tr><tr><td><select name="os0">
-                    <option value="One ticket">One ticket $32.00 CAD</option>
-                    <option value="Two tickets">Two tickets $64.00 CAD</option>
-                    <option value="Three tickets">Three tickets $96.00 CAD</option>
+                    <tr><td><input type="hidden" name="on0" value="Number of Tickets">Number of Tickets</td></tr><tr><td><select name="os0">
+                    <option value="1 Ticket">1 Ticket $32.00 CAD</option>
+                    <option value="2 Tickets">2 Tickets $64.00 CAD</option>
+                    <option value="3 Tickets">3 Tickets $96.00 CAD</option>
                     </select> </td></tr>
                     </table>
                     <input type="hidden" name="currency_code" value="CAD">
-                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
                     <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
                     </form>
              </div>
