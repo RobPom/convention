@@ -81,9 +81,9 @@
 <div class="banner d-none d-md-block d-lg-none col">
     <div class='row'>
         <div class='col-12 banner-content-wrap p-5'>
-            <div class="lead-text ">Twice a year Edmonton’s roleplaying community gathers to share their love of table top games.</div>
-            <div class="copy pt-2">From <strong> Dungeons & Dragons </strong>to <strong>The Quiet Year</strong> and everything in between. </div>
-            <div class="copy pt-2">If you want to try new things with people passionate about roleplaying, there’s no better place to be than IntrigueCon. </div>
+<div class="lead-text ">Twice a year Edmonton’s roleplaying community gathers to share their love of table top games.</div>
+<div class="copy pt-2">From <strong> Dungeons & Dragons </strong>to <strong>The Quiet Year</strong> and everything in between. </div>
+<div class="copy pt-2">If you want to try new things with people passionate about roleplaying, there’s no better place to be than IntrigueCon. </div>
         </div>
         <div class='col-12 text-center pb-4'>
             <a class="btn btn-sm btn-dark" href="https://www.facebook.com/groups/663587420414716/"><i class="fa fa-facebook mr-2"></i> <span class="link">IntrigueCon</span></a>
