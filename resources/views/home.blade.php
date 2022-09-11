@@ -4,11 +4,11 @@
 
 @if ( App\Convention::where('status' , 'active')->count() == 1)
 
-      @include('calendar.convention.banners.fall2022.fall2022')
+      @include('calendar.convention.banners.fall2022.default')
 
     @else
 
-      @include('calendar.convention.banners.fall2022.fall2022')
+      @include('calendar.convention.banners.default')
 
 @endif
 

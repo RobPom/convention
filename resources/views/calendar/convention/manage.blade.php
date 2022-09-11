@@ -179,6 +179,55 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-6">
+                <div class="card mt-3">
+                    <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <strong>Active</strong>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="card-body">
+                        <form method="POST" action="{{ action('Calendar\ConventionController@updatestatus' , $convention->id) }}">
+                            @method('PATCH')
+                            @csrf
+
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+
+                                    @if($convention->status == 'active')
+
+                                        <p>This convention is active.</p>
+                                        <div class="form-row m-2">
+                                            <div class="col-sm-6 offset-sm-3">
+                                            <input type="hidden" name="status" value="inactive">
+                                                <button type="submit" class="btn btn-warning btn-block">Deactivate</button>
+                                            </div>   
+                                        </div>
+
+                                    @else 
+
+                                    <p>This convention is not active.</p>
+                                    <div class="form-row m-2">
+                                        <div class="col-sm-6 offset-sm-3">
+                                        <input type="hidden" name="status" value="active">
+                                            <button type="submit" class="btn btn-secondary btn-block">Activate</button>
+                                        </div>   
+                                    </div>
+
+                                    @endif
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
  
                 

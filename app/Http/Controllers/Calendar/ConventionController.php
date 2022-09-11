@@ -187,6 +187,17 @@ class ConventionController extends Controller
         return redirect('/calendar/convention/' . $id . '/manage')->with('status', 'Changes Saved');
     }
 
+    public function updatestatus(Request $request, $id)
+    { 
+        $convention = Convention::find($id);
+
+        Convention::where('status', 'active')
+          ->update(['status' => 'inactive']);
+
+        $convention->status = $request->status;
+        $convention->save();
+        return redirect('/calendar/convention/' . $id . '/manage')->with('status', 'Changes Saved');
+    }
 
 
      /**

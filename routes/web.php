@@ -73,6 +73,7 @@ Route::post('/calendar/convention/new' , 'Calendar\ConventionController@store');
 Route::delete('/calendar/convention/{id}' , 'Calendar\ConventionController@destroy');
 Route::get('/calendar/convention/{id}/edit' , 'Calendar\ConventionController@edit');
 Route::patch('/calendar/convention/{id}' , 'Calendar\ConventionController@update');
+Route::patch('/calendar/convention/{id}' , 'Calendar\ConventionController@updatestatus');
 
 Route::get('/calendar/convention/{id}' , 'Calendar\ConventionController@show');
 Route::get('/calendar/convention/{id}/manage' , 'Calendar\ConventionController@manage');
