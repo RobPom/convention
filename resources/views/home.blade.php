@@ -4,11 +4,11 @@
 
 @if ( App\Convention::where('status' , 'active')->count() == 1)
 
-      @include('calendar.convention.banners.spring2022.spring2022')
+      @include('calendar.convention.banners.fall2022.fall2022')
 
     @else
 
-      @include('calendar.convention.banners.spring2022.spring2022')
+      @include('calendar.convention.banners.fall2022.fall2022')
 
 @endif
 
@@ -18,23 +18,29 @@
             <div class="card border-0">
                 <div class="card-body">
 
-                    <h2 class="card-title">IntrigueCon Spring 2022</h2>
+                    <h2 class="card-title">IntrigueCon X</h2>
 
-                    <p class="lead">Hello new visitors, and old friends alike!</p>
-                    <p>First the good news. We’re back! It’s taken us a little longer than anticipated to get on top of the virus, but we’ve proven, once again. why we’re the world’s premier roleplaying convention/bio-tech company.</p>
-                    <p>IntrigueCon’s spring event, perfectly entitled, “The Return of the Spring”, is set to go May 6th and 7th. Registration will be $32 and both players and GMs will be given the opportunity to part with your hard earned cash on April 1st sometime around second breakfast.</p>
-                    <p>What does all of this mean? Well, it’s definitely an indication that you should start writing those games and promoting the con in your day-to-day. You’d also be well-advised to to keep in mind that this event has about half of the usual spots available at our October con, so, don’t delay or prevaricate. There’s maybe an opportunity for a short shilly-shally but I wouldn’t consider even a modest hem and/or haw.</p>
-                    <p>Now that you’re fully committed, if you’re new to the con, and you haven’t already made a profile, your first move is to create an IntrigueCon account. Why? Well, you’ll need a profile before you can buy a registration for any con we hold, and you’ll need to be registered to book your spots in games and submit any games of your own. Now, if you’ve made a profile before, you are all set and probably know what to do.</p>
-                    <p>At this point we'd be remiss if we didn’t acknowledge all of you who have stood behind us through all the on-again off-again over the past few years. Your enthusiasm for the event and your willingness to pitch-in are what make it a no-brainer to keep IntrigueCon going.</p>
-                    <p>You’ve become a community to be proud of.</p>
+                    <p class="lead">We're back Babies!</p>
+                    <p>For those who attended online we never really left but for those in-person types, we're like, back back.</p>
+                    <p>IntrigueCon 10 or X as we like to call it, you know, for the kids, is set to go. We run October 14th-16th at the awesome Meadowlark Community Centre. There will be 5 game slots: one on Friday night, three on Saturday, and, for the diehards, one on Sunday. Price of admission is $36 for the whole shooting match. </p>
+                    <p>We know that people's comfort with masks falls somewhere on a spectrum. Because we're a group of welcoming people who know all too well the stigma attached to our hobby, we want everyone to be able to participate and we hope. Here's our plan to please all of the people all of the time which is sure to succeed.</p>
+                    <p>
+                        <ul>
+                            <li>If you want to wear a mask, wear a mask</li>
+                            <li>If you don't want to wear a mask, don't wear a mask</li>
+                            <li>If you are a GM and want to stipulate that your players wear a mask make that stipulation at the <em>top</em> of your write up and stick to it.</li>
+                            <li>If you don't want to wear a mask and you want to play a game that requires a mask you'll have to decide which is more important to you</li>
+                            <li>If you want to wear a mask and you want to play in a game that doesn't require masks, you'll have to decide if you're okay potentially playing with folks who aren't wearing a mask</li>
+                        </ul>
+                    </p>
+                    <p>Our theme for the Con this year is The Prophecy Is Fulfilled. There's no need to incorporate our theme but with a fine theme like that why wouldn't you want to!</p>
+                    <p>So come join us for IntrigueCon 10</p>
 
                     <h3>Registration</h3>
                     <p>Everyone, who hasn’t already made a profile for previous years, needs to create an intriguecon <a href="https://intriguecon.com/register">account</a>. You’ll need a profile before you can buy a registration for any con we hold. If you’ve made a profile before you are all set.</p>
                     <p><a href="https://intriguecon.com/calendar/convention">Register and find out more about the convention </a>.</p>
 
-                    <h3>Date and Time</h3>
-                    <p>It begins Friday the 6th of May at 7pm, with doors open at 6pm for chatting, reminiscing, and doing some of that helping I was talking about before. Ends Saturday the 7th at midnight-ish. One session on Friday and three on Saturday (exact times to follow but pretty much the same as other years).</p>
-
+                
                 </div>
             </div>
         </div>
