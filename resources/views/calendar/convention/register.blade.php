@@ -72,16 +72,6 @@
                 </div>
             </div>
 
-         <div class="card border-0">
-            <div class="card-body ">
-                <blockquote class="blockquote text-center">
-                    <p class="mb-0">“You’ll never drag me to Edmonton for IntrigueCon.”</p>
-                    <footer class="blockquote-footer">Luke Crane | <a href="https://www.burningwheel.com">www.burningwheel.com</a>
-                        </footer>
-                </blockquote>
-            </div>
-        </div>
-
         <div class="card border-0"">
             <div class="card-body ">
                 <blockquote class="blockquote text-center">

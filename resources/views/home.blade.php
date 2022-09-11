@@ -17,9 +17,6 @@
         <div class="col-sm-12 pl-0 pr-1 mb-2 ">
             <div class="card border-0">
                 <div class="card-body">
-
-                    <h2 class="card-title">IntrigueCon X</h2>
-
                     <p class="lead">We're back Babies!</p>
                     <p>For those who attended online we never really left but for those in-person types, we're like, back back.</p>
                     <p>IntrigueCon 10 or X as we like to call it, you know, for the kids, is set to go. We run October 14th-16th at the awesome Meadowlark Community Centre. There will be 5 game slots: one on Friday night, three on Saturday, and, for the diehards, one on Sunday. Price of admission is $36 for the whole shooting match. </p>

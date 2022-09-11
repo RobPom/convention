@@ -16,8 +16,11 @@
   }
   
   .quote {
-      line-height: 300%;
+
+      margin-top: 50px;
+      line-height: 200%;
       text-align: center;
+
   }
 
   .quote-font{

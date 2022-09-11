@@ -16,7 +16,8 @@
   }
   
   .quote {
-      line-height: 300%;
+      margin-top: 50px;
+      line-height: 200%;
       text-align: center;
   }
 
@@ -58,7 +59,7 @@
 }
 
 </style>
-<div class="col-10 offset-1">
+<div class="banner col-10 offset-1">
   <div class='row'>
       <div class='col banner-content-wrap'>
           <div class="quote-font text-right" >

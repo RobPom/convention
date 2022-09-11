@@ -6,7 +6,7 @@
     <div class="card-header bg-white">
         <div class="row">
             <div class="col-md-8 text-center text-md-left">
-                <h5>{{$convention->title}}</h5>
+                <h3>{{$convention->title}}</h3>
             </div>
             <div class="col-md-4 text-center text-md-right">
                 <small>{{$convention->pretty_dates()}}</small>
