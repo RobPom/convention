@@ -2,15 +2,15 @@
 
 @section('content')
 
-  @if ( App\Convention::where('status' , 'active')->count() == 1)
+@if ( App\Convention::where('status' , 'active')->count() == 1)
 
-    @include('calendar.convention.banners.fall2022.fall2022')
+  @include('calendar.convention.banners.fall2022.default')
 
-  @else
+@else
 
-    @include('calendar.convention.banners.fall2022.fall2022')
+  @include('calendar.convention.banners.default')
 
-@endif  
+@endif
 <div class="row">
     <div class="col-md-12">
        <div class="lead my-1"> Welcome to the home of IntrigueCon, a tabletop roleplaying game convention based in Edmonton, Alberta, Canada. </div>
