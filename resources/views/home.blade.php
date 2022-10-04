@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <p class="lead">We're back Babies!</p>
                     <p>For those who attended online we never really left but for those in-person types, we're like, back back.</p>
-                    <p>IntrigueCon 10 or X as we like to call it, you know, for the kids, is set to go. We run October 14th-16th at the awesome Meadowlark Community Centre. There will be 5 game slots: one on Friday night, three on Saturday, and, for the diehards, one on Sunday. Price of admission is $36 for the whole shooting match. </p>
+                    <p>IntrigueCon 10 or X as we like to call it, you know, for the kids, is set to go. We run October 14th-16th at the awesome Meadowlark Community Centre. There will be 5 game slots: one on Friday night, three on Saturday, and, for the diehards, one on Sunday. Price of admission is $32 for the whole shooting match. </p>
                     <p>We know that people's comfort with masks falls somewhere on a spectrum. Because we're a group of welcoming people who know all too well the stigma attached to our hobby, we want everyone to be able to participate and we hope. Here's our plan to please all of the people all of the time which is sure to succeed.</p>
                     <p>
                         <ul>
