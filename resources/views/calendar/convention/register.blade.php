@@ -28,7 +28,7 @@
          <hr class="p-2">
          <div class="row">
              <div class="col-sm-3 offset-sm-3 text-center text-sm-right mb-2">
-                <p><strong>IntrigueCon 2022 registration<strong></p>
+                <p><strong>IntrigueCon Spring 2023 registration<strong></p>
              </div>
              <div class="col-sm-6 text-center text-sm-left">
         
