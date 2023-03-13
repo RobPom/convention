@@ -42,15 +42,15 @@
                             </tr><tr>
                         <td>
                             <select name="os0">
-                                <option value="Entrance for 1">Entrance for 1 $32.00 CAD</option>
-                                <option value="Entrance for 2">Entrance for 2 $64.00 CAD</option>
-                                <option value="Entrance for 3">Entrance for 3 $96.00 CAD</option>
+                                <option value="Admission for 1">Admission for 1 $32.00 CAD</option>
+                                <option value="Admission for 2">Admission for 2 $64.00 CAD</option>
+                                <option value="Admission for 3">Admission for 3 $96.00 CAD</option>
                             </select>
                         </td>
                     </tr>
                     </table>
                     <input type="hidden" name="currency_code" value="CAD">
-                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
                     <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
                 </form>
 
