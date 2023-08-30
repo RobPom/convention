@@ -1,6 +1,5 @@
 <style>
-    
-  /* Convention Banner */
+
   .banner-xl {
     box-shadow: inset 0px 0px 400px rgba(0, 0, 0, 0.25);
     background:     url(/img/fall2023/400/fall2023_Apoc_400.png) no-repeat, 
