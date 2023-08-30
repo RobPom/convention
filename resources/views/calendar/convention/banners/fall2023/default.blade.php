@@ -1,22 +1,27 @@
 <style>
   .banner-xl {
     box-shadow: inset 0px 0px 400px rgba(0, 0, 0, 0.25);
-    background:url(/img/fall2023/400/fall2023_Backgroun_400.png) no-repeat;
-    background-size: cover;
+    background:url(/img/fall2023/400/fall2023_Apoc_400.png) no-repeat, 
+                    url(/img/fall2023/400/fall2023_Logo_400.png) no-repeat, 
+                    url(/img/fall2023/400/fall2023_Background_400.png) no-repeat;
+    background-size: 400, 400, cover;
     min-height: 400px;
   }
 
   .banner-large {
     box-shadow: inset 0px 0px 400px rgba(0, 0, 0, 0.25);
-    background: url(/img/fall2023/400/fall2023_Background_400.png) no-repeat;
-    background-size: cover;
+    background:     url(/img/fall2023/400/fall2023_Apoc_400.png) no-repeat, 
+                    url(/img/fall2023/400/fall2023_Logo_400.png) no-repeat, 
+                    url(/img/fall2023/400/fall2023_Background_400.png) no-repeat;
+    background-size: 400, 400, cover;
+    background-position: 0, 100% 90%, 0;
     min-height: 400px;
   }
 
   .banner-medium {
     box-shadow: inset 0px 0px 400px rgba(0, 0, 0, 0.25);
     background:     url(/img/fall2023/250/fall2023_Apoc_250.png) no-repeat, 
-                    url(/img/fall2023/250/fall2023_Logo_250.png) no-repeat, 
+                    /* url(/img/fall2023/250/fall2023_Logo_250.png) no-repeat, */
                     url(/img/fall2023/250/fall2023_Background_250.png) no-repeat;
     background-size: 100%, 100%, cover;
     background-position: 10% 40%, 90% 90%,  50% 30%;
