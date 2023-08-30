@@ -1,44 +1,34 @@
 <style>
   .banner-xl {
     box-shadow: inset 0px 0px 400px rgba(0, 0, 0, 0.25);
-    background:url(/img/fall2023/400/fall2023_Apoc_400.png) no-repeat, 
-                    url(/img/fall2023/400/fall2023_Logo_400.png) no-repeat, 
-                    url(/img/fall2023/400/fall2023_Background_400.png) no-repeat;
-    background-size: 400, 400, cover;
+    background: url(/img/fall2023/fall2023_Banner_400_xl.jpg) no-repeat;
+    background-size: cover;
     min-height: 400px;
   }
 
   .banner-large {
     box-shadow: inset 0px 0px 400px rgba(0, 0, 0, 0.25);
-    background:     url(/img/fall2023/400/fall2023_Apoc_400.png) no-repeat, 
-                    url(/img/fall2023/400/fall2023_Logo_400.png) no-repeat, 
-                    url(/img/fall2023/400/fall2023_Background_400.png) no-repeat;
-    background-size: 400, 400, cover;
-    background-position: 0, 100% 90%, 0;
+    background: url(/img/fall2023/fall2023_Banner_400_l.jpg) no-repeat;
+    background-size: cover;
     min-height: 400px;
   }
 
   .banner-medium {
     box-shadow: inset 0px 0px 400px rgba(0, 0, 0, 0.25);
-    background:     url(/img/fall2023/250/fall2023_Apoc_250.png) no-repeat, 
-                    /* url(/img/fall2023/250/fall2023_Logo_250.png) no-repeat, */
-                    url(/img/fall2023/250/fall2023_Background_250.png) no-repeat;
-    background-size: 100%, 100%, cover;
-    background-position: 10% 40%, 90% 90%,  50% 30%;
+    background: url(/img/fall2023/fall2023_Banner_250.jpg) no-repeat;
+    background-size: cover;
     min-height: 250px;
   }
 
   .banner-small {
     box-shadow: inset 0px 0px 400px rgba(0, 0, 0, 0.25);
-    background:     url(/img/fall2023/200/fall2023_Apoc_200.png) no-repeat, 
-                    url(/img/fall2023/200/fall2023_Background_200.png) no-repeat;
-    background-size: 100%, cover;
-    background-position: 10% 40%,  50% 30%;
+    background: url(/img/fall2023/fall2023_Banner_200.jpg) no-repeat;
+    background-size: cover;
     min-height: 200px;
   }
 
   .banner-xs {
-    background:     url(/img/fall2023/100/fall2023_Apoc_100.png) no-repeat;
+    background:url(/img/fall2023/100/fall2023_Apoc_100.png) no-repeat;
     background-size: 50%;
     background-position: 50% 50%;
     min-height: 100px;
