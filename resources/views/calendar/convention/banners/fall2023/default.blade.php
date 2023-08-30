@@ -1,24 +1,28 @@
 <style>
   .banner-xl {
-    background: url(/img/fall2023/fall2023_Banner_400_xl.jpg) no-repeat;
+    box-shadow: inset 0px 0px 400px rgba(0, 0, 0, 0.25);
+    background: url(/img/fall2023/Fall2023_Banner_400_xl.jpg) no-repeat;
     background-size: cover;
-    min-height: 400px;
+    min-height: 400;
   }
 
   .banner-large {
-    background: url(/img/fall2023/fall2023_Banner_400_l.jpg) no-repeat;
+    box-shadow: inset 0px 0px 400px rgba(0, 0, 0, 0.25);
+    background: url(/img/fall2023/Fall2023_Banner_400_l.jpg) no-repeat;
     background-size: cover;
     min-height: 400px;
   }
 
   .banner-medium {
-    background: url(/img/fall2023/fall2023_Banner_250.jpg) no-repeat;
+    box-shadow: inset 0px 0px 400px rgba(0, 0, 0, 0.25);
+    background: url(/img/fall2023/Fall2023_Banner_250.jpg) no-repeat;
     background-size: cover;
     min-height: 250px;
   }
 
   .banner-small {
-    background: url(/img/fall2023/fall2023_Banner_200.jpg) no-repeat;
+    box-shadow: inset 0px 0px 400px rgba(0, 0, 0, 0.25);
+    background: url(/img/fall2023/Fall2023_Banner_200.jpg) no-repeat;
     background-size: cover;
     min-height: 200px;
   }
