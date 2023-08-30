@@ -16,7 +16,7 @@
                     url(/img/fall2023/400/fall2023_Logo_400.png) no-repeat, 
                     url(/img/fall2023/400/fall2023_Background_400.png) no-repeat;
     background-size: 400, 400, cover;
-    background-position: 0, 375% 90%, 0;
+    background-position: 0, 100% 90%, 0;
     min-height: 400px;
   }
 
@@ -64,16 +64,16 @@
 
   </div>
 
-  <!-- large and up screens -->
+  <!-- large screens -->
 
   <div class="d-none d-sm-none d-md-none d-lg-block d-xl-none banner-large">
     
 
   </div>
 
-  <!-- large and up screens -->
+  <!-- xl and up screens -->
 
-  <div class="d-none d-xl-block banner-xl">
+  <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block banner-xl">
     
 
   </div>
