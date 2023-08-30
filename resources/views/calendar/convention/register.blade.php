@@ -32,26 +32,34 @@
              </div>
              <div class="col-sm-6 text-center text-sm-left">
         
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                    <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="TCURDLFYPUUQN">
-                    <table>
+             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick" />
+                <input type="hidden" name="hosted_button_id" value="5RFPEJKMUBL5A" />
+                <table>
                     <tr>
-                        <td>
-                            <input type="hidden" name="on0" value="Number of Tickets">Number of Tickets</td>
-                            </tr><tr>
-                        <td>
-                            <select name="os0">
-                                <option value="Admission for 1">Admission for 1 $32.00 CAD</option>
-                                <option value="Admission for 2">Admission for 2 $64.00 CAD</option>
-                                <option value="Admission for 3">Admission for 3 $96.00 CAD</option>
-                            </select>
-                        </td>
+                    <td>
+                        <input type="hidden" name="on0" value="Registrations"/>
+                        Registrations
+                    </td>
                     </tr>
-                    </table>
-                    <input type="hidden" name="currency_code" value="CAD">
-                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                    <tr>
+                    <td>
+                        <select name="os0">
+                        <option value="Admission for 1">
+                            Admission for 1 $33.00 CAD
+                        </option>
+                        <option value="Admission for 2">
+                            Admission for 2 $66.00 CAD
+                        </option>
+                        <option value="Admission for 3">
+                            Admission for 3 $99.00 CAD
+                        </option>
+                        </select>
+                    </td>
+                    </tr>
+                </table>
+                <input type="hidden" name="currency_code" value="CAD" />
+                <input type="image" src="https://www.paypalobjects.com/en_CA/i/btn/btn_paynow_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
                 </form>
 
              </div>
