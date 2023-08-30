@@ -59,7 +59,7 @@
                     </tr>
                 </table>
                 <input type="hidden" name="currency_code" value="CAD" />
-                <input type="image" src="https://www.paypalobjects.com/en_CA/i/btn/btn_paynow_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
                 </form>
 
              </div>
